@@ -10,11 +10,15 @@ class Asociados {
     $db = new dbConn();
       if($this->CompruebaForm($datos) == TRUE){ // comprueba si todos los datos requeridos estan llenos
 
+                $hashed = Helpers::HashId(); // para que este hash mismo sea para cliente
                 $datos["nombre"] = strtoupper($datos["nombre"]);
-                $datos["hash"] = Helpers::HashId();
+                $datos["hash"] = $hashed;
                 $datos["time"] = Helpers::TimeId();
                 $datos["td"] = $_SESSION["td"];
-                if ($db->insert("clientes", $datos)) {
+                if ($db->insert("asociados", $datos)) {
+
+                    /// agregando como cliente
+                    $db->insert("clientes", $datos);
 
                     Alerts::Alerta("success","Realizado!","Registro realizado correctamente!");  
                 }
@@ -44,10 +48,10 @@ class Asociados {
               $datos["nombre"] = strtoupper($datos["nombre"]);
               $datos["time"] = Helpers::TimeId();
               $hash = $datos["hash"];
-              if (Helpers::UpdateId("clientes", $datos, "hash = '$hash' and td = ".$_SESSION["td"]."")) {
+              if (Helpers::UpdateId("asociados", $datos, "hash = '$hash' and td = ".$_SESSION["td"]."")) {
                   Alerts::Alerta("success","Realizado!","Cambio realizado exitsamente!");
                   echo '<script>
-                        window.location.href="?clientever"
+                        window.location.href="?asociadover"
                       </script>';
               }           
 
@@ -60,7 +64,7 @@ class Asociados {
 
   public function VerAsociados(){
       $db = new dbConn();
-          $a = $db->query("SELECT * FROM clientes WHERE td = ".$_SESSION["td"]." order by id desc limit 10");
+          $a = $db->query("SELECT * FROM asociados WHERE td = ".$_SESSION["td"]." order by id desc limit 10");
           if($a->num_rows > 0){
         echo '<table class="table table-sm table-hover">
           <thead>
@@ -82,12 +86,12 @@ class Asociados {
                       <td>'.$b["documento"].'</td>
                       <td>'.$b["direccion"].'</td>
                       <td>'.$b["telefono"].'</td>
-                      <td><a id="xdelete" hash="'.$b["hash"].'" op="65"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
+                      <td><a id="xdelete" hash="'.$b["hash"].'" op="185"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
                     </tr>';          
               }
         echo '</tbody>
         </table>';
-            echo '<div class="text-center"><a href="?clientever" class="btn btn-outline-info btn-rounded waves-effect btn-sm">Ver Todos</a></div>';
+            echo '<div class="text-center"><a href="?asociadover" class="btn btn-outline-info btn-rounded waves-effect btn-sm">Ver Todos</a></div>';
           } $a->close();  
       
   }
@@ -95,8 +99,8 @@ class Asociados {
 
   public function DelAsociado($hash){ // elimina precio
     $db = new dbConn();
-        if (Helpers::DeleteId("clientes", "hash='$hash'")) {
-           Alerts::Alerta("success","Eliminado!","Cliente eliminado correctamente!");
+        if (Helpers::DeleteId("asociados", "hash='$hash'")) {
+           Alerts::Alerta("success","Eliminado!","asociado eliminado correctamente!");
         } else {
             Alerts::Alerta("error","Error!","Algo Ocurrio!");
         } 
@@ -105,8 +109,9 @@ class Asociados {
 
   public function DelAsociadox($hash){ // elimina precio
     $db = new dbConn();
-        if (Helpers::DeleteId("clientes", "hash='$hash'")) {
-           Alerts::Alerta("success","Eliminado!","Cliente eliminado correctamente!");
+        
+        if (Helpers::DeleteId("asociados", "hash='$hash'")) {
+           Alerts::Alerta("success","Eliminado!","asociado eliminado correctamente!");
         } else {
             Alerts::Alerta("error","Error!","Algo Ocurrio!");
         } 
@@ -114,9 +119,10 @@ class Asociados {
   }
 
 
+
   public function VerTodosAsociados(){
       $db = new dbConn();
-          $a = $db->query("SELECT * FROM clientes WHERE td = ".$_SESSION["td"]." order by id desc");
+          $a = $db->query("SELECT * FROM asociados WHERE td = ".$_SESSION["td"]." order by id desc");
           if($a->num_rows > 0){
         echo '<table id="dtMaterialDesignExample" class="table table-striped" table-sm cellspacing="0" width="100%">
                 <thead>
@@ -137,8 +143,8 @@ class Asociados {
                       <td>'.$b["nombre"].'</td>
                       <td>'.$b["documento"].'</td>
                       <td>'.$b["telefono"].'</td>
-                      <td><a id="xver" op="68" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
-                      <td><a id="xdelete" hash="'.$b["hash"].'" op="66"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
+                      <td><a id="xver" op="188" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
+                      <td><a id="xdelete" hash="'.$b["hash"].'" op="186"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
                     </tr>';          
               }
         echo '</tbody>
@@ -170,7 +176,7 @@ class Asociados {
 
   public function VistaAsociado($data){
       $db = new dbConn();
-     if ($r = $db->select("*", "clientes", "WHERE hash = '".$data["key"]."' and td = ".$_SESSION["td"]."")) { 
+     if ($r = $db->select("*", "asociados", "WHERE hash = '".$data["key"]."' and td = ".$_SESSION["td"]."")) { 
 
               echo '<table class="table table-hover">
                 <thead>

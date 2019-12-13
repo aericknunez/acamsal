@@ -3,13 +3,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          Editar Cliente</h5>
+          Editar Asociado</h5>
       </div>
       <div class="modal-body">
 <!-- ./  content -->
 <?php if($_REQUEST["key"] != NULL){ 
   $key = $_REQUEST["key"];
-  if ($r = $db->select("*", "clientes", "WHERE hash = '$key' and td = ".$_SESSION["td"]."")) { 
+  if ($r = $db->select("*", "asociados", "WHERE hash = '$key' and td = ".$_SESSION["td"]."")) { 
 
 $hash = $r["hash"];
 $nombre = $r["nombre"];
@@ -23,11 +23,11 @@ $contacto = $r["contacto"];
 $comentarios = $r["comentarios"]; 
   }  unset($r); ?>
 
-<div id="destinocliente">
+<div id="destinoasociado">
   
 </div>
 
-<form id="form-editcliente">
+<form id="form-editasociado">
   
   <div class="form-row">
 
@@ -105,7 +105,7 @@ $comentarios = $r["comentarios"];
 
   <div class="form-row">
     <div class="col-md-12 my-6 md-form text-center">
-     <button class="btn btn-info my-4" type="submit" id="btn-editcliente"><i class="fa fa-save mr-1"></i> Guardar</button>
+     <button class="btn btn-info my-4" type="submit" id="btn-editasociado"><i class="fa fa-save mr-1"></i> Guardar</button>
 
     </div>
   </div>
@@ -118,7 +118,7 @@ $comentarios = $r["comentarios"];
       </div>
       <div class="modal-footer">
 
-          <a href="?clientever" class="btn btn-primary btn-rounded">Regresar</a>
+          <a href="?asociadover" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

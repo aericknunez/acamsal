@@ -190,7 +190,7 @@ if($cod != NULL){
 
   <div class="form-row">
     <div class="col-md-12 my-6 md-form text-center">
-     <button class="btn btn-info my-4" type="submit" id="btn-proup"><i class="fa fa-floppy-o mr-1"></i> Guardar y continuar</button>
+     <button class="btn btn-info my-4" type="submit" id="btn-proup"><i class="fa fa-save mr-1"></i> Guardar y continuar</button>
 
     </div>
   </div>

@@ -60,7 +60,11 @@ echo '
 	echo '<script type="text/javascript" src="assets/js/query/cliente.js?v='.$numero.'"></script>';
 	}
 
-
+	/// asociado
+	if($_GET["modal"] == "editasociado"){
+	echo '<script type="text/javascript" src="assets/js/query/asociado.js?v='.$numero.'"></script>';
+	}
+	
 	/// facturar
 	if($_GET["modal"] == "facturar"){
 	echo '<script type="text/javascript" src="assets/js/query/facturar.js?v='.$numero.'"></script>';
@@ -196,6 +200,17 @@ echo '
 <script type="text/javascript" src="assets/js/query/cliente.js?v='.$numero.'"></script>';
 } 
 
+
+//////////////// asociado
+elseif(isset($_GET["asociadoadd"])) {
+echo '<script type="text/javascript" src="assets/js/query/asociado.js?v='.$numero.'"></script>';
+} 
+elseif(isset($_GET["asociadover"])) {
+echo '
+<script type="text/javascript" src="assets/js/addons/datatables.min.js?v='.$numero.'"></script>
+<script type="text/javascript" src="assets/js/query/asociadodatatable.js?v='.$numero.'"></script>
+<script type="text/javascript" src="assets/js/query/asociado.js?v='.$numero.'"></script>';
+} 
 //////////////// creditos
 elseif(isset($_GET["creditos"])) {
 echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$numero.'"></script>';

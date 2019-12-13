@@ -1,14 +1,14 @@
 $(document).ready(function(){
 
-	$('#btn-addcliente').click(function(e){ /// para el formulario
+	$('#btn-addasociado').click(function(e){ /// para el formulario
 	e.preventDefault();
 	$.ajax({
-			url: "application/src/routes.php?op=64",
+			url: "application/src/routes.php?op=184",
 			method: "POST",
-			data: $("#form-addcliente").serialize(),
+			data: $("#form-addasociado").serialize(),
 			success: function(data){
-				$("#form-addcliente").trigger("reset");
-				$("#destinocliente").html(data);			
+				$("#form-addasociado").trigger("reset");
+				$("#destinoasociado").html(data);			
 
 			}
 		})
@@ -16,7 +16,7 @@ $(document).ready(function(){
     
 
 
-	$("#form-addcliente").keypress(function(e) {//Para deshabilitar el uso de la tecla "Enter"
+	$("#form-addasociado").keypress(function(e) {//Para deshabilitar el uso de la tecla "Enter"
 	if (e.which == 13) {
 	return false;
 	}
@@ -24,26 +24,26 @@ $(document).ready(function(){
 
 
 
-	$("body").on("click","#delcliente",function(){ // borrar categoria
+	$("body").on("click","#delasociado",function(){ // borrar categoria
 	var op = $(this).attr('op');
 	var hash = $(this).attr('hash');
 	    $.post("application/src/routes.php", {op:op, hash:hash}, function(data){
-		$("#destinocliente").html(data);
+		$("#destinoasociado").html(data);
 		$('#ConfirmDelete').modal('hide');
 	   	 });
 	});
 
 
 ////////////////
-	$('#btn-editcliente').click(function(e){ /// actualizar proveedor
+	$('#btn-editasociado').click(function(e){ /// actualizar proveedor
 	e.preventDefault();
 	$.ajax({
-			url: "application/src/routes.php?op=67",
+			url: "application/src/routes.php?op=187",
 			method: "POST",
-			data: $("#form-editcliente").serialize(),
+			data: $("#form-editasociado").serialize(),
 			success: function(data){
-				$("#form-editcliente").trigger("reset");
-				$("#destinocliente").html(data);			
+				$("#form-editasociado").trigger("reset");
+				$("#destinoasociado").html(data);			
 			}
 		})
 	})
@@ -51,7 +51,7 @@ $(document).ready(function(){
 
 
 
-	$("#form-editcliente").keypress(function(e) {//Para deshabilitar el uso de la tecla "Enter"
+	$("#form-editasociado").keypress(function(e) {//Para deshabilitar el uso de la tecla "Enter"
 	if (e.which == 13) {
 	return false;
 	}
@@ -62,7 +62,7 @@ $(document).ready(function(){
 /// llamar modal ver
 	$("body").on("click","#xver",function(){ 
 		
-		$('#ModalVerCliente').modal('show');
+		$('#ModalVerAsociado').modal('show');
 		
 		var key = $(this).attr('key');
 		var op = $(this).attr('op');
@@ -80,7 +80,7 @@ $(document).ready(function(){
             }
         });
 
-		$('#btn-pro').attr("href",'?modal=editcliente&key='+key);
+		$('#btn-pro').attr("href",'?modal=editasociado&key='+key);
 		
 	});
 
@@ -92,7 +92,7 @@ $(document).ready(function(){
 		var op = $(this).attr('op');
 		var hash = $(this).attr('hash');
 		
-		$('#delcliente').attr("op",op).attr("hash",hash);
+		$('#delasociado').attr("op",op).attr("hash",hash);
 		$('#ConfirmDelete').modal('show');
 	});
 

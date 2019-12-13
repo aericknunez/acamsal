@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Alerts.php';
-include_once 'system/cliente/Asociado.php';
-$asociado = new Asociado(); 
+include_once 'system/asociado/Asociado.php';
+$asociado = new Asociados(); 
 
 ?>
 
@@ -11,14 +11,14 @@ $asociado = new Asociado();
 <h2 class="h2-responsive">Todos los Asociado</h2>
 
 
-<div id="destinocliente">
-   <?php $asociado->VerTodosClientes(); ?>
+<div id="destinoasociado">
+   <?php $asociado->VerTodosAsociados(); ?>
 </div>
 
 
 <!-- /// modal ver cleinte -->
 
-<div class="modal" id="ModalVerCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
+<div class="modal" id="ModalVerAsociado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -68,7 +68,7 @@ $asociado = new Asociado();
 
       <!--Footer-->
       <div class="modal-footer flex-center">
-        <a id="delcliente" class="btn  btn-outline-danger">Eliminar</a>
+        <a id="delasociado" class="btn  btn-outline-danger">Eliminar</a>
         <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
       </div>
     </div>

@@ -1179,6 +1179,41 @@ include("../common/ImagenesSuccess.php");
 
 
 
+/////////////////////// asociado
+
+if($_REQUEST["op"]=="184"){ // agregar asociado
+include_once '../../system/asociado/Asociado.php';
+	$asociado = new Asociados;
+	$asociado->AddAsociado($_POST);
+}
+
+if($_REQUEST["op"]=="185"){ // elimina asociado
+include_once '../../system/asociado/Asociado.php';
+	$asociado = new Asociados;
+	$asociado->DelAsociado($_REQUEST["hash"]);
+}
+
+if($_REQUEST["op"]=="186"){ // elimina asociado desde liasta completa
+include_once '../../system/asociado/Asociado.php';
+	$asociado = new Asociados;
+	$asociado->DelAsociadox($_REQUEST["hash"]);
+}
+
+if($_REQUEST["op"]=="187"){ // actualizar asociado
+include_once '../../system/asociado/Asociado.php';
+	$asociado = new Asociados;
+	$asociado->UpAsociado($_POST);
+}
+
+
+if($_REQUEST["op"]=="188"){ // ver asociado
+include_once '../../system/asociado/Asociado.php';
+	$asociado = new Asociados;
+	$asociado->VistaAsociado($_POST);
+}
+
+
+
 ///////////////////// planilla
 
 if($_REQUEST["op"]=="300"){ // agregar empleado

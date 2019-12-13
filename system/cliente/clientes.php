@@ -91,7 +91,7 @@ $cliente = new Clientes();
 
   <div class="form-row">
     <div class="col-md-12 my-6 md-form text-center">
-     <button class="btn btn-info my-4" type="submit" id="btn-addcliente"><i class="fa fa-floppy-o mr-1"></i> Guardar</button>
+     <button class="btn btn-info my-4" type="submit" id="btn-addcliente"><i class="fa fa-save mr-1"></i> Guardar</button>
 
     </div>
   </div>

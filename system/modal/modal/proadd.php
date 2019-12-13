@@ -84,7 +84,7 @@ $dep = $_REQUEST["dep"];
 
                         <div class="form-row">
                           <div class="col-md-12 my-1 md-form text-center">
-                           <button class="btn btn-info my-1" type="submit" id="btn-preciocosto"><i class="fa fa-floppy-o mr-1"></i> Guardar</button>
+                           <button class="btn btn-info my-1" type="submit" id="btn-preciocosto"><i class="fa fa-save mr-1"></i> Guardar</button>
 
                           </div>
                         </div>
@@ -132,7 +132,7 @@ $dep = $_REQUEST["dep"];
              $productos->VerPrecios($_REQUEST["key"]); 
               ?></div>
          <?php $url = "application/src/routes.php?op=47&key=$key&step=2&cad=$cad&com=$com&dep=$dep"; ?>
-              <a href="<?php echo $url; ?>" class="btn btn-info my-1" type="submit" id="btn-preciosdone"><i class="fa fa-floppy-o mr-1"></i> Continuar</a>
+              <a href="<?php echo $url; ?>" class="btn btn-info my-1" type="submit" id="btn-preciosdone"><i class="fa fa-save mr-1"></i> Continuar</a>
               </div>
               </div>
 
@@ -175,7 +175,7 @@ $dep = $_REQUEST["dep"];
                $productos->VerCompuesto($_REQUEST["key"]); 
                 ?></div>
           <?php $url = "application/src/routes.php?op=47&key=$key&step=3&com=$com&dep=$dep"; ?>
-              <a href="<?php echo $url; ?>" class="btn btn-info my-1" type="submit" id="btn-preciosdone"><i class="fa fa-floppy-o mr-1"></i> Continuar</a>
+              <a href="<?php echo $url; ?>" class="btn btn-info my-1" type="submit" id="btn-preciosdone"><i class="fa fa-save mr-1"></i> Continuar</a>
               </div>
                </div>
     <!-- termina compuesto formulario -->
@@ -213,7 +213,7 @@ $dep = $_REQUEST["dep"];
                   $productos->VerDependiente($_REQUEST["key"]); 
                 ?></div>
           <?php $url = "application/src/routes.php?op=47&key=$key&step=4&com=$com&dep=$dep"; ?>
-              <a href="<?php echo $url; ?>" class="btn btn-info my-1" type="submit" id="btn-preciosdone"><i class="fa fa-floppy-o mr-1"></i> Continuar</a>
+              <a href="<?php echo $url; ?>" class="btn btn-info my-1" type="submit" id="btn-preciosdone"><i class="fa fa-save mr-1"></i> Continuar</a>
               </div>
                </div>
     <!-- termina compuesto formulario -->

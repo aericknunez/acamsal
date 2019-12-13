@@ -22,11 +22,11 @@ $(document).ready(function(){
 
 
 
-	$("body").on("click","#delcliente",function(){ // borrar categoria
+	$("body").on("click","#delasociado",function(){ // borrar categoria
 	var op = $(this).attr('op');
 	var hash = $(this).attr('hash');
 	    $.post("application/src/routes.php", {op:op, hash:hash}, function(data){
-		$("#destinocliente").html(data);
+		$("#destinoasociado").html(data);
 	   	 });
 	});
 
