@@ -7,9 +7,9 @@ define("HOST", "localhost"); 			//35.225.56.157 The host you want to connect to.
 define("USER", "superpol_erick"); 			// The database username. 
 define("PASSWORD", "caca007125-"); 	// The database password.
 	if(Helpers::ServerDemo() == TRUE){
-		define("DATABASE", "superpol_cozto");
+		define("DATABASE", "superpol_acamsal");
 	} else {
-		define("DATABASE", "superpol_cozto");
+		define("DATABASE", "superpol_acamsal");
 	}
   
 
@@ -18,7 +18,7 @@ define("PASSWORD", "caca007125-"); 	// The database password.
 define("HOST", "localhost"); 			//35.225.56.157 The host you want to connect to. 
 define("USER", "root"); 			// The database username. 
 define("PASSWORD", "erick"); 	// The database password. 
-define("DATABASE", "cozto_ventas"); 
+define("DATABASE", "acamsal"); 
 
 }
 
