@@ -1,19 +1,25 @@
 $(document).ready(function(){
 
-	$('#btn-addasociado').click(function(e){ /// para el formulario
+
+
+	
+	$('#btn-addasociado').click(function(e){ /// ventas mensual
 	e.preventDefault();
 	$.ajax({
 			url: "application/src/routes.php?op=184",
 			method: "POST",
 			data: $("#form-addasociado").serialize(),
+			beforeSend: function () {
+				$('#btn-addasociado').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+	        },
 			success: function(data){
+				$('#btn-addasociado').html('<i class="fa fa-save mr-1"></i> Guardar').removeClass('disabled');	      
 				$("#form-addasociado").trigger("reset");
-				$("#destinoasociado").html(data);			
-
+				$("#destinoasociado").html(data);	
 			}
 		})
-	})
-    
+	});
+
 
 
 	$("#form-addasociado").keypress(function(e) {//Para deshabilitar el uso de la tecla "Enter"

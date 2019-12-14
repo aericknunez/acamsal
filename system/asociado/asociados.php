@@ -88,10 +88,20 @@ $asociado = new Asociados();
   </div>
 
 
+  <div class="form-row">
+    <div class="col-md-12 mb-1 md-form">
+        <select class="browser-default custom-select mb-1" id="edo" name="edo">
+          <option value="1" selected>Activo</option>
+          <option value="2">Inactivo</option>
+        </select>
+    </div>
+  </div>
+
+
 
   <div class="form-row">
-    <div class="col-md-12 my-6 md-form text-center">
-     <button class="btn btn-info my-4" type="submit" id="btn-addasociado"><i class="fa fa-save mr-1"></i> Guardar</button>
+    <div class="col-md-12 my-2 md-form text-center">
+     <button class="btn btn-info my-2" type="submit" id="btn-addasociado"><i class="fa fa-save mr-1"></i> Guardar</button>
 
     </div>
   </div>
@@ -125,8 +135,10 @@ $asociado = new Asociados();
       <!--Body-->
       <div class="modal-body">
 
+<p>ADVERTENCIA!! Al elimiar un asociado tambi&eacuten se eliminar&aacute toda la informaci&oacuten relacionada a &eacuteste permenentemente.</p>
         <i class="fas fa-times fa-4x animated rotateIn"></i>
 
+<p>Desea continuar?</p>
       </div>
 
       <!--Footer-->

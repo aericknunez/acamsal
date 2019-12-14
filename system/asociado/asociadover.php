@@ -61,9 +61,10 @@ $asociado = new Asociados();
 
       <!--Body-->
       <div class="modal-body">
-
+<p>ADVERTENCIA!! Al elimiar un asociado tambi&eacuten se eliminar&aacute toda la informaci&oacuten relacionada a &eacuteste permenentemente.</p>
         <i class="fas fa-times fa-4x animated rotateIn"></i>
 
+<p>Desea continuar?</p>
       </div>
 
       <!--Footer-->

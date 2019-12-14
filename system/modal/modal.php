@@ -27,6 +27,8 @@ if($_REQUEST["modal"]=="editcliente") include_once 'system/modal/modal/editar-cl
 
 if($_REQUEST["modal"]=="editasociado") include_once 'system/modal/modal/editar-asociado.php';
 
+if($_REQUEST["modal"]=="editcontribucion") include_once 'system/modal/modal/editar-contribucion.php';
+
 // facturar
 if($_REQUEST["modal"]=="facturar") include_once 'system/modal/modal/facturar.php';
 

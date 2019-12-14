@@ -1214,6 +1214,28 @@ include_once '../../system/asociado/Asociado.php';
 
 
 
+if($_REQUEST["op"]=="190"){ // add contribucion
+include_once '../../system/contribucion/Contribucion.php';
+	$contribucion = new Contribuciones;
+	$contribucion->AddContribucion($_POST);
+}
+
+if($_REQUEST["op"]=="191"){ // elimina contribucion
+include_once '../../system/contribucion/Contribucion.php';
+	$contribucion = new Contribuciones;
+	$contribucion->DelContribucion($_REQUEST["hash"]);
+}
+
+if($_REQUEST["op"]=="192"){ // ver contribucion
+include_once '../../system/contribucion/Contribucion.php';
+	$contribucion = new Contribuciones;
+	$contribucion->UpContribucion($_POST);
+}
+
+
+
+
+
 ///////////////////// planilla
 
 if($_REQUEST["op"]=="300"){ // agregar empleado

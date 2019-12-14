@@ -33,6 +33,9 @@ elseif(isset($_GET["proveedorver"])) include_once 'system/proveedor/proveedorver
 elseif(isset($_GET["asociadoadd"])) include_once 'system/asociado/asociados.php'; // agregar asociado
 elseif(isset($_GET["asociadover"])) include_once 'system/asociado/asociadover.php'; // ver asociados
 
+// contribuciones
+elseif(isset($_GET["contribucionadd"])) include_once 'system/contribucion/contribuciones.php'; // agregar asociado
+
 // clientes
 elseif(isset($_GET["clienteadd"])) include_once 'system/cliente/clientes.php'; // agregar cliente
 elseif(isset($_GET["clientever"])) include_once 'system/cliente/clientever.php'; // ver clientes
