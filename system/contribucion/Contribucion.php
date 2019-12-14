@@ -136,6 +136,12 @@ class Contribuciones {
   }
 
 
+/////////// comprobar si ya estuvo el mes
+///sino -- recorrerr todos las contribuciones si son personales o por unidad
+/// crear las que son personales recorriento todos los asociados
+      /// comprobar si no existe la cuota y se agrega
+/// crear todas las cuotas segun unidades // si no exite cuota 
+
 
 
 
