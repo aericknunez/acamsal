@@ -35,6 +35,7 @@ $asociado = new Asociados();
       <div class="modal-footer">
 
 <a href="" id="btn-pro" class="btn btn-secondary btn-rounded">Modificar Datos</a>
+<a id="btn-unidades" op="195" key="" class="btn btn-success btn-rounded">Unidades</a>
 <a id="cerrarmodal" class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
 
           
@@ -78,3 +79,89 @@ $asociado = new Asociados();
 </div>
 <!--Modal: modalConfirmDelete-->
 
+
+
+<!-- /// modal ver cleinte -->
+
+<div class="modal" id="ModalUnidades" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+         UNIDADES DEL ASOCIADO</h5>
+      </div>
+      <div class="modal-body">
+<!-- ./  content -->
+
+
+
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-extra-tab" data-toggle="tab" href="#nav-extra" role="tab"
+        aria-controls="nav-extra" aria-selected="true">Ver Unidades</a>
+
+      <a class="nav-item nav-link" id="nav-descuentos-tab" data-toggle="tab" href="#nav-descuentos" role="tab"
+        aria-controls="nav-descuentos" aria-selected="false">Agregar Unidad</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+
+    <div class="tab-pane fade show active" id="nav-extra" role="tabpanel" aria-labelledby="nav-extra-tab">
+
+            <div id="vista-unidades"></div>
+    
+    </div>
+
+    <div class="tab-pane fade" id="nav-descuentos" role="tabpanel" aria-labelledby="nav-descuentos-tab">
+    <?php Alerts::Mensajex("Agregue la cantidad del descuento a aplicar","danger"); ?>
+    
+      
+<form id="form-addunidad">
+  
+   <input type="hidden" id="asociado" name="asociado" value="">
+
+  <div class="form-row">
+    
+    <div class="col-md-6 mb-2 md-form">
+      <label for="unidad">* Unidad</label>
+      <input type="text" class="form-control" id="unidad" name="unidad">
+    </div>
+
+   <div class="col-md-6 mb-2 md-form">
+      <label for="placa">* Placa</label>
+      <input type="text" class="form-control" id="placa" name="placa">
+    </div>
+
+  </div>
+
+
+
+  <div class="form-row">
+    <div class="col-md-12 my-2 md-form text-center">
+     <button class="btn btn-info my-2" type="submit" id="btn-addunidad"><i class="fa fa-save mr-1"></i> Guardar</button>
+
+    </div>
+  </div>
+
+</form>
+
+    </div>
+
+  </div>
+
+
+
+
+<!-- ./  content -->
+      </div>
+      <div class="modal-footer">
+
+<a class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
+
+          
+    
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./  Modal -->

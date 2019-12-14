@@ -6,8 +6,8 @@ $(document).ready(function(){
 	$(this).parent().append($(this).children());
 	});
 	$('#dtMaterialDesignExample_wrapper .dataTables_filter').find('input').each(function () {
-	$('input').attr("placeholder", "Busqueda");
-	$('input').removeClass('form-control-sm');
+	//$('input').attr("placeholder", "Busqueda");
+	$('#inputsearch').removeClass('form-control-sm');
 	});
 	$('#dtMaterialDesignExample_wrapper .dataTables_length').addClass('d-flex flex-row');
 	$('#dtMaterialDesignExample_wrapper .dataTables_filter').addClass('md-form');
