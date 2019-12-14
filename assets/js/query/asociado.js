@@ -164,6 +164,56 @@ $(document).ready(function(){
 
 
 
+	$("body").on("click","#pagar",function(){ 
+		
+		$('#ModalPagar').modal('show');
+		
+		var hash = $(this).attr('hash');
+		var op = $(this).attr('op');
+		var dataString = 'op='+op+'&hash='+hash;
+
+		$.ajax({
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#vista").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {            
+                $("#vista").html(data); // lo que regresa de la busquea 		
+            }
+        });
+
+	});
+
+
+	$("body").on("click","#cobrar",function(){ 
+		
+
+		var hash = $(this).attr('hash');
+		var op = $(this).attr('op');
+		var total = $(this).attr('total');
+		var dataString = 'op='+op+'&hash='+hash+'&total='+total;
+
+		$.ajax({
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#vista").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {            
+                $("#destinoasociado").html(data); // lo que regresa de la busquea 		
+            }
+        });
+
+        $('#ModalPagar').modal('hide');
+		
+
+	});
+
+
+
 
 
 

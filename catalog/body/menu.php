@@ -140,7 +140,7 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-user"></i> Asociados<i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
-
+<li><a href="?cuotas" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Todas las cuotas</a></li>
 <li><a href="?asociadoadd" class="waves-effect"><i class="fas fa-user"></i> Agrega Asociado</a></li>
 <li><a href="?asociadover" class="waves-effect"><i class="fas fa-address-book"></i> Ver Asociado</a></li>
 <li><a href="?asociaunidades" class="waves-effect"><i class="fas fa-address-book"></i> Ver Unidades</a></li>

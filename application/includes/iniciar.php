@@ -37,11 +37,16 @@ $user=sha1($_SESSION['username']);
             } unset($r);
 
 
+
         $configuracion = new Config;
         $configuracion->CrearVariables(); // creo el resto de variables del sistema
 
         $inicia = new Inicio;
         $inicia->Caduca(); // revisa si ha caducado
+
+                include_once '../../system/contribucion/Contribucion.php';
+                $contribucion = new Contribuciones(); 
+                $contribucion->Ejecutar();
 
         header("location: ../../");
     }

@@ -1253,6 +1253,29 @@ include_once '../../system/asociado/Asociado.php';
 	$asociado->DelUnidad($_REQUEST["hash"], $_REQUEST["asociado"]);
 }
 
+if($_REQUEST["op"]=="199"){ // elimina asociado
+include_once '../../system/asociado/Asociado.php';
+	$asociado = new Asociados;
+	$asociado->Cuota($_REQUEST["hash"]);
+}
+
+if($_REQUEST["op"]=="200"){ // elimina asociado
+include_once '../../system/asociado/Asociado.php';
+	$asociado = new Asociados;
+	$asociado->Cobrar($_REQUEST["hash"], $_REQUEST["total"]);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ///////////////////// planilla
