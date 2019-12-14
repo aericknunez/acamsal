@@ -1,20 +1,31 @@
 <?php 
-class Clientes {
+class Conductores {
 
 		public function __construct() { 
      	} 
 
 
 
-  public function AddCliente($datos){
+  public function AddConductor($datos){
     $db = new dbConn();
       if($this->CompruebaForm($datos) == TRUE){ // comprueba si todos los datos requeridos estan llenos
 
-                $datos["nombre"] = strtoupper($datos["nombre"]);
-                $datos["hash"] = Helpers::HashId();
-                $datos["time"] = Helpers::TimeId();
-                $datos["td"] = $_SESSION["td"];
-                if ($db->insert("clientes", $datos)) {
+                $data["nombre"] = strtoupper($datos["nombre"]);
+                $data["documento"] = $datos["documento"];
+                $data["telefono"] = $datos["telefono"];
+                $data["direccion"] = $datos["direccion"];
+                $data["licencia"] = $datos["licencia"];
+                $data["vlicencia"] = $datos["vlicencia_submit"];
+                $data["vlicenciaF"] = Fechas::Format($datos["vlicencia_submit"]);
+                $data["vmt"] = $datos["vmt"];
+                $data["vvmt"] = $datos["vvmt_submit"];
+                $data["vvmtF"] = Fechas::Format($datos["vvmt_submit"]);
+                $data["comentarios"] = $datos["comentarios"];
+                $data["tipo"] = $datos["tipo"];
+                $data["hash"] = Helpers::HashId();
+                $data["time"] = Helpers::TimeId();
+                $data["td"] = $_SESSION["td"];
+                if ($db->insert("conductores", $data)) {
 
                     Alerts::Alerta("success","Realizado!","Registro realizado correctamente!");  
                 }
@@ -22,7 +33,8 @@ class Clientes {
         } else {
           Alerts::Alerta("error","Error!","Faltan Datos!");
         }
-      $this->VerClientes();
+      $this->VerConductores();
+
   }
 
 
@@ -37,17 +49,28 @@ class Clientes {
         }
   }
 
-  public function UpCliente($datos){ // lo que viede del formulario principal
+  public function UpConductores($datos){ // lo que viede del formulario principal
     $db = new dbConn();
       if($this->CompruebaForm($datos) == TRUE){ // comprueba si todos los datos requeridos estan llenos
 
-              $datos["nombre"] = strtoupper($datos["nombre"]);
-              $datos["time"] = Helpers::TimeId();
-              $hash = $datos["hash"];
-              if (Helpers::UpdateId("clientes", $datos, "hash = '$hash' and td = ".$_SESSION["td"]."")) {
+                $data["nombre"] = strtoupper($datos["nombre"]);
+                $data["documento"] = $datos["documento"];
+                $data["telefono"] = $datos["telefono"];
+                $data["direccion"] = $datos["direccion"];
+                $data["licencia"] = $datos["licencia"];
+                $data["vlicencia"] = $datos["vlicencia_submit"];
+                $data["vlicenciaF"] = Fechas::Format($datos["vlicencia_submit"]);
+                $data["vmt"] = $datos["vmt"];
+                $data["vvmt"] = $datos["vvmt_submit"];
+                $data["vvmtF"] = Fechas::Format($datos["vvmt_submit"]);
+                $data["comentarios"] = $datos["comentarios"];
+                $data["tipo"] = $datos["tipo"];
+                $data["time"] = Helpers::TimeId();
+                $hash = $datos["hash"];
+              if (Helpers::UpdateId("conductores", $data, "hash = '$hash' and td = ".$_SESSION["td"]."")) {
                   Alerts::Alerta("success","Realizado!","Cambio realizado exitsamente!");
                   echo '<script>
-                        window.location.href="?clientever"
+                        window.location.href="?verconductores"
                       </script>';
               }           
 
@@ -58,9 +81,9 @@ class Clientes {
 
 
 
-  public function VerClientes(){
+  public function VerConductores(){
       $db = new dbConn();
-          $a = $db->query("SELECT * FROM clientes WHERE td = ".$_SESSION["td"]." order by id desc limit 10");
+          $a = $db->query("SELECT * FROM conductores WHERE td = ".$_SESSION["td"]." order by id desc limit 10");
           if($a->num_rows > 0){
         echo '<table class="table table-sm table-hover">
           <thead>
@@ -68,7 +91,7 @@ class Clientes {
               <th scope="col">#</th>
               <th scope="col">Nombre</th>
               <th scope="col">Documento</th>
-              <th scope="col">Direccion</th>
+              <th scope="col">Licencia</th>
               <th scope="col">Telefono</th>
               <th scope="col">Eliminar</th>
             </tr>
@@ -80,43 +103,43 @@ class Clientes {
                       <th scope="row">'. $n ++ .'</th>
                       <td>'.$b["nombre"].'</td>
                       <td>'.$b["documento"].'</td>
-                      <td>'.$b["direccion"].'</td>
+                      <td>'.$b["licencia"].'</td>
                       <td>'.$b["telefono"].'</td>
-                      <td><a id="xdelete" hash="'.$b["hash"].'" op="65"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
+                      <td><a id="xdelete" hash="'.$b["hash"].'" op="212"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
                     </tr>';          
               }
         echo '</tbody>
         </table>';
-            echo '<div class="text-center"><a href="?clientever" class="btn btn-outline-info btn-rounded waves-effect btn-sm">Ver Todos</a></div>';
+            echo '<div class="text-center"><a href="?verconductores" class="btn btn-outline-info btn-rounded waves-effect btn-sm">Ver Todos</a></div>';
           } $a->close();  
       
   }
 
 
-  public function DelCliente($hash){ // elimina precio
+  public function DelConductor($hash){ // elimina precio
     $db = new dbConn();
-        if (Helpers::DeleteId("clientes", "hash='$hash'")) {
-           Alerts::Alerta("success","Eliminado!","Cliente eliminado correctamente!");
+        if (Helpers::DeleteId("conductores", "hash='$hash'")) {
+           Alerts::Alerta("success","Eliminado!","Conductor eliminado correctamente!");
         } else {
             Alerts::Alerta("error","Error!","Algo Ocurrio!");
         } 
-      $this->VerClientes();
+      $this->VerConductores();
   }
 
-  public function DelClientex($hash){ // elimina precio
+  public function DelConductorx($hash){ // elimina precio
     $db = new dbConn();
-        if (Helpers::DeleteId("clientes", "hash='$hash'")) {
-           Alerts::Alerta("success","Eliminado!","Cliente eliminado correctamente!");
+        if (Helpers::DeleteId("conductores", "hash='$hash'")) {
+           Alerts::Alerta("success","Eliminado!","Conductor eliminado correctamente!");
         } else {
             Alerts::Alerta("error","Error!","Algo Ocurrio!");
         } 
-      $this->VerTodosClientes();
+      $this->VerTodosConductores();
   }
 
 
-  public function VerTodosClientes(){
+  public function VerTodosConductores(){
       $db = new dbConn();
-          $a = $db->query("SELECT * FROM clientes WHERE td = ".$_SESSION["td"]." order by id desc");
+          $a = $db->query("SELECT * FROM conductores WHERE td = ".$_SESSION["td"]." order by id desc");
           if($a->num_rows > 0){
         echo '<table id="dtMaterialDesignExample" class="table table-striped" table-sm cellspacing="0" width="100%">
                 <thead>
@@ -137,8 +160,8 @@ class Clientes {
                       <td>'.$b["nombre"].'</td>
                       <td>'.$b["documento"].'</td>
                       <td>'.$b["telefono"].'</td>
-                      <td><a id="xver" op="68" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
-                      <td><a id="xdelete" hash="'.$b["hash"].'" op="66"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
+                      <td><a id="xver" op="214" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
+                      <td><a id="xdelete" hash="'.$b["hash"].'" op="213"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
                     </tr>';          
               }
         echo '</tbody>
@@ -161,60 +184,15 @@ class Clientes {
 
 
 
-////////////nuevo documento factura
-  public function NuevoDocumento($datos){
-    $db = new dbConn();
-    if($this->VerificaDocumento($datos["documento"]) > 0){
-        Alerts::Alerta("error","Error!","Ya se encuentra registro de este documento!");
-    } else {
-      if($datos["documento"] != NULL or $datos["cliente"] != NULL){ // comprueba datos
 
-        $datos["cliente"] = strtoupper($datos["cliente"]); // paso a mayusculas
-
-                $datos["hash"] = Helpers::HashId();
-                $datos["time"] = Helpers::TimeId();
-                $datos["td"] = $_SESSION["td"];
-                if ($db->insert("facturar_documento", $datos)) {
-
-                    Alerts::Alerta("success","Realizado!","Registro realizado correctamente!");  
-
-                            $_SESSION["factura_cliente"] = $datos["cliente"];
-                            $_SESSION["factura_documento"] = $datos["documento"];
-                              
-                              $texto = $_SESSION['config_nombre_documento']. ": " . $_SESSION["factura_documento"] . "<br> Cliente: " . $_SESSION["factura_cliente"];
-                            Alerts::Mensajex($texto,"danger",'<a id="quitar-documento" op="102" class="btn btn-danger btn-rounded">Quitar '.$_SESSION["config_nombre_documento"].'</a>',$boton2);
-                }
-
-        } else {
-          Alerts::Alerta("error","Error!","Faltan Datos!");
-        }
-  }
-
-  }
-
-/// verifica que no exista el numero de documento
-  public function VerificaDocumento($documento){ // productde  de la tabla ticket
-    $db = new dbConn();
-
-    $a = $db->query("SELECT * FROM facturar_documento WHERE documento = '$documento' and td = ".$_SESSION["td"]."");      
-        return $a->num_rows;
-        $a->close();
-    }
-
-
-
-
-
-
-
-  public function VistaCliente($data){
+  public function VistaConductor($data){
       $db = new dbConn();
-     if ($r = $db->select("*", "clientes", "WHERE hash = '".$data["key"]."' and td = ".$_SESSION["td"]."")) { 
+     if ($r = $db->select("*", "conductores", "WHERE hash = '".$data["key"]."' and td = ".$_SESSION["td"]."")) { 
 
               echo '<table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>Documento: '.$r["nombre"].'</th>
+                    <th>Nombre: '.$r["nombre"].'</th>
                     <td>Documento: '.$r["documento"].'</td>
                   </tr>
                 </thead>
@@ -223,15 +201,15 @@ class Clientes {
                     <th colspan="2">Direcci&oacuten: '.$r["direccion"].'</th>
                   </tr>
                   <tr>
-                    <td>Departamento: '.$r["departamento"].'</td>
-                    <td>Municipio: '.$r["municipio"].'</td>
+                    <td>Licencia: '.$r["Licencia"].'</td>
+                    <td>Vencimiento: '.$r["vlicencia"].'</td>
                   </tr>
                   <tr>
-                    <td>Giro: '.$r["email"].'</td>
+                    <td>VMT: '.$r["vmt"].'</td>
+                    <td>Vencimiento: '.$r["vvmt"].'</td>
+                  </tr>
+                  <tr>
                     <td>Telefono: '.$r["telefono"].'</td>
-                  </tr>
-                  <tr>
-                    <td>Contacto: '.$r["contacto"].'</td>
                     <td>Comentarios: '.$r["comentarios"].'</td>
                   </tr>
                 </tbody>
@@ -240,40 +218,61 @@ class Clientes {
         }  unset($r); 
 
 
-
-   $a = $db->query("SELECT * FROM ticket_cliente WHERE cliente = '".$data["key"]."' and td = ".$_SESSION["td"]."");
-              $cf = $a->num_rows;
-              $a->close();
-              if($cf > 0){
-                  echo '<ul class="list-group">
-                        <li class="list-group-item list-group-item-secondary">Facturas Asignadas</li>';
-                     echo '<li class="list-group-item d-flex justify-content-between align-items-center">Facturas 
-                     <span class="badge badge-primary badge-pill">'.Helpers::Format($cf).'</span></li>';
-                  echo '</ul>';
-              } else {
-                Alerts::Mensajex("No hay facturas asignadas","warning",$boton,$boton2);
-              }
-
-
-   $a = $db->query("SELECT * FROM creditos WHERE hash_cliente = '".$data["key"]."' and td = ".$_SESSION["td"]."");
-              $cas = $a->num_rows;
-              $a->close();
-              if($cas > 0){
-                  echo '<ul class="list-group">
-                        <li class="list-group-item list-group-item-secondary">Creditos Asignados</li>';
-                     echo '<li class="list-group-item d-flex justify-content-between align-items-center">Creditos  
-                     <span class="badge badge-secondary badge-pill">'.Helpers::Format($cas).'</span></li>';
-                  echo '</ul>';
-              } else {
-                Alerts::Mensajex("No hay creditos asignados","info",$boton,$boton2);
-              }
-
-
-
   }
 
 
 
+
+
+
+  public function Vencidos(){
+      $db = new dbConn();
+
+        $fechax = Fechas::Format(date("d-m-Y"));
+
+          $a = $db->query("SELECT * FROM conductores WHERE vlicenciaF < '".$fechax."' or vvmtF < '".$fechax."' and td = ".$_SESSION["td"]." order by id desc");
+          if($a->num_rows > 0){
+        echo '<table id="dtMaterialDesignExample" class="table table-striped" table-sm cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th class="th-sm">#</th>
+                    <th class="th-sm">Nombre</th>
+                    <th class="th-sm">Documento</th>
+                    <th class="th-sm">Telefono</th>
+                    <th class="th-sm">Ver</th>
+                    <th class="th-sm">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>';
+          $n = 1;
+              foreach ($a as $b) { ;
+                echo '<tr>
+                      <td>'. $n ++ .'</td>
+                      <td>'.$b["nombre"].'</td>
+                      <td>'.$b["documento"].'</td>
+                      <td>'.$b["telefono"].'</td>
+                      <td><a id="xver" op="214" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
+                      <td><a id="xdelete" hash="'.$b["hash"].'" op="213"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
+                    </tr>';          
+              }
+        echo '</tbody>
+                <tfoot>
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Documento</th>
+                    <th>Telefono</th>
+                    <th>Ver</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </tfoot>
+              </table>';
+
+          } else {
+            Alerts::Mensajex("No se encuentra ning&uacuten conductor con documentos vencidos","success");
+          } $a->close();  
+
+  }
 
 
 

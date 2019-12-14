@@ -197,7 +197,7 @@ class Asociados {
               echo '<table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>Documento: '.$r["nombre"].'</th>
+                    <th>Nombre: '.$r["nombre"].'</th>
                     <td>Documento: '.$r["documento"].'</td>
                   </tr>
                 </thead>

@@ -214,7 +214,7 @@ class Clientes {
               echo '<table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>Documento: '.$r["nombre"].'</th>
+                    <th>Nombre: '.$r["nombre"].'</th>
                     <td>Documento: '.$r["documento"].'</td>
                   </tr>
                 </thead>
@@ -227,7 +227,7 @@ class Clientes {
                     <td>Municipio: '.$r["municipio"].'</td>
                   </tr>
                   <tr>
-                    <td>Giro: '.$r["email"].'</td>
+                    <td>Email: '.$r["email"].'</td>
                     <td>Telefono: '.$r["telefono"].'</td>
                   </tr>
                   <tr>

@@ -39,6 +39,14 @@ elseif(isset($_GET["cuotas"])) include_once 'system/asociado/cuotas.php'; // ver
 // contribuciones
 elseif(isset($_GET["contribucionadd"])) include_once 'system/contribucion/contribuciones.php'; // agregar asociado
 
+
+// Conductore
+elseif(isset($_GET["conductoradd"])) include_once 'system/conductores/conductores.php'; 
+elseif(isset($_GET["verconductores"])) include_once 'system/conductores/conductoresver.php';
+elseif(isset($_GET["con_vencidos"])) include_once 'system/conductores/vencidos.php';
+
+
+
 // clientes
 elseif(isset($_GET["clienteadd"])) include_once 'system/cliente/clientes.php'; // agregar cliente
 elseif(isset($_GET["clientever"])) include_once 'system/cliente/clientever.php'; // ver clientes

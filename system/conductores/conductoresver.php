@@ -2,28 +2,28 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Alerts.php';
-include_once 'system/cliente/Cliente.php';
-$cliente = new Clientes(); 
+include_once 'system/conductores/Conductor.php';
+$conductores = new Conductores(); 
 
 ?>
 
 <div id="msj"></div>
-<h2 class="h2-responsive">Todos los Clientes</h2>
+<h2 class="h2-responsive">Todos los Conductores</h2>
 
 
-<div id="destinocliente">
-   <?php $cliente->VerTodosClientes(); ?>
+<div id="destinoconductor">
+   <?php $conductores->VerTodosConductores(); ?>
 </div>
 
 
 <!-- /// modal ver cleinte -->
 
-<div class="modal" id="ModalVerCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
+<div class="modal" id="ModalVerConductor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-         DETALLES CLIENTE</h5>
+         DETALLES CONDUTOR</h5>
       </div>
       <div class="modal-body">
 <!-- ./  content -->
@@ -68,7 +68,7 @@ $cliente = new Clientes();
 
       <!--Footer-->
       <div class="modal-footer flex-center">
-        <a id="delcliente" class="btn  btn-outline-danger">Eliminar</a>
+        <a id="delconductor" class="btn  btn-outline-danger">Eliminar</a>
         <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
       </div>
     </div>
@@ -76,4 +76,3 @@ $cliente = new Clientes();
   </div>
 </div>
 <!--Modal: modalConfirmDelete-->
-

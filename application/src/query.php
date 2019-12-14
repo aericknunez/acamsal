@@ -67,7 +67,9 @@ echo '
 	if($_GET["modal"] == "editcontribucion"){
 	echo '<script type="text/javascript" src="assets/js/query/contribucion.js?v='.$numero.'"></script>';
 	}
-	
+	if($_GET["modal"] == "editconductor"){
+	echo '<script type="text/javascript" src="assets/js/query/conductor.js?v='.$numero.'"></script>';
+	}
 	/// facturar
 	if($_GET["modal"] == "facturar"){
 	echo '<script type="text/javascript" src="assets/js/query/facturar.js?v='.$numero.'"></script>';
@@ -230,6 +232,23 @@ echo '
 elseif(isset($_GET["contribucionadd"])) {
 echo '<script type="text/javascript" src="assets/js/query/contribucion.js?v='.$numero.'"></script>';
 } 
+
+//////////////// conductor
+elseif(isset($_GET["conductoradd"])) {
+echo '<script type="text/javascript" src="assets/js/query/conductor.js?v='.$numero.'"></script>';
+} 
+elseif(isset($_GET["verconductores"])) {
+echo '
+<script type="text/javascript" src="assets/js/addons/datatables.min.js?v='.$numero.'"></script>
+<script type="text/javascript" src="assets/js/query/datatable-all.js?v='.$numero.'"></script>
+<script type="text/javascript" src="assets/js/query/conductor.js?v='.$numero.'"></script>';
+}
+elseif(isset($_GET["con_vencidos"])) {
+echo '
+<script type="text/javascript" src="assets/js/addons/datatables.min.js?v='.$numero.'"></script>
+<script type="text/javascript" src="assets/js/query/datatable-all.js?v='.$numero.'"></script>
+<script type="text/javascript" src="assets/js/query/conductor.js?v='.$numero.'"></script>';
+}
 
 //////////////// creditos
 elseif(isset($_GET["creditos"])) {

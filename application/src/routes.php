@@ -1272,7 +1272,33 @@ include_once '../../system/asociado/Asociado.php';
 
 
 
-
+/////////// conductor
+if($_REQUEST["op"]=="210"){ // elimina asociado
+include_once '../../system/conductores/Conductor.php';
+	$conductor = new Conductores;
+	$conductor->AddConductor($_POST);
+}
+if($_REQUEST["op"]=="211"){ // elimina asociado
+include_once '../../system/conductores/Conductor.php';
+	$conductor = new Conductores;
+	$conductor->UpConductores($_POST);
+}
+if($_REQUEST["op"]=="212"){ // elimina asociado
+include_once '../../system/conductores/Conductor.php';
+	$conductor = new Conductores;
+	$conductor->DelConductor($_REQUEST["hash"]);
+}
+if($_REQUEST["op"]=="213"){ // elimina asociado
+include_once '../../system/conductores/Conductor.php';
+	$conductor = new Conductores;
+	$conductor->DelConductorx($_REQUEST["hash"]);
+}
+// detalles conductor
+if($_REQUEST["op"]=="214"){ // elimina asociado
+include_once '../../system/conductores/Conductor.php';
+	$conductor = new Conductores;
+	$conductor->VistaConductor($_REQUEST);
+}
 
 
 
