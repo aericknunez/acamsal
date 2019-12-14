@@ -432,7 +432,7 @@ public function VerCuotas(){
                       <td>'.$b["cuota"].'</td>
                       <td>'.$b["mora"].'</td>
                       <td>'.Helpers::Dinero($this->CalculaTotal($b["hash"])).'</td>
-                      <td>'.$edo.'</td>
+                      <td id="idcuota'.$b["hash"].'">'.$edo.'</td>
                     </tr>';          
               }
         echo '</tbody>
@@ -481,8 +481,7 @@ public function Cobrar($hash, $total){
       } else {
       Alerts::Alerta("error","Error!","Faltan Datos!");
       }
-    
-      $this->VerCuotas();
+  
 
     }
 

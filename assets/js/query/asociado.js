@@ -188,8 +188,6 @@ $(document).ready(function(){
 
 
 	$("body").on("click","#cobrar",function(){ 
-		
-
 		var hash = $(this).attr('hash');
 		var op = $(this).attr('op');
 		var total = $(this).attr('total');
@@ -202,8 +200,9 @@ $(document).ready(function(){
             beforeSend: function () {
                $("#vista").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
             },
-            success: function(data) {            
-                $("#destinoasociado").html(data); // lo que regresa de la busquea 		
+            success: function(data) {  
+            	$("#idcuota"+hash).html('CANCELADO');          
+                $("#destino").html(data); // lo que regresa de la busquea 		
             }
         });
 
