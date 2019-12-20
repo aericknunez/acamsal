@@ -228,6 +228,10 @@ echo '
 <script type="text/javascript" src="assets/js/query/asociadodatatable.js?v='.$numero.'"></script>
 <script type="text/javascript" src="assets/js/query/asociado.js?v='.$numero.'"></script>';
 }
+elseif(isset($_GET["cuotaspendientes"])) {
+echo '<script type="text/javascript" src="assets/js/printThis.js?v='.$numero.'"></script>';
+echo '<script type="text/javascript" src="assets/js/query/asociado.js?v='.$numero.'"></script>';
+}
 //////////////// contribuciones
 elseif(isset($_GET["contribucionadd"])) {
 echo '<script type="text/javascript" src="assets/js/query/contribucion.js?v='.$numero.'"></script>';

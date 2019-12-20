@@ -99,7 +99,10 @@ class Fechas{
         return $dia;  
     }
 
-
+    public function AnoFecha($fecha){ // saca el mes que se esta cancelando
+        $mes=substr($fecha,6,4);
+        return $mes;  
+    }
 
      public static function Format($fecha){  
         $format=strtotime($fecha);
@@ -157,7 +160,7 @@ class Fechas{
 
 public function MesEscrito($fecha)
     {  
-        $mes=substr($fecha,0,2);
+        $mes=substr($fecha,3,2);
               
         switch ($mes){
             case '01':

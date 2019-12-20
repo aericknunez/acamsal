@@ -1,4 +1,4 @@
 Dim WinScriptHost
 Set WinScriptHost = CreateObject("WScript.Shell")
-WinScriptHost.Run Chr(34) & "C:\AppServ\www\cozto\sync\iniciar.bat" & Chr(34), 0
+WinScriptHost.Run Chr(34) & "C:\AppServ\www\acamsal\sync\iniciar.bat" & Chr(34), 0
 Set WinScriptHost = Nothing

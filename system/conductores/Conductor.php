@@ -149,7 +149,7 @@ class Conductores {
                     <th class="th-sm">Documento</th>
                     <th class="th-sm">Telefono</th>
                     <th class="th-sm">Ver</th>
-                    <th class="th-sm">Eliminar</th>
+                    <th class="th-sm">OP</th>
                   </tr>
                 </thead>
                 <tbody>';
@@ -161,7 +161,8 @@ class Conductores {
                       <td>'.$b["documento"].'</td>
                       <td>'.$b["telefono"].'</td>
                       <td><a id="xver" op="214" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
-                      <td><a id="xdelete" hash="'.$b["hash"].'" op="213"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
+                      <td><a id="xdelete" hash="'.$b["hash"].'" op="213"><i class="fa fa-minus-circle fa-lg red-text"></i></a>
+                      <a id="print" hash="'.$b["hash"].'" op="186"><i class="fa fa-print fa-lg blue-text"></i></a></td>
                     </tr>';          
               }
         echo '</tbody>
@@ -228,7 +229,7 @@ class Conductores {
   public function Vencidos(){
       $db = new dbConn();
 
-        $fechax = Fechas::Format(date("d-m-Y"));
+        $fechax = Fechas::Format(date("d-m-Y")) + 1296000;
 
           $a = $db->query("SELECT * FROM conductores WHERE vlicenciaF < '".$fechax."' or vvmtF < '".$fechax."' and td = ".$_SESSION["td"]." order by id desc");
           if($a->num_rows > 0){
@@ -239,8 +240,7 @@ class Conductores {
                     <th class="th-sm">Nombre</th>
                     <th class="th-sm">Documento</th>
                     <th class="th-sm">Telefono</th>
-                    <th class="th-sm">Ver</th>
-                    <th class="th-sm">Eliminar</th>
+                    <th class="th-sm">Detalles</th>
                   </tr>
                 </thead>
                 <tbody>';
@@ -252,7 +252,6 @@ class Conductores {
                       <td>'.$b["documento"].'</td>
                       <td>'.$b["telefono"].'</td>
                       <td><a id="xver" op="214" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
-                      <td><a id="xdelete" hash="'.$b["hash"].'" op="213"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
                     </tr>';          
               }
         echo '</tbody>
@@ -262,8 +261,7 @@ class Conductores {
                     <th>Nombre</th>
                     <th>Documento</th>
                     <th>Telefono</th>
-                    <th>Ver</th>
-                    <th>Eliminar</th>
+                    <th>Detalles</th>
                   </tr>
                 </tfoot>
               </table>';

@@ -61,8 +61,8 @@ function SubirFtp($sync){
 						"erick@pizto.com",
 						"caca007125-",
 						$sync,
-						"/login/sync/database/",
-						"C:/AppServ/www/cozto/sync/". $sync .".sql") == TRUE){
+						"/system/sync/database/",
+						"C:/AppServ/www/acamsal/sync/". $sync .".sql") == TRUE){
 						return TRUE;
 		} else {
 			return FALSE;

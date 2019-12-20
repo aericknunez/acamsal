@@ -106,6 +106,40 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 
 
 
+
+<li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-user"></i> Asociados<i class="fa fa-angle-down rotate-icon"></i></a>
+<div class="collapsible-body">
+<ul class="list-unstyled">
+<li><a href="?cuotas" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Todas las cuotas</a></li>
+<li><a href="?cuotaspendientes" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Cuotas Pendientes</a></li>
+<li><a href="?asociadoadd" class="waves-effect"><i class="fas fa-user"></i> Agrega Asociado</a></li>
+<li><a href="?asociadover" class="waves-effect"><i class="fas fa-address-book"></i> Ver Asociado</a></li>
+<li><a href="?asociaunidades" class="waves-effect"><i class="fas fa-address-book"></i> Ver Unidades</a></li>
+<li><a href="?contribucionadd" class="waves-effect"><i class="fas fa-address-book"></i> Contribuciones</a></li>
+
+</ul>
+</div>
+</li>
+
+
+
+
+
+<li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-user"></i> Conductores<i class="fa fa-angle-down rotate-icon"></i></a>
+<div class="collapsible-body">
+<ul class="list-unstyled">
+
+<li><a href="?conductoradd" class="waves-effect"><i class="fas fa-user"></i> Agrega Conductor</a></li>
+<li><a href="?verconductores" class="waves-effect"><i class="fas fa-address-book"></i> Ver Conductores</a></li>
+<li><a href="?con_vencidos" class="waves-effect"><i class="fas fa-address-book"></i> Documentos Vencidos</a></li>
+
+</ul>
+</div>
+</li>
+
+
+
+
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-columns"></i> Cotizaciones <i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
@@ -137,31 +171,9 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <?php } } ?>
 
 
-<li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-user"></i> Asociados<i class="fa fa-angle-down rotate-icon"></i></a>
-<div class="collapsible-body">
-<ul class="list-unstyled">
-<li><a href="?cuotas" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Todas las cuotas</a></li>
-<li><a href="?asociadoadd" class="waves-effect"><i class="fas fa-user"></i> Agrega Asociado</a></li>
-<li><a href="?asociadover" class="waves-effect"><i class="fas fa-address-book"></i> Ver Asociado</a></li>
-<li><a href="?asociaunidades" class="waves-effect"><i class="fas fa-address-book"></i> Ver Unidades</a></li>
-<li><a href="?contribucionadd" class="waves-effect"><i class="fas fa-address-book"></i> Contribuciones</a></li>
-
-</ul>
-</div>
-</li>
 
 
-<li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-user"></i> Conductores<i class="fa fa-angle-down rotate-icon"></i></a>
-<div class="collapsible-body">
-<ul class="list-unstyled">
 
-<li><a href="?conductoradd" class="waves-effect"><i class="fas fa-user"></i> Agrega Conductor</a></li>
-<li><a href="?verconductores" class="waves-effect"><i class="fas fa-address-book"></i> Ver Conductores</a></li>
-<li><a href="?con_vencidos" class="waves-effect"><i class="fas fa-address-book"></i> Documentos Vencidos</a></li>
-
-</ul>
-</div>
-</li>
 
 
 

@@ -3,7 +3,7 @@
 $enlace = mysql_connect('localhost', 'root', 'erick');
 
 
-$sql = 'CREATE DATABASE IF NOT EXISTS cozto_ventas';
+$sql = 'CREATE DATABASE IF NOT EXISTS acamsal';
 mysql_query($sql, $enlace);
 
 
@@ -19,7 +19,7 @@ $seslog->sec_session_start();
 
 
 
-$archivo = "cozto_ventas.sql";
+$archivo = "acamsal.sql";
 // si no es sincronizacion lo ejecuto siempre
 	if (file_exists($archivo)) {
 		    $sql = explode(";",file_get_contents($archivo));//

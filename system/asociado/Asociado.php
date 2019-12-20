@@ -143,7 +143,7 @@ class Asociados {
                     <th>Telefono</th>
                     <th>Estado</th>
                     <th>Ver</th>
-                    <th>Eliminar</th>
+                    <th>OP</th>
                   </tr>
                 </thead>
                 <tbody>';
@@ -156,7 +156,8 @@ class Asociados {
                       <td>'.$b["telefono"].'</td>
                       <td>'.$edo.'</td>
                       <td><a id="xver" op="188" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
-                      <td><a id="xdelete" hash="'.$b["hash"].'" op="186"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
+                      <td><a id="xdelete" hash="'.$b["hash"].'" op="186"><i class="fa fa-minus-circle fa-lg red-text"></i></a>
+                      <a id="print" hash="'.$b["hash"].'" op="186"><i class="fa fa-print fa-lg blue-text"></i></a></td>
                     </tr>';          
               }
         echo '</tbody>
@@ -167,7 +168,7 @@ class Asociados {
                     <th>Documento</th>
                     <th>Telefono</th>
                     <th>Ver</th>
-                    <th>Eliminar</th>
+                    <th>OP</th>
                   </tr>
                 </tfoot>
               </table>';
@@ -460,6 +461,7 @@ public function Cuota($hash){
 
          echo '<div class="text-center"><h4>'.$r["descripcion"].'</h4>
           <h1>'.Helpers::Dinero($this->CalculaTotal($hash)).'</h1>
+          <p>Cuota de: '.Fechas::MesEscrito($r["inicio"]).' de '.Fechas::AnoFecha($r["inicio"]).'</p>
           <a id="cobrar" hash="'.$hash.'" op="200" total="'.$this->CalculaTotal($hash).'" class="btn btn-success btn-rounded">Cobrar</a>
           </div>';
 
@@ -499,7 +501,61 @@ public function CuotasPendientes($asociado){
 
 
 
+public function VerCuotasPendientes(){
+      $db = new dbConn();
+          $a = $db->query("SELECT * FROM asoc_cuotas WHERE edo = 1 and td = ".$_SESSION["td"]." order by id desc");
+          if($a->num_rows > 0){
+        echo '<table class="table table-sm table-striped" >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Asociado</th>
+                    <th>Contribuci&oacuten</th>
+                    <th>Fecha</th>
+                    <th>Cuota</th>
+                    <th>Mora</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>';
+          $n = 1;
+              foreach ($a as $b) { 
+                if($b["edo"] == 1) $edo = '<a id="pagar" op="199" hash="'.$b["hash"].'">PENDIENTE</a>'; else $edo = "CANCELADO";
+                echo '<tr>
+                      <td>'. $n ++ .'</td>
+                      <td>'.$this->AsociadoNombre($b["asociado"]).'</td>
+                      <td>'.$b["descripcion"].'</td>
+                      <td>'.Fechas::MesEscrito($b["inicio"]).' de '.Fechas::AnoFecha($b["inicio"]).'</td>
+                      <td>'.$b["cuota"].'</td>
+                      <td>'.$b["mora"].'</td>
+                      <td>'.Helpers::Dinero($this->CalculaTotal($b["hash"])).'</td>
+                      <td id="idcuota'.$b["hash"].'">'.$edo.'</td>
+                    </tr>';          
+              }
+        echo '</tbody>
+                <tfoot>
+                  <tr>
+                    <th>#</th>
+                    <th>Asociado</th>
+                    <th>Contribuci&oacuten</th>
+                    <th>Cuota</th>
+                    <th>Mora</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                  </tr>
+                </tfoot>
+              </table>';
+
+
+          } else {
+            Alerts::Mensajex("No se encuentran cuotas pendientes a cancelar","success");
+          } $a->close();  
+
+  }
 
 
 
-} // Termina la lcase
+
+
+} // Termina la clase

@@ -60,6 +60,13 @@ class Corte{
 	    } unset($r); 
 	}
 
+	public function CuotasHoy($fecha){
+		$db = new dbConn();
+	    $a = $db->query("SELECT sum(total) FROM asoc_cuotas WHERE edo = 2 and td = ".$_SESSION["td"]." and dia_cancel = '$fecha'");
+		    foreach ($a as $b) {
+		     return $b["sum(total)"];
+		    } $a->close();
+	}
 
 	public function VentaHoy($fecha){
 		$db = new dbConn();
@@ -136,7 +143,7 @@ class Corte{
 
 
 
-	public function TVentasX($fecha, $tipo){
+	public function TVentasX($fecha, $tipo){ // para saber que tipo de venta es
 		$db = new dbConn();
 	    $a = $db->query("SELECT sum(total) FROM ticket 
 	    	WHERE edo = 1 and td = ".$_SESSION["td"]." and tipo_pago = '$tipo' and fecha = '$fecha'");
@@ -150,7 +157,7 @@ class Corte{
 
 	public function DiferenciaDinero($caja_chica, $efectivo, $fecha){
 		/// conversiones para el dinero
-		$total_cc = $this->TVentasX($fecha, 1)+$caja_chica+$this->TotalAbonos($fecha)+$this->EntradasEfectivo($fecha); //total ventas  mas caja chica de ayer
+		$total_cc = $this->TVentasX($fecha, 1)+$caja_chica+$this->TotalAbonos($fecha)+$this->EntradasEfectivo($fecha)+$this->CuotasHoy($fecha); //total ventas  mas caja chica de ayer
 		$total_debido = $total_cc-$this->GastoHoy($fecha); //dinero que deberia haber ()
 		$diferencia = $efectivo - $total_debido;
 		return $diferencia;

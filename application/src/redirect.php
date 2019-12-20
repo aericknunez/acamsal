@@ -34,6 +34,7 @@ elseif(isset($_GET["asociadoadd"])) include_once 'system/asociado/asociados.php'
 elseif(isset($_GET["asociadover"])) include_once 'system/asociado/asociadover.php'; // ver asociados
 elseif(isset($_GET["asociaunidades"])) include_once 'system/asociado/verunidades.php'; // ver unidades
 elseif(isset($_GET["cuotas"])) include_once 'system/asociado/cuotas.php'; // ver unidades
+elseif(isset($_GET["cuotaspendientes"])) include_once 'system/asociado/cuotas_pendientes.php'; // ver unidades
 
 
 // contribuciones
