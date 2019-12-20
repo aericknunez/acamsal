@@ -96,6 +96,11 @@ class Success {
 
    public function SaveImagen($img, $ancho, $alto){
           $db = new dbConn();
+          
+          if ($r = $db->select("imagen", "config_master", "WHERE td = ".$_SESSION["td"]."")) { 
+            $imgx = "../../assets/img/logo/" . $r["imagen"];
+            @unlink($imgx);
+           } unset($r); 
 
             $cambio = array();
             $cambio["imagen"] = $img;
