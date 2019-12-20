@@ -134,14 +134,16 @@ body { overflow-x: hidden; padding-left: 5px; padding-right: 5px; }</style>
                 </div>
 
                 <div class="text-center mt-4">
+                  
+                  <div id="msj"></div>
                 	
                   <button class="btn btn-info my-4" type="submit" id="btn-login" name="btn-login">Ingresar</button>
-
+                  
                   
                   <hr class="hr-light mb-3 mt-4">                
                   <div class="inline-ul text-center d-flex justify-content-center">
 
-                  	<div id="msj"></div>
+                  	
                     <!-- <a class="p-2 m-2 tw-ic">
                       <i class="fa fa-twitter white-text"></i>
                     </a>
