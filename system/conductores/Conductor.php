@@ -149,7 +149,7 @@ class Conductores {
                     <th class="th-sm">Documento</th>
                     <th class="th-sm">Telefono</th>
                     <th class="th-sm">Detalles</th>
-                    <th class="th-sm">OP</th>
+                    <th class="th-sm">Opciones</th>
                   </tr>
                 </thead>
                 <tbody>';
@@ -162,7 +162,9 @@ class Conductores {
                       <td>'.$b["telefono"].'</td>
                       <td><a id="xver" op="214" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
                       <td><a id="xdelete" hash="'.$b["hash"].'" op="213"><i class="fa fa-minus-circle fa-lg red-text"></i></a>
-                      <a id="print" hash="'.$b["hash"].'" op="186"><i class="fa fa-print fa-lg blue-text"></i></a></td>
+                      <a id="print" hash="'.$b["hash"].'" op="186"><i class="fa fa-print fa-lg blue-text"></i></a>
+                      <a id="xsancion" key="'.$b["hash"].'" op="223"><i class="fa fa-exclamation-triangle fa-lg orange-text"></i></a>
+                      </td>
                     </tr>';          
               }
         echo '</tbody>
@@ -173,7 +175,7 @@ class Conductores {
                     <th>Documento</th>
                     <th>Telefono</th>
                     <th>Detalles</th>
-                    <th>OP</th>
+                    <th>Opciones</th>
                   </tr>
                 </tfoot>
               </table>';
@@ -237,6 +239,7 @@ echo '<section id="about" class="section-padding">
             </div>
         </section>';
 
+          $this->VerSansionesAsig($data["key"]);
         }  unset($r); 
 
 
@@ -254,7 +257,7 @@ echo '<section id="about" class="section-padding">
 
           $a = $db->query("SELECT * FROM conductores WHERE vlicenciaF < '".$fechax."' or vvmtF < '".$fechax."' and td = ".$_SESSION["td"]." order by id desc");
           if($a->num_rows > 0){
-        echo '<table id="dtMaterialDesignExample" class="table table-striped" table-sm cellspacing="0" width="100%">
+        echo '<table id="dtMaterialDesignExample" class="table table-striped table-sm" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <th class="th-sm">#</th>
@@ -292,6 +295,186 @@ echo '<section id="about" class="section-padding">
           } $a->close();  
 
   }
+
+
+
+
+
+
+
+
+  public function VerSansionesAsig($key){
+      $db = new dbConn();
+
+
+          $a = $db->query("SELECT * FROM conductores_sanciones_asig WHERE conductor = '$key' and td = ".$_SESSION["td"]." order by id desc");
+          if($a->num_rows > 0){
+             Alerts::Mensajex("Sanciones establecidas a &eacuteste conductor","danger");
+        echo '<table class="table table-striped table-sm">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Sanci&oacuten</th>
+                    <th>Cantidad</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>';
+          $n = 1;
+              foreach ($a as $b) { 
+                ($b["edo"] == 1) ? $edo = "Activo" : $edo = "Cancelado";
+                echo '<tr>
+                      <td>'. $n ++ .'</td>
+                      <td>'.$b["sancion"].'</td>
+                      <td>'.$b["cantidad"].'</td>
+                      <td>'.$b["fecha"].'</td>
+                      <td>'.$edo.'</td>
+                    </tr>';          
+              }
+        echo '</tbody>
+              </table><hr>';
+
+          } else {
+            Alerts::Mensajex("No se encuentra ning&uacutena sanci&oacuten en este conductor","success");
+          } $a->close();  
+
+  }
+
+
+
+
+/////////////////////////// sanciones //////////////
+  public function AddSancion($datos){
+    $db = new dbConn();
+      if($datos["sancion"] != NULL or $datos["cantidad"] != NULL){ 
+
+                $data["sancion"] = strtoupper($datos["sancion"]);
+                $data["cantidad"] = $datos["cantidad"];
+                $data["conductor"] = $datos["iden-sancion"];
+                $data["fecha"] = date("d-m-Y");
+                $data["hora"] = date("H:i:s");
+                $data["fechaF"] = Fechas::Format(date("d-m-Y"));
+                $data["edo"] = 1;
+                $data["hash"] = Helpers::HashId();
+                $data["time"] = Helpers::TimeId();
+                $data["td"] = $_SESSION["td"];
+                if ($db->insert("conductores_sanciones_asig", $data)) {
+                    Alerts::Alerta("success","Realizado!","Registro realizado correctamente!");  
+                }
+        } else {
+          Alerts::Alerta("error","Error!","Faltan Datos!");
+        }
+
+      $this->VerSansionesAsig($datos["iden-sancion"]);
+
+  }
+
+
+
+  public function Sancionados(){
+      $db = new dbConn();
+
+          $a = $db->query("SELECT * FROM conductores_sanciones_asig WHERE td = ".$_SESSION["td"]." order by id desc");
+          if($a->num_rows > 0){
+        echo '<table id="dtMaterialDesignExample" class="table table-striped table-sm" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Sanci&oacuten</th>
+                    <th>Cantidad</th>
+                    <th>Conductor</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Detalles</th>
+                  </tr>
+                </thead>
+                <tbody>';
+          $n = 1;
+              foreach ($a as $b) { 
+                ($b["edo"] == 1) ? $edo = '<a id="pagar" op="226" hash="'.$b["hash"].'"><i class="fas fa-money-bill-alt fa-lg green-text"></i> COBRAR</a>' : $edo = "CANCELADO";
+                
+                ($b["edo"] == 1 and $b["fecha"] == date("d-m-Y")) ? $del = '<a id="xdelete" hash="'.$b["hash"].'" op="225"><i class="fa fa-minus-circle fa-lg red-text"></i></a>' : $del = '<i class="fa fa-ban fa-lg red-text"></i>';
+                echo '<tr>
+                      <td>'. $n ++ .'</td>
+                      <td>'.$b["sancion"].'</td>
+                      <td>'.$b["cantidad"].'</td>
+                      <td>'.$this->NombreConductor($b["conductor"]).'</td>
+                      <td>'.$b["fecha"].'</td>
+                      <td id="idcuota'.$b["hash"].'">'.$edo.'</td>
+                      <td><a id="xver" op="214" key="'.$b["conductor"].'"><i class="fas fa-search fa-lg green-text"></i></a> '.$del.'</td>
+                    </tr>';          
+              }
+        echo '</tbody>
+                <tfoot>
+                  <tr>
+                    <th>#</th>
+                    <th>Sanci&oacuten</th>
+                    <th>Cantidad</th>
+                    <th>Conductor</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Detalles</th>
+                  </tr>
+                </tfoot>
+              </table>';
+
+          } else {
+            Alerts::Mensajex("No se encuentra ning&uacuten conductor con documentos vencidos","success");
+          } $a->close();  
+
+  }
+
+  public function NombreConductor($key){
+      $db = new dbConn();
+    if ($r = $db->select("nombre", "conductores", "WHERE hash = '$key' and td = ".$_SESSION["td"]."")) { 
+        return $r["nombre"];
+    } unset($r);  
+}
+
+  public function DelSancion($hash){ // elimina precio
+    $db = new dbConn();
+        if (Helpers::DeleteId("conductores_sanciones_asig", "hash='$hash' and edo = 1")) {
+           Alerts::Alerta("success","Eliminado!","Elemento eliminado correctamente!");
+        } else {
+            Alerts::Alerta("error","Error!","Algo Ocurrio!");
+        } 
+      $this->Sancionados();
+  }
+
+
+
+public function Cuota($hash){
+      $db = new dbConn();
+        if ($r = $db->select("*", "conductores_sanciones_asig", "WHERE hash = '$hash' and td = ".$_SESSION["td"]."")) { 
+
+         echo '<div class="text-center"><h4>'.$r["sancion"].'</h4>
+          <h1>'.Helpers::Dinero($r["cantidad"]).'</h1>
+          <a id="cobrar" hash="'.$hash.'" op="227" class="btn btn-success btn-rounded">Cobrar</a>
+          </div>';
+
+        }  unset($r); 
+    }
+
+
+public function Cobrar($hash){
+      $db = new dbConn();
+
+    $data = array();
+    $data["fecha_pago"] = date("d-m-Y");
+    $data["fecha_pagoF"] = Fechas::Format(date("d-m-Y"));
+    $data["edo"] = 2;
+    $data["time"] = Helpers::TimeId();
+    if (Helpers::UpdateId("conductores_sanciones_asig", $data, "hash = '$hash' and td = ".$_SESSION["td"]."")) {
+        Alerts::Alerta("success","Realizado!","Cambio realizado exitsamente!");        
+
+      } else {
+      Alerts::Alerta("error","Error!","Faltan Datos!");
+      }
+  
+
+    }
+
 
 
 

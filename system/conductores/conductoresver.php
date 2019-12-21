@@ -131,3 +131,70 @@ $conductores = new Conductores();
   </div>
 </div>
 <!-- ./  Modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- /// modal ver sancion -->
+
+<div class="modal" id="ModalSanciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+         APLICAR SANCIONES</h5>
+      </div>
+      <div class="modal-body">
+<!-- ./  content -->
+
+<div id="vista-sanciones"></div>
+  
+
+<div class="d-flex justify-content-center">
+    <form id="form-sancion" name="form-sancion" class="md-form">
+    
+        <div class="form-row">
+          <div class="col-md-12 mb-1 md-form">
+              <select class="browser-default custom-select mb-1" id="sancion" name="sancion">
+      <?php 
+    if ($r = $db->select("sancion, cantidad, hash", "conductores_sanciones", "WHERE edo = 1 and td = ".$_SESSION["td"]."")) { 
+        echo '<option value="'.$r["sancion"].'">'.$r["sancion"].'</option>';
+        $cantidad = $r["cantidad"];
+    } unset($r);   ?>
+              </select>
+          </div>
+        </div>
+
+      <?php if($cantidad != NULL){
+        echo '<input type="hidden" id="cantidad" name="cantidad" value="'.$cantidad.'">';
+      } ?>
+
+    <input type="hidden" id="iden-sancion" name="iden-sancion" value="">
+  <div align="center"> <button class="btn btn-info btn-rounded" type="submit" id="btn-sancion" name="btn-sancion">APLICAR SANCION</button></div>
+  </form>
+</div>
+
+
+
+<!-- ./  content -->
+      </div>
+      <div class="modal-footer">
+
+<a id="cerrarmodal" class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
+
+          
+    
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./  Modal -->

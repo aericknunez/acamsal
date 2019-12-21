@@ -1352,6 +1352,45 @@ include_once '../../system/contribucion/Contribucion.php';
 	$contribucion = new Contribuciones;
 	$contribucion->UpSancion($_POST);
 }
+if($_REQUEST["op"]=="223"){ // sanciones al conductor
+include_once '../../system/conductores/Conductor.php';
+	$conductor = new Conductores;
+	$conductor->VerSansionesAsig($_REQUEST["key"]);
+}
+if($_REQUEST["op"]=="224"){ // add sanciones al conductor
+include_once '../../system/conductores/Conductor.php';
+	$conductor = new Conductores;
+	$conductor->AddSancion($_POST); //ASIGN
+}
+if($_REQUEST["op"]=="225"){ // del sanciones al conductor
+include_once '../../system/conductores/Conductor.php';
+	$conductor = new Conductores;
+	$conductor->DelSancion($_REQUEST["hash"]); //ASIGN
+}
+
+/// COBRAR
+if($_REQUEST["op"]=="226"){ //sancion cobro
+include_once '../../system/conductores/Conductor.php';
+	$conductor = new Conductores;
+	$conductor->Cuota($_REQUEST["hash"]); //ASIGN
+}
+
+if($_REQUEST["op"]=="227"){ // cobrar sancion
+include_once '../../system/conductores/Conductor.php';
+	$conductor = new Conductores;
+	$conductor->Cobrar($_REQUEST["hash"]);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

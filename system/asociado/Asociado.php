@@ -138,7 +138,7 @@ class Asociados {
       $db = new dbConn();
           $a = $db->query("SELECT * FROM asociados WHERE edo != 0 and td = ".$_SESSION["td"]." order by id desc");
           if($a->num_rows > 0){
-        echo '<table id="dtMaterialDesignExample" class="table table-sm table-striped" table-sm cellspacing="0" width="100%">
+        echo '<table id="dtMaterialDesignExample" class="table table-sm table-striped" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -152,7 +152,7 @@ class Asociados {
                 <tbody>';
           $n = 1;
               foreach ($a as $b) { ;
-                if($b["edo"] == 1) $edo = "Activo"; else $edo = "Inactivo";
+                if($b["edo"] == 1) $edo = "Activo"; elseif($b["edo"] == 2) $edo = "Inactivo"; else $edo = "No Asociado";
                 echo '<tr>
                       <td>'. $n ++ .'</td>
                       <td>'.$b["nombre"].'</td>
@@ -346,7 +346,7 @@ public function VerTodasLasUnidades(){
       $db = new dbConn();
           $a = $db->query("SELECT * FROM asociados_unidades WHERE td = ".$_SESSION["td"]." order by id desc");
           if($a->num_rows > 0){
-        echo '<table id="dtMaterialDesignExample" class="table table-sm table-striped" table-sm cellspacing="0" width="100%">
+        echo '<table id="dtMaterialDesignExample" class="table table-sm table-striped" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <th>#</th>

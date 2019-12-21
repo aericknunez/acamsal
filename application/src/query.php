@@ -259,7 +259,12 @@ echo '
 <script type="text/javascript" src="assets/js/query/datatable-all.js?v='.$numero.'"></script>
 <script type="text/javascript" src="assets/js/query/conductor.js?v='.$numero.'"></script>';
 }
-
+elseif(isset($_GET["sancionesasig"])) {
+echo '
+<script type="text/javascript" src="assets/js/addons/datatables.min.js?v='.$numero.'"></script>
+<script type="text/javascript" src="assets/js/query/datatable-all.js?v='.$numero.'"></script>
+<script type="text/javascript" src="assets/js/query/conductor.js?v='.$numero.'"></script>';
+}
 //////////////// creditos
 elseif(isset($_GET["creditos"])) {
 echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$numero.'"></script>';

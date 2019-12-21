@@ -46,6 +46,7 @@ elseif(isset($_GET["sanciones"])) include_once 'system/contribucion/sanciones.ph
 elseif(isset($_GET["conductoradd"])) include_once 'system/conductores/conductores.php'; 
 elseif(isset($_GET["verconductores"])) include_once 'system/conductores/conductoresver.php';
 elseif(isset($_GET["con_vencidos"])) include_once 'system/conductores/vencidos.php';
+elseif(isset($_GET["sancionesasig"])) include_once 'system/conductores/sancionados.php';
 
 
 

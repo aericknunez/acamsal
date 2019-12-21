@@ -164,10 +164,112 @@ $(document).ready(function()
     });
 
 
+///////////
+///
+
+/// llamar modal sancion
+	$("body").on("click","#xsancion",function(){ 
+		
+		$('#ModalSanciones').modal('show');
+		
+		var key = $(this).attr('key');
+		var op = $(this).attr('op');
+		var dataString = 'op='+op+'&key='+key;
+
+		$.ajax({ // aqui busca las sanciones ya aplicadas al conductor
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#vista-sanciones").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {            
+                $("#vista-sanciones").html(data); // lo que regresa de la busquea 		
+            }
+        });
+
+		$('#iden-sancion').attr("value",key);
+		
+	});
+
+
+
+
+	$('#btn-sancion').click(function(e){ /// agregar sansion asigm
+	e.preventDefault();
+	$.ajax({
+			url: "application/src/routes.php?op=224",
+			method: "POST",
+			data: $("#form-sancion").serialize(),
+			beforeSend: function () {
+				$('#btn-sancion').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+	        },
+			success: function(data){
+				$('#btn-sancion').html('<i class="fa fa-save mr-1"></i> APLICAR SANCION').removeClass('disabled');	      
+				//$("#form-addconductor").trigger("reset");
+				$("#vista-sanciones").html(data);	
+			}
+		})
+	});
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+	$("body").on("click","#pagar",function(){ 
+		
+		$('#ModalPagar').modal('show');
+		
+		var hash = $(this).attr('hash');
+		var op = $(this).attr('op');
+		var dataString = 'op='+op+'&hash='+hash;
+
+		$.ajax({
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#vista-pagar").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {            
+                $("#vista-pagar").html(data); // lo que regresa de la busquea 		
+            }
+        });
+
+	});
+
+
+	$("body").on("click","#cobrar",function(){ 
+		var hash = $(this).attr('hash');
+		var op = $(this).attr('op');
+		var dataString = 'op='+op+'&hash='+hash;
+
+		$.ajax({
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#vista-pagar").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {  
+            	$("#idcuota"+hash).html('CANCELADO');          
+                $("#destino").html(data); // lo que regresa de la busquea 		
+            }
+        });
+
+        $('#ModalPagar').modal('hide');
+		
+
+	});
 
 });
