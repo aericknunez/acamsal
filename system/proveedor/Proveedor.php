@@ -27,7 +27,6 @@ class Proveedores{
 
   public function CompruebaForm($datos){
         if($datos["nombre"] == NULL or
-          $datos["documento"] == NULL or
           $datos["direccion"] == NULL or
           $datos["telefono"] == NULL){
           return FALSE;
