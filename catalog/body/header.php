@@ -2,7 +2,7 @@
     
 <!-- preloader -->
 
-<!-- <div id="mdb-preloader" class="flex-center">
+<div id="mdb-preloader" class="flex-center">
     <div class="preloader-wrapper big active crazy">
         <div class="spinner-layer spinner-blue-only">
           <div class="circle-clipper left">
@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-</div> -->
+</div>
 
 <!-- preloader -->
 
