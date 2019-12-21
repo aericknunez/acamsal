@@ -141,25 +141,28 @@ class Conductores {
       $db = new dbConn();
           $a = $db->query("SELECT * FROM conductores WHERE td = ".$_SESSION["td"]." order by id desc");
           if($a->num_rows > 0){
-        echo '<table id="dtMaterialDesignExample" class="table table-striped" table-sm cellspacing="0" width="100%">
+        echo '<table id="dtMaterialDesignExample" class="table table-striped table-sm" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <th class="th-sm">#</th>
                     <th class="th-sm">Nombre</th>
                     <th class="th-sm">Documento</th>
                     <th class="th-sm">Telefono</th>
+                    <th class="th-sm">Tipo</th>
                     <th class="th-sm">Detalles</th>
                     <th class="th-sm">Opciones</th>
                   </tr>
                 </thead>
                 <tbody>';
           $n = 1;
-              foreach ($a as $b) { ;
+              foreach ($a as $b) { 
+                ($b["tipo"] == 1) ? $tipo = "Activo" : $tipo = "Dillero";
                 echo '<tr>
                       <td>'. $n ++ .'</td>
                       <td>'.$b["nombre"].'</td>
                       <td>'.$b["documento"].'</td>
                       <td>'.$b["telefono"].'</td>
+                      <td>'.$tipo.'</td>
                       <td><a id="xver" op="214" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
                       <td><a id="xdelete" hash="'.$b["hash"].'" op="213"><i class="fa fa-minus-circle fa-lg red-text"></i></a>
                       <a id="print" hash="'.$b["hash"].'" op="186"><i class="fa fa-print fa-lg blue-text"></i></a>
@@ -174,6 +177,7 @@ class Conductores {
                     <th>Nombre</th>
                     <th>Documento</th>
                     <th>Telefono</th>
+                    <th>Tipo</th>
                     <th>Detalles</th>
                     <th>Opciones</th>
                   </tr>
