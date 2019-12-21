@@ -132,6 +132,7 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <li><a href="?conductoradd" class="waves-effect"><i class="fas fa-user"></i> Agrega Conductor</a></li>
 <li><a href="?verconductores" class="waves-effect"><i class="fas fa-address-book"></i> Ver Conductores</a></li>
 <li><a href="?con_vencidos" class="waves-effect"><i class="fas fa-address-book"></i> Documentos Vencidos</a></li>
+<li><a href="?sanciones" class="waves-effect"><i class="fas fa-address-book"></i> Sanciones</a></li>
 
 </ul>
 </div>

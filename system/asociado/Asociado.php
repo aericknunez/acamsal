@@ -75,7 +75,7 @@ class Asociados {
 
   public function VerAsociados(){
       $db = new dbConn();
-          $a = $db->query("SELECT * FROM asociados WHERE td = ".$_SESSION["td"]." order by id desc limit 10");
+          $a = $db->query("SELECT * FROM asociados WHERE edo != 0 and td = ".$_SESSION["td"]." order by id desc limit 10");
           if($a->num_rows > 0){
         echo '<table class="table table-sm table-hover">
           <thead>
@@ -110,7 +110,9 @@ class Asociados {
 
   public function DelAsociado($hash){ // elimina precio
     $db = new dbConn();
-        if (Helpers::DeleteId("asociados", "hash='$hash'")) {
+
+        $data["edo"] = 0;
+        if (Helpers::UpdateId("asociados", $data, "hash = '$hash' and td = ".$_SESSION["td"]."")){
            Alerts::Alerta("success","Eliminado!","asociado eliminado correctamente!");
         } else {
             Alerts::Alerta("error","Error!","Algo Ocurrio!");
@@ -121,7 +123,8 @@ class Asociados {
   public function DelAsociadox($hash){ // elimina precio
     $db = new dbConn();
         
-        if (Helpers::DeleteId("asociados", "hash='$hash'")) {
+        $data["edo"] = 0;
+        if (Helpers::UpdateId("asociados", $data, "hash = '$hash' and td = ".$_SESSION["td"]."")){
            Alerts::Alerta("success","Eliminado!","asociado eliminado correctamente!");
         } else {
             Alerts::Alerta("error","Error!","Algo Ocurrio!");
@@ -133,7 +136,7 @@ class Asociados {
 
   public function VerTodosAsociados(){
       $db = new dbConn();
-          $a = $db->query("SELECT * FROM asociados WHERE td = ".$_SESSION["td"]." order by id desc");
+          $a = $db->query("SELECT * FROM asociados WHERE edo != 0 and td = ".$_SESSION["td"]." order by id desc");
           if($a->num_rows > 0){
         echo '<table id="dtMaterialDesignExample" class="table table-sm table-striped" table-sm cellspacing="0" width="100%">
                 <thead>
