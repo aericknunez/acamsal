@@ -166,10 +166,12 @@ $conductores = new Conductores();
           <div class="col-md-12 mb-1 md-form">
               <select class="browser-default custom-select mb-1" id="sancion" name="sancion">
       <?php 
-    if ($r = $db->select("sancion, cantidad, hash", "conductores_sanciones", "WHERE edo = 1 and td = ".$_SESSION["td"]."")) { 
-        echo '<option value="'.$r["sancion"].'">'.$r["sancion"].'</option>';
-        $cantidad = $r["cantidad"];
-    } unset($r);   ?>
+          $a = $db->query("SELECT sancion, cantidad, hash FROM conductores_sanciones WHERE edo = 1 and td = ".$_SESSION["td"]."");
+    foreach ($a as $b) {
+        echo '<option value="'.$b["sancion"].'">'.$b["sancion"].'</option>';
+        $cantidad = $b["cantidad"];
+    } $a->close();
+   ?>
               </select>
           </div>
         </div>

@@ -327,7 +327,7 @@ echo '<section id="about" class="section-padding">
                 echo '<tr>
                       <td>'. $n ++ .'</td>
                       <td>'.$b["sancion"].'</td>
-                      <td>'.$b["cantidad"].'</td>
+                      <td>'.Helpers::Dinero($b["cantidad"]).'</td>
                       <td>'.$b["fecha"].'</td>
                       <td>'.$edo.'</td>
                     </tr>';          
@@ -398,7 +398,7 @@ echo '<section id="about" class="section-padding">
                 echo '<tr>
                       <td>'. $n ++ .'</td>
                       <td>'.$b["sancion"].'</td>
-                      <td>'.$b["cantidad"].'</td>
+                      <td>'.Helpers::Dinero($b["cantidad"]).'</td>
                       <td>'.$this->NombreConductor($b["conductor"]).'</td>
                       <td>'.$b["fecha"].'</td>
                       <td id="idcuota'.$b["hash"].'">'.$edo.'</td>
