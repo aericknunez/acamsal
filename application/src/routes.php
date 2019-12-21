@@ -1334,7 +1334,24 @@ $imgs = new Success();
 }
 
 
+///////// sanciones
+// detalles conductor
+if($_REQUEST["op"]=="220"){ // add Sancion
+include_once '../../system/contribucion/Contribucion.php';
+	$contribucion = new Contribuciones;
+	$contribucion->AddSancion($_POST);
+}
 
+if($_REQUEST["op"]=="221"){ // elimina sancion
+include_once '../../system/contribucion/Contribucion.php';
+	$contribucion = new Contribuciones;
+	$contribucion->DelSancion($_REQUEST["hash"]);
+}
+if($_REQUEST["op"]=="222"){ // edit sancion
+include_once '../../system/contribucion/Contribucion.php';
+	$contribucion = new Contribuciones;
+	$contribucion->UpSancion($_POST);
+}
 
 
 

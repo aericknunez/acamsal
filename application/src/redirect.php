@@ -39,6 +39,7 @@ elseif(isset($_GET["cuotaspendientes"])) include_once 'system/asociado/cuotas_pe
 
 // contribuciones
 elseif(isset($_GET["contribucionadd"])) include_once 'system/contribucion/contribuciones.php'; // agregar asociado
+elseif(isset($_GET["sanciones"])) include_once 'system/contribucion/sanciones.php'; // agregar asociado
 
 
 // Conductore

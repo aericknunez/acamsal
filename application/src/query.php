@@ -67,6 +67,9 @@ echo '
 	if($_GET["modal"] == "editcontribucion"){
 	echo '<script type="text/javascript" src="assets/js/query/contribucion.js?v='.$numero.'"></script>';
 	}
+	if($_GET["modal"] == "editsancion"){
+	echo '<script type="text/javascript" src="assets/js/query/sancion.js?v='.$numero.'"></script>';
+	}
 	if($_GET["modal"] == "editconductor"){
 	echo '<script type="text/javascript" src="assets/js/query/conductor.js?v='.$numero.'"></script>';
 	}
@@ -235,6 +238,9 @@ echo '<script type="text/javascript" src="assets/js/query/asociado.js?v='.$numer
 //////////////// contribuciones
 elseif(isset($_GET["contribucionadd"])) {
 echo '<script type="text/javascript" src="assets/js/query/contribucion.js?v='.$numero.'"></script>';
+} 
+elseif(isset($_GET["sanciones"])) {
+echo '<script type="text/javascript" src="assets/js/query/sancion.js?v='.$numero.'"></script>';
 } 
 
 //////////////// conductor

@@ -299,5 +299,98 @@ class Contribuciones {
 
 
 
+/////////////////////////// sanciones //////////////
+  public function AddSancion($datos){
+    $db = new dbConn();
+      if($datos["sancion"] != NULL or $datos["cantidad"] != NULL){ 
+
+                $data["sancion"] = strtoupper($datos["sancion"]);
+                $data["cantidad"] = $datos["cantidad"];
+                $data["edo"] = 1;
+                $data["hash"] = Helpers::HashId();
+                $data["time"] = Helpers::TimeId();
+                $data["td"] = $_SESSION["td"];
+                if ($db->insert("conductores_sanciones", $data)) {
+                    Alerts::Alerta("success","Realizado!","Registro realizado correctamente!");  
+                }
+        } else {
+          Alerts::Alerta("error","Error!","Faltan Datos!");
+        }
+
+      $this->VerSanciones();
+
+  }
+
+
+
+
+  public function DelSancion($hash){ // elimina precio
+    $db = new dbConn();
+        if (Helpers::DeleteId("conductores_sanciones", "hash='$hash'")) {
+           Alerts::Alerta("success","Eliminado!","asociado eliminado correctamente!");
+        } else {
+            Alerts::Alerta("error","Error!","Algo Ocurrio!");
+        } 
+      $this->VerSanciones();
+  }
+
+
+  public function VerSanciones(){
+      $db = new dbConn();
+          $a = $db->query("SELECT * FROM conductores_sanciones WHERE td = ".$_SESSION["td"]." order by id desc");
+          if($a->num_rows > 0){
+        echo '<table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Sanci&oacuten</th>
+              <th scope="col">Cuota</th>
+              <th scope="col">OP</th>
+            </tr>
+          </thead>
+          <tbody>';
+          $n = 1;
+              foreach ($a as $b) { ;
+                if($this->EdoVigencia($b["hash"]) == TRUE) $vig = "Activo"; else $vig = "Inactivo";
+                echo '<tr>
+                      <th scope="row">'. $n ++ .'</th>
+                      <td>'.$b["sancion"].'</td>
+                      <td>'.Helpers::Dinero($b["cantidad"]).'</td>
+                      <td><a href="?modal=editsancion&key='.$b["hash"].'" ><i class="fa fa-edit fa-lg green-text"></i></a><a id="xdelete" hash="'.$b["hash"].'" op="221"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
+                    </tr>';          
+              }
+        echo '</tbody>
+        </table>';
+          } $a->close();  
+      
+  }
+
+
+  public function UpSancion($datos){ // lo que viede del formulario principal
+    $db = new dbConn();
+       if($datos["sancion"] != NULL or $datos["cantidad"] != NULL){ 
+
+                $data["sancion"] = strtoupper($datos["sancion"]);
+                $data["cantidad"] = $datos["cantidad"];
+                $data["time"] = Helpers::TimeId();
+              if (Helpers::UpdateId("conductores_sanciones", $data, "hash = '".$datos["hash"]."' and td = ".$_SESSION["td"]."")) {
+                  Alerts::Alerta("success","Realizado!","Cambio realizado exitsamente!");
+                  echo '<script>
+                        window.location.href="?sanciones"
+                      </script>';
+              }           
+
+      } else {
+        Alerts::Alerta("error","Error!","Faltan Datos!");
+      }
+
+  }
+
+
+
+
+
+
+
 
 } // Termina la lcase

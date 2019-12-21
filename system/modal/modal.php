@@ -28,6 +28,7 @@ if($_REQUEST["modal"]=="editcliente") include_once 'system/modal/modal/editar-cl
 if($_REQUEST["modal"]=="editasociado") include_once 'system/modal/modal/editar-asociado.php';
 
 if($_REQUEST["modal"]=="editcontribucion") include_once 'system/modal/modal/editar-contribucion.php';
+if($_REQUEST["modal"]=="editsancion") include_once 'system/modal/modal/editar-sancion.php';
 
 if($_REQUEST["modal"]=="editconductor") include_once 'system/modal/modal/editar-conductor.php';
 
