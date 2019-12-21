@@ -1300,6 +1300,39 @@ include_once '../../system/conductores/Conductor.php';
 	$conductor->VistaConductor($_REQUEST);
 }
 
+if($_REQUEST["op"]=="215"){ // obtener foto del conductor
+include("../common/ImagenesSuccess.php");
+	$imgs = new Success();
+	$imgs->VerFotoConductor("assets/img/conductores/", $_REQUEST["key"]);
+}
+
+
+if($_REQUEST["op"]=="216"){ // Subir imagen socio
+include("../common/Imagenes.php");
+	$imagen = new upload($_FILES['archivo']);
+include("../common/ImagenesSuccess.php");
+$imgs = new Success();
+
+	if($imagen->uploaded) {
+		if($imagen->image_src_y > 800 or $imagen->image_src_x > 800){ // si ancho o alto es mayir a 800
+			$imagen->image_resize         		= true; // default is true
+			$imagen->image_ratio        		= true; // para que se ajuste dependiendo del ancho definido
+			$imagen->image_x              		= 700; // para el ancho a cortar
+			$imagen->image_y              		= 700; // para el alto a cortar
+		}
+		$imagen->file_new_name_body   		= Helpers::TimeId(); // agregamos un nuevo nombre
+		// $imagen->image_watermark      		= 'watermark.png'; // marcado de agua
+		// $imagen->image_watermark_position 	= 'BR'; // donde se ub icara el marcado de agua. Bottom Right		
+		$imagen->process('../../assets/img/conductores/');	
+
+		$imgs->SaveConductor($imagen->file_dst_name, $_POST["iden-foto"]);
+	} // [file_dst_name] nombre de la imagen
+	else {
+	  Alerts::Alerta("error","Error!","Error: " . $imagen->error);
+	  $imgs->VerFotoConductor("assets/img/conductores/", $_POST["iden-foto"]);
+	}
+}
+
 
 
 

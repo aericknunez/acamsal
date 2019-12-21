@@ -63,8 +63,9 @@ $contribucion = new Contribuciones();
 
     <div class="col-md-6 mb-2 md-form">
         <select class="browser-default custom-select mb-1" id="tipo" name="tipo">
-          <option value="1" selected>Todos</option>
+          <option value="1" selected>Asociados</option>
           <option value="2">Por unidad</option>
+          <option value="3">No Asociados</option>
         </select>
     </div>
 

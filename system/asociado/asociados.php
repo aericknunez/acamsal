@@ -93,6 +93,7 @@ $asociado = new Asociados();
         <select class="browser-default custom-select mb-1" id="edo" name="edo">
           <option value="1" selected>Activo</option>
           <option value="2">Inactivo</option>
+          <option value="3">NO Asociado</option>
         </select>
     </div>
   </div>

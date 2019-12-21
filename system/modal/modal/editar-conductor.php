@@ -111,7 +111,8 @@ $tipo = $r["tipo"];
     <div class="col-md-12 mb-1 md-form">
         <select class="browser-default custom-select mb-1" id="tipo" name="tipo">
           <option value="1" <?php if($tipo == 1) echo "selected"; ?> >Activo</option>
-          <option value="2" <?php if($tipo == 1) echo "selected"; ?> >Diyero</option>
+          <option value="2" <?php if($tipo == 1) echo "selected"; ?> >Dillero</option>
+          <option value="3" <?php if($tipo == 3) echo "selected"; ?> >No Asociado</option>
         </select>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if($_SESSION["td"] == 100){
+if($_SESSION["td"] == 0){
 $numero = rand(1,9999999999);	
 } else {
 $numero = 1;	

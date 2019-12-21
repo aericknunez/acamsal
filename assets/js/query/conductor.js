@@ -100,8 +100,68 @@ $(document).ready(function()
         });
 
 		$('#btn-pro').attr("href",'?modal=editconductor&key='+key);
+
+		$('#xfoto').attr("key",key);
 		
 	});
+
+
+
+
+
+/// llamar modal ver
+	$("body").on("click","#xfoto",function(){ 
+		
+		$('#ModalVerConductor').modal('hide');
+		$('#ModalFotoConductor').modal('show');
+		
+		var key = $(this).attr('key');
+		var op = $(this).attr('op');
+		var dataString = 'op='+op+'&key='+key;
+
+		$.ajax({
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#vista-foto").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {            
+                $("#vista-foto").html(data); // lo que regresa de la busquea 		
+            }
+        });
+
+		$('#iden-foto').attr("value",key);
+		
+	});
+
+
+
+
+    $("#btn-foto").click(function (event) {
+        event.preventDefault();
+        var form = $('#form-foto')[0];
+        var data = new FormData(form);
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "application/src/routes.php?op=216",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            beforeSend: function () {
+                $('#btn-foto').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+            },
+            success: function (data) {
+                $('#btn-foto').html('Subir Imagen').removeClass('disabled');
+                $("#vista-foto").html(data);
+                $("#form-foto").trigger("reset");
+            },
+        });
+    });
 
 
 

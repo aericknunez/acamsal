@@ -164,6 +164,16 @@ class Contribuciones {
 
 
 
+
+
+
+
+
+
+
+
+
+
 ///sino -- recorrerr todos las contribuciones si son personales o por unidad
   public function Ejecutar(){
     $db = new dbConn();
@@ -177,7 +187,39 @@ class Contribuciones {
                     //comparao si la contrubucion es para los asociados o taxis asocc =  1
                     if($b["tipo"] == 1){ // 1 == a todos los usuarios
 
-                      $aa = $db->query("SELECT * FROM asociados WHERE td = ".$_SESSION["td"]."");
+                      $aa = $db->query("SELECT * FROM asociados WHERE edo = '1' or edo = '2' and  td = ".$_SESSION["td"]."");
+                        foreach ($aa as $ba) {
+                          $asociado = $ba["hash"];
+
+                      //      if($this->VerificarCuota($contribucion, $asociado) == FALSE){ 
+                            // verifico si existe la cuota si es false la agrego
+                                    $datos = array();
+                                    $datos["asociado"] = $asociado;
+                                    $datos["contribucion"] = $contribucion;
+                                    $datos["descripcion"] = $b["contribucion"];
+                                    $datos["cuota"] = $b["cuota"];
+                                    $datos["mora"] = $b["mora"];
+                                    $datos["total"] = $b["total"];
+                                    $datos["inicio"] = $this->FechaInicio($b["inicio"]);
+                                    $datos["inicioF"] = Fechas::Format($this->FechaInicio($b["inicio"]));
+                                    $datos["fin"] = Fechas::DiaSuma($this->FechaInicio($b["inicio"]),$b["dias_activos"]);
+                                    $datos["finF"] = Fechas::Format(Fechas::DiaSuma($this->FechaInicio($b["inicio"]),$b["dias_activos"]));
+                                    $datos["dia_cancel"] = NULL;
+                                    $datos["dia_cancelF"] = NULL;
+                                    $datos["edo"] = 1;
+                                    $datos["hash"] = Helpers::HashId();
+                                    $datos["time"] = Helpers::TimeId();
+                                    $datos["td"] = $_SESSION["td"];
+                                    $db->insert("asoc_cuotas", $datos); 
+                        //    } // verifica
+
+                      } $aa->close(); // aa//////////////////////
+
+
+                    } //comparao si la contrubucion es para los asociados o taxis asocc =  1
+                    elseif($b["tipo"] == 3){ // 1 == a todos los usuarios
+
+                      $aa = $db->query("SELECT * FROM asociados WHERE edo = '3' and td = ".$_SESSION["td"]."");
                         foreach ($aa as $ba) {
                           $asociado = $ba["hash"];
 

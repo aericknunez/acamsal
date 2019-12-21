@@ -91,7 +91,7 @@ $conductor = new Conductores();
     <div class="col-md-12 mb-1 md-form">
         <select class="browser-default custom-select mb-1" id="tipo" name="tipo">
           <option value="1" selected>Activo</option>
-          <option value="2">Diyero</option>
+          <option value="2">Dillero</option>
         </select>
     </div>
   </div>

@@ -148,7 +148,7 @@ class Conductores {
                     <th class="th-sm">Nombre</th>
                     <th class="th-sm">Documento</th>
                     <th class="th-sm">Telefono</th>
-                    <th class="th-sm">Ver</th>
+                    <th class="th-sm">Detalles</th>
                     <th class="th-sm">OP</th>
                   </tr>
                 </thead>
@@ -172,8 +172,8 @@ class Conductores {
                     <th>Nombre</th>
                     <th>Documento</th>
                     <th>Telefono</th>
-                    <th>Ver</th>
-                    <th>Eliminar</th>
+                    <th>Detalles</th>
+                    <th>OP</th>
                   </tr>
                 </tfoot>
               </table>';
@@ -190,31 +190,52 @@ class Conductores {
       $db = new dbConn();
      if ($r = $db->select("*", "conductores", "WHERE hash = '".$data["key"]."' and td = ".$_SESSION["td"]."")) { 
 
-              echo '<table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>Nombre: '.$r["nombre"].'</th>
-                    <td>Documento: '.$r["documento"].'</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th colspan="2">Direcci&oacuten: '.$r["direccion"].'</th>
-                  </tr>
-                  <tr>
-                    <td>Licencia: '.$r["Licencia"].'</td>
-                    <td>Vencimiento: '.$r["vlicencia"].'</td>
-                  </tr>
-                  <tr>
-                    <td>VMT: '.$r["vmt"].'</td>
-                    <td>Vencimiento: '.$r["vvmt"].'</td>
-                  </tr>
-                  <tr>
-                    <td>Telefono: '.$r["telefono"].'</td>
-                    <td>Comentarios: '.$r["comentarios"].'</td>
-                  </tr>
-                </tbody>
-              </table>'; 
+($r["foto"] != NULL) ? $foto = $r["foto"] : $foto = "default.jpg";
+echo '<section id="about" class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 text-center">
+                   <img src="assets/img/conductores/'.$foto.'" alt="User Photo" class="z-depth-1 mb-3 img-fluid" />
+
+                  <div>
+                    
+                  </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12">
+                        
+                          <blockquote class="blockquote bq-danger">
+                          <p class="bq-title">'.$r["nombre"].'</p>
+                          <p>'.$r["comentarios"].'</p>
+                        </blockquote>
+
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span> Documento: </span> <span class="pro-detail">'.$r["documento"].'</span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span> Direcci&oacuten: </span> <span class="pro-detail">'.$r["direccion"].'</span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span> Licencia: </span> <span class="pro-detail">'.$r["licencia"].'</span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span> Vencimineto: </span> <span class="pro-detail">'.$r["vlicencia"].'</span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span> VMT: </span> <span class="pro-detail">'.$r["vmt"].'</span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span> Vencimiento: </span> <span class="pro-detail">'.$r["vvmt"].'</span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span> Tel&eacutefono: </span> <span class="pro-detail">'.$r["telefono"].'</span></li>
+                </ul>
+
+                  <div class="row">
+                        <div class="col-md-6 my-6 md-form text-left">
+                     
+
+                    </div>
+                    <div class="col-md-6 my-6 md-form text-right">
+
+                    </div>
+                  </div>
+
+
+               </div>
+
+
+                </div>
+            </div>
+        </section>';
 
         }  unset($r); 
 
@@ -271,6 +292,10 @@ class Conductores {
           } $a->close();  
 
   }
+
+
+
+
 
 
 

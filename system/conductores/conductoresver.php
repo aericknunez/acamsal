@@ -34,6 +34,7 @@ $conductores = new Conductores();
       </div>
       <div class="modal-footer">
 
+<a id="xfoto" op="215" class="btn btn-success btn-rounded">Cambiar Foto</a>
 <a href="" id="btn-pro" class="btn btn-secondary btn-rounded">Modificar Datos</a>
 <a id="cerrarmodal" class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
 
@@ -76,3 +77,57 @@ $conductores = new Conductores();
   </div>
 </div>
 <!--Modal: modalConfirmDelete-->
+
+
+
+
+
+
+
+        <!-- /// modal ver cleinte -->
+
+<div class="modal" id="ModalFotoConductor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+         CAMBIAR FOTO</h5>
+      </div>
+      <div class="modal-body">
+<!-- ./  content -->
+
+<div id="vista-foto"></div>
+  
+
+<div class="modal-header d-flex justify-content-center">
+      <form id="form-foto" name="form-foto" class="md-form">
+    
+    <div class="file-field row">
+          <a class="btn-floating blue-gradient mt-0 float-left btn-sm">
+              <i class="fas fa-paperclip" aria-hidden="true"></i>
+              <input type="file" id="archivo" name="archivo">
+          </a>
+          <div class="file-path-wrapper">
+             <input class="file-path validate" type="text" placeholder="Agregue su Foto">
+          </div>
+      </div>
+    <input type="hidden" id="iden-foto" name="iden-foto" value="">
+  <button class="btn btn-info btn-rounded btn-sm" type="submit" id="btn-foto" name="btn-foto">Subir Foto</button>
+  </form>
+</div>
+
+
+
+<!-- ./  content -->
+      </div>
+      <div class="modal-footer">
+
+<a id="cerrarmodal" class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
+
+          
+    
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./  Modal -->

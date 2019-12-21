@@ -176,8 +176,32 @@ class Success {
 
 
 
+   public function SaveConductor($img, $key){
+          $db = new dbConn();
+          
+          if ($r = $db->select("foto", "conductores", "WHERE hash='$key' and td = ".$_SESSION["td"]."")) { 
+            $imgx = "../../assets/img/conductores/" . $r["foto"];
+            @unlink($imgx);
+           } unset($r); 
+
+            $cambio = array();
+            $cambio["foto"] = $img;
+            Helpers::UpdateId("conductores", $cambio, "hash = '$key' and td = ".$_SESSION["td"]."");
+
+        $this->VerFotoConductor("assets/img/conductores/", $key);
+    }
 
 
+  public function VerFotoConductor($url, $key){
+      $db = new dbConn();
+
+        if ($r = $db->select("foto", "conductores", "WHERE hash = '".$key."' and td = ".$_SESSION["td"]."")) {
+            $fotox = $r["foto"];
+          }  unset($r); 
+
+          ($fotox == NULL) ? $foto = "default.jpg" : $foto = $fotox;
+          echo '<div class="d-flex justify-content-center"><img src="'.$url.$foto.'" alt="" class="z-depth-1 mb-3 img-fluid"></div>';
+    }
 
 
 
