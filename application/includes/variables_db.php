@@ -27,7 +27,7 @@ define("DEFAULT_ROLE", "member");
 define("SECURE", FALSE);    // For development purposes only!!!!
 
 // para el sistema
-define("BASE_URL", "https://pizto.com/admin/");
-define("BASEPATH", "https://pizto.com/admin/");	
+define("BASE_URL", "https://pizto.com/acamsal/");
+define("BASEPATH", "https://pizto.com/acamsal/");	
 
 ?>
