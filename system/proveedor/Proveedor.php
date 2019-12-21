@@ -64,8 +64,6 @@ class Proveedores{
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nombre</th>
-              <th scope="col">Documento</th>
-              <th scope="col">Direccion</th>
               <th scope="col">Telefono</th>
               <th scope="col">Contacto</th>
               <th scope="col">Eliminar</th>
@@ -77,8 +75,6 @@ class Proveedores{
                 echo '<tr>
                       <th scope="row">'. $n ++ .'</th>
                       <td>'.$b["nombre"].'</td>
-                      <td>'.$b["documento"].'</td>
-                      <td>'.$b["direccion"].'</td>
                       <td>'.$b["telefono"].'</td>
                       <td>'.$b["contacto"].'</td>
                       <td><a id="xdelete" hash="'.$b["hash"].'" op="61" ><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
@@ -122,7 +118,7 @@ class Proveedores{
                   <tr>
                     <th class="th-sm">#</th>
                     <th class="th-sm">Nombre</th>
-                    <th class="th-sm">Documento</th>
+                    <th class="th-sm">Direccion</th>
                     <th class="th-sm">Telefono</th>
                     <th class="th-sm">Ver</th>
                     <th class="th-sm">Eliminar</th>
@@ -134,7 +130,7 @@ class Proveedores{
                 echo '<tr>
                       <td>'. $n ++ .'</td>
                       <td>'.$b["nombre"].'</td>
-                      <td>'.$b["documento"].'</td>
+                      <td>'.$b["direccion"].'</td>
                       <td>'.$b["telefono"].'</td>
                       <td><a id="xver" op="59" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
                       <td><a id="xdelete" hash="'.$b["hash"].'" op="62"><i class="fa fa-minus-circle fa-lg red-text"></i></a></td>
