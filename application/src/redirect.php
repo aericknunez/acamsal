@@ -98,7 +98,13 @@ elseif(isset($_GET["planillasver"])) include_once 'system/planilla/planillasver.
 
 
 else{
-include_once 'system/index/index.php';
+
+	if(ServerDomain() == TRUE){
+		include_once 'system/control/control.php';
+	} else{
+		include_once 'system/index/index.php';
+	}
+
 }
 	
 ?>
