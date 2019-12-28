@@ -214,28 +214,6 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 
 
 
-
-<?php if($_SESSION["tipo_cuenta"] != 4) {  /// planilla?>
-
-<li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-user-alt"></i> Planilla<i class="fa fa-angle-down rotate-icon"></i></a>
-<div class="collapsible-body">
-<ul class="list-unstyled">
-<li><a href="?planillasver" class="waves-effect"><i class="fas fa-search"></i> Ver Planillas</a></li>
-<li><a href="?addempleado" class="waves-effect"><i class="fas fa-user"></i> Agrega Empleado</a></li>
-<li><a href="?verempleado" class="waves-effect"><i class="fas fa-barcode"></i> Ver Empleados</a></li>
-<li><a href="?descuentos" class="waves-effect"><i class="fas fa-search"></i> Aplicar Descuentos</a></li>
-
-</ul>
-</div>
-</li>
-
-<?php } ?>
-
-
-
-
-
-
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-cog"></i> Facturas<i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">

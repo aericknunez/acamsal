@@ -99,7 +99,7 @@ elseif(isset($_GET["planillasver"])) include_once 'system/planilla/planillasver.
 
 else{
 
-	if(ServerDomain() == TRUE){
+	if(Helpers::ServerDomain() == TRUE){
 		include_once 'system/control/control.php';
 	} else{
 		include_once 'system/index/index.php';
