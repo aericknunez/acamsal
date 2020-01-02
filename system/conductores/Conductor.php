@@ -431,7 +431,7 @@ echo '<section id="about" class="section-padding">
               </table>';
 
           } else {
-            Alerts::Mensajex("No se encuentra ning&uacuten conductor con documentos vencidos","success");
+            Alerts::Mensajex("No se encuentra ning&uacuten conductor sancionado","success");
           } $a->close();  
 
   }
