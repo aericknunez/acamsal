@@ -542,6 +542,7 @@ public function VerCuotasPendientes(){
                     <th>#</th>
                     <th>Asociado</th>
                     <th>Contribuci&oacuten</th>
+                    <th>Fecha</th>
                     <th>Cuota</th>
                     <th>Mora</th>
                     <th>Total</th>
