@@ -84,13 +84,16 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 
 <?php if($_SESSION["tipo_cuenta"] != 4) { 
 ?>
+
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
+
 <li><a href="?proadd" class="waves-effect"><i class="fas fa-plus"></i> Nuevo Producto</a></li>
 <li><a href="?proup" class="waves-effect"><i class="fas fa-pencil-alt"></i> Actualizar Producto</a></li>
 <li><a href="?proagregar" class="waves-effect"><i class="fas fa-columns"></i> Agregar Productos</a></li>
 <li><a href="?proaverias" class="waves-effect"><i class="fas fa-database"></i> Descontar Averias</a></li>
 
-<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
-?>
+
 <li><a href="?proopciones" class="waves-effect arrow-r"><i class="fas fa-handshake"></i> Opciones</a></li>
 <?php  } ?>
 
@@ -110,13 +113,26 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-user"></i> Asociados<i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
+
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
 <li><a href="?cuotas" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Todas las cuotas</a></li>
+<?php  } ?>
+
 <li><a href="?cuotaspendientes" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Cuotas Pendientes</a></li>
+
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
 <li><a href="?asociadoadd" class="waves-effect"><i class="fas fa-user"></i> Agrega Asociado</a></li>
+<?php  } ?>
+
 <li><a href="?asociadover" class="waves-effect"><i class="fas fa-address-book"></i> Ver Asociado</a></li>
 <li><a href="?asociaunidades" class="waves-effect"><i class="fas fa-address-book"></i> Ver Unidades</a></li>
-<li><a href="?contribucionadd" class="waves-effect"><i class="fas fa-address-book"></i> Contribuciones</a></li>
 
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
+<li><a href="?contribucionadd" class="waves-effect"><i class="fas fa-address-book"></i> Contribuciones</a></li>
+<?php  } ?>
 </ul>
 </div>
 </li>
@@ -129,12 +145,18 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <div class="collapsible-body">
 <ul class="list-unstyled">
 
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
 <li><a href="?conductoradd" class="waves-effect"><i class="fas fa-user"></i> Agrega Conductor</a></li>
+<?php  } ?>
+
 <li><a href="?verconductores" class="waves-effect"><i class="fas fa-address-book"></i> Ver Conductores</a></li>
 <li><a href="?con_vencidos" class="waves-effect"><i class="fas fa-address-book"></i> Documentos Vencidos</a></li>
 <li><a href="?sancionesasig" class="waves-effect"><i class="fas fa-address-book"></i> Conductores Sancionados</a></li>
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
 <li><a href="?sanciones" class="waves-effect"><i class="fas fa-address-book"></i> Agregar Sanciones</a></li>
-
+<?php  } ?>
 </ul>
 </div>
 </li>
@@ -145,7 +167,10 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-columns"></i> Cotizaciones <i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
+	<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
 <li><a href="?cotizar" class="waves-effect"><i class="fas fa-columns"></i> Nueva Cotizaci&oacuten </a></li>
+<?php  } ?>
 <li><a href="?cotizaciones" class="waves-effect"><i class="fas fa-address-book"></i> Ver Cotizaciones </a></li>
 </ul>
 </div>
@@ -182,8 +207,10 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-user"></i> Clientes<i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
-
+	<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
 <li><a href="?clienteadd" class="waves-effect"><i class="fas fa-user"></i> Agrega Cliente</a></li>
+<?php  } ?>
 <li><a href="?clientever" class="waves-effect"><i class="fas fa-address-book"></i> Ver Cliente</a></li>
 
 </ul>
@@ -198,8 +225,10 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-user-alt"></i> Proveedores<i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
-
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
 <li><a href="?proveedoradd" class="waves-effect"><i class="fas fa-user"></i> Agrega Proveedor</a></li>
+<?php  } ?>
 <li><a href="?proveedorver" class="waves-effect"><i class="fas fa-barcode"></i> Ver Proveedores</a></li>
 
 </ul>
