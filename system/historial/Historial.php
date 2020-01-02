@@ -185,7 +185,7 @@ class Historial{
 				       <th scope="row">'. $b["fecha"] . '</th>
 				       <td>'. $b["productos"] . '</td>
 				       <td class="d-none d-md-block">'. $b["clientes"] . '</td>
-				       <td>'. Helpers::Dinero($b["t_efectivo"]) . '</td>
+				       <td>'. Helpers::Dinero($b["efectivo_ingresado"]) . '</td>
 				       <td>'. Helpers::Dinero($b["total"]) . '</td>
 				       <td>'. Helpers::Dinero($b["gastos"]) . '</td>
 				       <td>'. Helpers::Dinero($b["diferencia"]) . '</td>
