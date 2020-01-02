@@ -22,11 +22,15 @@ $archivos = glob("/home/superpol/public_html/pizto.com/acamsal/sync/database/*.s
 
 
 		// si no es sincronizacion lo ejecuto siempre
+		// public_html/pizto.com/acamsal/sync
 			if (file_exists($archx)) {
 		    $sql = explode(";",file_get_contents($archx));//
 			foreach($sql as $query){
 			@$db->query($query);
-			} @unlink($archx); } 
+			} 
+
+		//	@unlink($archx); 
+		} 
 
 
 } // termina busqueda de archivos en la carpeta
