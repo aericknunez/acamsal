@@ -11,7 +11,7 @@ $producto = new Productos();
 
 
 <div id="contenido">
-   <?php $producto->VerTodosProductos(1, "producto.id", "asc"); ?>
+   <?php $producto->VerTodosProductos(1, "producto.id", "desc"); ?>
 </div>
 
 

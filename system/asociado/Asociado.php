@@ -550,7 +550,6 @@ public function VerCuotasPendientes(){
                 </tfoot>
               </table>';
 
-
           } else {
             Alerts::Mensajex("No se encuentran cuotas pendientes a cancelar","success");
           } $a->close();  

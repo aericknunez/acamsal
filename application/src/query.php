@@ -232,7 +232,7 @@ echo '
 <script type="text/javascript" src="assets/js/query/asociado.js?v='.$numero.'"></script>';
 }
 elseif(isset($_GET["cuotaspendientes"])) {
-echo '<script type="text/javascript" src="assets/js/printThis.js?v='.$numero.'"></script>';
+//echo '<script type="text/javascript" src="assets/js/printThis.js?v='.$numero.'"></script>';
 echo '<script type="text/javascript" src="assets/js/query/asociado.js?v='.$numero.'"></script>';
 }
 //////////////// contribuciones

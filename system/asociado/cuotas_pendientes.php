@@ -17,7 +17,8 @@ $asociado = new Asociados();
    <?php $asociado->VerCuotasPendientes(); ?>
 </div>
 
-<div align="center"><a id="imprimir" class="btn btn-primary"><i class="fa fa-print mr-1"></i> Imprimir</a>
+<div align="center">
+<a href="system/imprimir/imprimir.php" class="btn btn-primary"><i class="fa fa-print mr-1"></i> Imprimir</a>
 </div>
 
 <!-- /// modal ver cleinte -->

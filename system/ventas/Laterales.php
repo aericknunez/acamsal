@@ -127,15 +127,30 @@ class Laterales{
 	 		    if($a->num_rows > 0){
 	 		    	echo '<ul class="list-group">
 					  <li class="list-group-item d-flex justify-content-between align-items-center active">
-					    ORDENES PENDIENTES A COBRAR
+					    ORDENES GUARDADAS
 					    <span class="badge badge-danger badge-pill">'.$a->num_rows.'</span>
 					  </li>';
 	 		    	foreach ($a as $b) {
-	 		    	echo '<a id="select-orden" orden="'. $b["correlativo"].'" op="83" class="list-group-item list-group-item-action"> <span class="badge badge-danger badge-pill"><i class="fas fa-reply"></i></span> '. $b["empleado"].' | '. $b["hora"].'</a>';
+	 		    	echo '<a id="select-orden" orden="'. $b["correlativo"].'" op="83" class="list-group-item list-group-item-action"> <span class="badge badge-danger badge-pill"><i class="fas fa-reply"></i></span> '. $b["empleado"].' | '. $b["fecha"].' '. $b["hora"].'</a>';
 			    }
 			    	echo '</ul>';
  		    } $a->close();
- 		
+ 
+  		    $a = $db->query("SELECT * FROM ticket_orden WHERE estado = 1 and td = ".$_SESSION["td"]."");
+
+	 		    if($a->num_rows > 0){
+	 		    	echo '<ul class="list-group">
+					  <li class="list-group-item d-flex justify-content-between align-items-center active">
+					    ORDENES ACTIVAS
+					    <span class="badge badge-success badge-pill">'.$a->num_rows.'</span>
+					  </li>';
+	 		    	foreach ($a as $b) {
+	 		    	echo '<a id="select-orden" orden="'. $b["correlativo"].'" op="83" class="list-group-item list-group-item-action"> <span class="badge badge-success badge-pill"><i class="fas fa-reply"></i></span> '. $b["empleado"].' | '. $b["fecha"].'  '. $b["hora"].'</a>';
+			    }
+			    	echo '</ul>';
+ 		    } $a->close();
+
+
  	}
 
 

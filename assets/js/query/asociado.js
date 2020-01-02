@@ -214,13 +214,13 @@ $(document).ready(function(){
 
 
 
-    $('#imprimir').on("click", function () {
-      $('#destinoasociado').printThis({
-        loadCSS: ["http://localhost/cozto/assets/css/font-awesome-582.css","http://localhost/cozto/assets/css/bootstrap.min.css", 
-        "http://localhost/cozto/assets/css/mdb.min.css"],
-         base: false
-      });
-    });
+    // $('#imprimir').on("click", function () {
+    //   $('#destinoasociado').printThis({
+    //     loadCSS: ["http://localhost/cozto/assets/css/font-awesome-582.css","http://localhost/cozto/assets/css/bootstrap.min.css", 
+    //     "http://localhost/cozto/assets/css/mdb.min.css"],
+    //      base: false
+    //   });
+    // });
 
 
 

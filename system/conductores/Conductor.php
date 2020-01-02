@@ -358,10 +358,15 @@ echo '<section id="about" class="section-padding">
 /////////////////////////// sanciones //////////////
   public function AddSancion($datos){
     $db = new dbConn();
-      if($datos["sancion"] != NULL or $datos["cantidad"] != NULL){ 
+      if($datos["sancion"] != NULL or $datos["iden-sancion"] != NULL){ 
 
-                $data["sancion"] = strtoupper($datos["sancion"]);
-                $data["cantidad"] = $datos["cantidad"];
+            if ($r = $db->select("sancion, cantidad", "conductores_sanciones", "WHERE hash = '".$datos["sancion"]."' and td = ".$_SESSION["td"]."")) { 
+                $cantidad = $r["cantidad"];
+                $sancion = $r["sancion"];
+            } unset($r); 
+
+                $data["sancion"] = strtoupper($sancion);
+                $data["cantidad"] = $cantidad;
                 $data["conductor"] = $datos["iden-sancion"];
                 $data["fecha"] = date("d-m-Y");
                 $data["hora"] = date("H:i:s");

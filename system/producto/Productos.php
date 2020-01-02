@@ -1078,7 +1078,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
   $limit = 12;
   $adjacents = 2;
   if($npagina == NULL) $npagina = 1;
-  $a = $db->query("SELECT * FROM producto WHERE cantidad <= existencia_minima and td = ". $_SESSION['td'] ."");
+  $a = $db->query("SELECT * FROM producto WHERE cantidad <= existencia_minima and td = ". $_SESSION['td'] ." order by cod desc");
   $total_rows = $a->num_rows;
   $a->close();
 

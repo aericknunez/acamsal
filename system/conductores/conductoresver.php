@@ -168,19 +168,14 @@ $conductores = new Conductores();
           <div class="col-md-12 mb-1 md-form">
               <select class="browser-default custom-select mb-1" id="sancion" name="sancion">
       <?php 
-          $a = $db->query("SELECT sancion, cantidad, hash FROM conductores_sanciones WHERE edo = 1 and td = ".$_SESSION["td"]."");
+          $a = $db->query("SELECT sancion, hash FROM conductores_sanciones WHERE edo = 1 and td = ".$_SESSION["td"]."");
     foreach ($a as $b) {
-        echo '<option value="'.$b["sancion"].'">'.$b["sancion"].'</option>';
-        $cantidad = $b["cantidad"];
+        echo '<option value="'.$b["hash"].'">'.$b["sancion"].'</option>';
     } $a->close();
    ?>
               </select>
           </div>
         </div>
-
-      <?php if($cantidad != NULL){
-        echo '<input type="hidden" id="cantidad" name="cantidad" value="'.$cantidad.'">';
-      } ?>
 
     <input type="hidden" id="iden-sancion" name="iden-sancion" value="">
   <div align="center"> <button class="btn btn-info btn-rounded" type="submit" id="btn-sancion" name="btn-sancion">APLICAR SANCION</button></div>
