@@ -34,7 +34,10 @@ $producto = new Productos();
       <div class="modal-footer">
 
 <?php if($_SESSION["tipo_cuenta"] != 4) { ?>
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
 <a href="" id="btn-pro" class="btn btn-secondary btn-rounded">Modificar Datos</a>
+<? } ?>
 <? } ?>
 <a id="cerrarmodal" class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
 
