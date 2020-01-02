@@ -31,9 +31,11 @@ $asociado = new Asociados();
       </div>
       <div class="modal-body">
 <!-- ./  content -->
-
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
 <div id="vista"></div>
-
+<?php } else { Alerts::Mensajex("No se puede realizar esta acci&oacuten!", "danger"); }
+ ?>
 <!-- ./  content -->
       </div>
       <div class="modal-footer">

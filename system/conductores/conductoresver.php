@@ -33,9 +33,11 @@ $conductores = new Conductores();
 <!-- ./  content -->
       </div>
       <div class="modal-footer">
-
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
 <a id="xfoto" op="215" class="btn btn-success btn-rounded">Cambiar Foto</a>
 <a href="" id="btn-pro" class="btn btn-secondary btn-rounded">Modificar Datos</a>
+<?php } ?>
 <a id="cerrarmodal" class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
 
           
