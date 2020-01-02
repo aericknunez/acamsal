@@ -114,10 +114,8 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <div class="collapsible-body">
 <ul class="list-unstyled">
 
-<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
-?>
+
 <li><a href="?cuotas" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Todas las cuotas</a></li>
-<?php  } ?>
 
 <li><a href="?cuotaspendientes" class="waves-effect"><i class="fas fa-money-bill-alt"></i> Cuotas Pendientes</a></li>
 
