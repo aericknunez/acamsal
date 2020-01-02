@@ -29,7 +29,7 @@ $archivos = glob("/home/superpol/public_html/pizto.com/acamsal/sync/database/*.s
 			@$db->query($query);
 			} 
 
-		//	@unlink($archx); 
+			@unlink($archx); 
 		} 
 
 
