@@ -226,7 +226,9 @@ echo '<section id="about" class="section-padding">
                   if($r["vlicencia"] < $fechax) $color = "danger-color";
                   echo 'Vencimiento: </span> <span class="pro-detail '.$color.'">'.$r["vlicencia"].'</span></li>
                   <li class="list-group-item d-flex justify-content-between align-items-center"><span> VMT: </span> <span class="pro-detail">'.$r["vmt"].'</span></li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center"><span> Vencimiento: </span> <span class="pro-detail">'.$r["vvmt"].'</span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span>'; 
+                  if($r["vlicencia"] < $fechax) $color = "danger-color";
+                  echo 'Vencimiento: </span> <span class="pro-detail '.$color.'">'.$r["vvmt"].'</span></li>
                   <li class="list-group-item d-flex justify-content-between align-items-center"><span> Tel&eacutefono: </span> <span class="pro-detail">'.$r["telefono"].'</span></li>
                 </ul>
 
