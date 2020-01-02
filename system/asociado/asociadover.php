@@ -34,7 +34,10 @@ $asociado = new Asociados();
       </div>
       <div class="modal-footer">
 
-<a href="" id="btn-pro" class="btn btn-secondary btn-rounded">Modificar Datos</a>
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) { $deshabilitado = "disabled"; }
+?>
+<a href="" id="btn-pro" class="btn btn-secondary btn-rounded <?php echo $deshabilitado; ?>">Modificar Datos</a>
+
 <a id="btn-unidades" op="195" key="" class="btn btn-success btn-rounded">Unidades</a>
 <a id="cerrarmodal" class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
 
