@@ -194,6 +194,9 @@ class Conductores {
 
   public function VistaConductor($data){
       $db = new dbConn();
+
+      $fechax = Fechas::Format(date("d-m-Y")) + 1296000;
+
      if ($r = $db->select("*", "conductores", "WHERE hash = '".$data["key"]."' and td = ".$_SESSION["td"]."")) { 
 
 ($r["foto"] != NULL) ? $foto = $r["foto"] : $foto = "default.jpg";
@@ -219,7 +222,9 @@ echo '<section id="about" class="section-padding">
                   <li class="list-group-item d-flex justify-content-between align-items-center"><span> Documento: </span> <span class="pro-detail">'.$r["documento"].'</span></li>
                   <li class="list-group-item d-flex justify-content-between align-items-center"><span> Direcci&oacuten: </span> <span class="pro-detail">'.$r["direccion"].'</span></li>
                   <li class="list-group-item d-flex justify-content-between align-items-center"><span> Licencia: </span> <span class="pro-detail">'.$r["licencia"].'</span></li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center"><span> Vencimineto: </span> <span class="pro-detail">'.$r["vlicencia"].'</span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span>'; 
+                  if($r["vlicencia"] < $fechax) $color = "danger-color";
+                  echo 'Vencimiento: </span> <span class="pro-detail '.$color.'">'.$r["vlicencia"].'</span></li>
                   <li class="list-group-item d-flex justify-content-between align-items-center"><span> VMT: </span> <span class="pro-detail">'.$r["vmt"].'</span></li>
                   <li class="list-group-item d-flex justify-content-between align-items-center"><span> Vencimiento: </span> <span class="pro-detail">'.$r["vvmt"].'</span></li>
                   <li class="list-group-item d-flex justify-content-between align-items-center"><span> Tel&eacutefono: </span> <span class="pro-detail">'.$r["telefono"].'</span></li>
