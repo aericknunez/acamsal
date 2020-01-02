@@ -241,7 +241,8 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 
 
 
-
+<?php  if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+?>
 
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-cog"></i> Facturas<i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
@@ -253,6 +254,8 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 </ul>
 </div>
 </li>
+
+<?php } ?>
 
 
 
