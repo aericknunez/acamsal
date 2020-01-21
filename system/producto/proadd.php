@@ -7,6 +7,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $c = $db->query("SELECT hash, categoria FROM producto_categoria WHERE td = ".$_SESSION["td"]."");
     $e = $db->query("SELECT hash, nombre FROM producto_unidades WHERE td = ".$_SESSION["td"]."");
 
+
+    if ($r = $db->select("cod", "producto", "ORDER BY id desc limit 1")) { 
+        $codigox = $r["cod"];
+    } unset($r);  
+
 ?>
 
 
@@ -17,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="form-row">
     <div class="col-md-4 mb-2 md-form">
       <label for="cod">* Codigo Producto</label>
-      <input type="number" class="form-control" id="cod" name="cod" required>
+      <input type="number" class="form-control" id="cod" name="cod" value="<?= $codigox ?>" required>
     </div>
 
   <div class="col-md-8 mb-2 md-form">
