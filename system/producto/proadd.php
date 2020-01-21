@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
     if ($r = $db->select("cod", "producto", "ORDER BY id desc limit 1")) { 
-        $codigox = $r["cod"];
+        $codigox = $r["cod"] + 1;
     } unset($r);  
 
 ?>
