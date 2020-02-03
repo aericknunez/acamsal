@@ -9,6 +9,11 @@ $seslog->sec_session_start();
 
 
 if ($seslog->login_check() == TRUE) {
+
+include_once '../../application/common/Fechas.php';
+include_once '../../application/common/Alerts.php';
+
+  if($_SERVER['HTTP_REFERER'] == NULL) $dir = "http://". $_SERVER['HTTP_HOST'] . "/acamsal"; else $dir = $_SERVER['HTTP_REFERER'];
 ?>
 
 <!DOCTYPE html>
@@ -50,10 +55,6 @@ if ($seslog->login_check() == TRUE) {
 
 <main>
 
-
-<?php
-if($_SERVER['HTTP_REFERER'] == NULL) $dir = "http//". $_SERVER['HTTP_HOST'] . "/acamsal"; else $dir = $_SERVER['HTTP_REFERER'];
-?>
 <div class="container-fluid">
 
 <div class="d-flex justify-content-between"><a class="btn btn-success" onclick="printDiv('areaImprimir')"><i class="fa fa-print mr-1"></i> IMPRIMIR</a>
@@ -64,19 +65,24 @@ if($_SERVER['HTTP_REFERER'] == NULL) $dir = "http//". $_SERVER['HTTP_HOST'] . "/
 
 
 <?php  // Inicia area imprimir
-include_once '../../application/common/Fechas.php';
-include_once '../../application/common/Alerts.php';
-include_once '../../system/asociado/Asociado.php';
-$asociado = new Asociados(); 
 
-?>
+if ($_GET["op"] == 1) { /// imprimir listado de cuotas pendientes
+    include_once '../../system/asociado/Asociado.php';
+    $asociado = new Asociados(); 
+    echo '<h2 class="h2-responsive">Listado de cuotas pendientes</h2>';
+    $asociado->VerCuotasPendientes(); 
+}
 
+if($_GET["op"] == 2){
+    include_once '../../system/asociado/Asociado.php';
+    $asociado = new Asociados(); 
+    echo '<h2 class="h2-responsive">Productos adquiridos por el asociado</h2>';
+    $asociado->VerProductosAsociado($_GET["as"], $_GET["inicio"], $_GET["fin"]);
 
-  <h2 class="h2-responsive">Listado de cuotas pendientes</h2>
-
-   <?php $asociado->VerCuotasPendientes(); 
+    $dir = "http://". $_SERVER['HTTP_HOST'] . "/acamsal/?asociadover";
+}
 // termina area de imprimir
-   ?>
+?>
 
 </div>
 

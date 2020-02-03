@@ -350,6 +350,7 @@ else{
 //echo '<script type="text/javascript" src="assets/js/query/ventas.js?v='.$numero.'"></script>';
 
 	if($venta == TRUE){ // si es en venta
+		echo '<script type="text/javascript" src="assets/js/query/reload_lateral.js?v='.$numero.'"></script>';
 		if($tventa == 1){
 			echo '<script type="text/javascript" src="assets/js/query/ventaR.js?v='.$numero.'"></script>';
 		} else {

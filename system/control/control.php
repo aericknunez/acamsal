@@ -106,8 +106,8 @@ $control = new Controles();
         <a type="button" class="btn-floating btn-lg secondary-color ml-4 waves-effect waves-light"><i class="far fa-chart-bar" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-9 col-9 text-right pr-4">
-        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Format($control->TotalProductos()); ?></h5>
-        <p class="font-small grey-text">Productos</p>
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Format($control->CreditoPendiente()); ?></h5>
+        <p class="font-small grey-text">Credito Pendiente</p>
       </div>
     </div>
 
@@ -127,7 +127,7 @@ $control = new Controles();
       </div>
       <div class="col-md-7 col-7 text-right pr-4">
         <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo $cut->ProductosHoy(date("d-m-Y")); ?></h5>
-        <p class="font-small grey-text">Vendidos</p>
+        <p class="font-small grey-text">Pro. Vendidos</p>
       </div>
     </div>
 

@@ -89,9 +89,13 @@ class Laterales{
 		<a href="?modal=descuento" class="btn-floating btn-default" title="Descuento"><i class="fas fa-money-bill"></i></a>
 		<a href="?modal=credito" class="btn-floating btn-primary" title="Asignar Credito"><i class="fab fa-cc-visa"></i></a>
 		<a href="?modal=dfactura" class="btn-floating btn-secondary" title="Datos Factura"><i class="fas fa-file-invoice-dollar"></i></a>
-		<a href="?modal=oventas" class="btn-floating btn-success" title="Venta Especial"><i class="fas fa-donate"></i></a>
-		<a href="?modal=cliente" class="btn-floating btn-warning" title="Asignar Cliente"><i class="fas fa-user"></i></a>
-		</div>';
+		<a href="?modal=oventas" class="btn-floating btn-success" title="Venta Especial"><i class="fas fa-donate"></i></a>';
+
+		if($_SESSION['cliente_credito'] == NULL){
+			echo '<a href="?modal=cliente" class="btn-floating btn-warning" title="Asignar Cliente"><i class="fas fa-user"></i></a>';
+		}
+		
+		echo '</div>';
 
 		if($_SESSION["descuento"] != NULL){
 			$texto = 'Esta venta posee un descuento del: ' . $_SESSION["descuento"] . " %";

@@ -18,7 +18,7 @@ $asociado = new Asociados();
 </div>
 
 <div align="center">
-<a href="system/imprimir/imprimir.php" class="btn btn-primary"><i class="fa fa-print mr-1"></i> Imprimir</a>
+<a href="system/imprimir/imprimir.php?op=1" class="btn btn-primary"><i class="fa fa-print mr-1"></i> Imprimir</a>
 </div>
 
 <!-- /// modal ver cleinte -->

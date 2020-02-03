@@ -89,5 +89,60 @@ $(document).ready(function(){
 
 
 
+/// llamar modal busqueda
+	$("body").on("click","#busqueda",function(){ 
+		
+		$('#BuscadorCredito').modal('show');
+
+	});
+    
+// busqueda actualizar
+	$("#key").keyup(function(){ /// para la caja de busqueda
+		$.ajax({
+		type: "POST",
+		url: "application/src/routes.php?op=110",
+		data:'keyword='+$(this).val(),
+		beforeSend: function(){
+			$("#muestra-busqueda").css("background","#FFF url(assets/img/LoaderIcon.gif) no-repeat 550px");
+		},
+		success: function(data){
+			$("#muestra-busqueda").show();
+			$("#muestra-busqueda").html(data);
+			$("#key").css("background","#FFF");
+		}
+		});
+	});
+
+
+
+
+//////// cancel 
+	$("body").on("click","#cancel-p",function(){
+		$("#muestra-busqueda").hide();
+		$("#p-busqueda").trigger("reset"); 
+	});
+
+////////////////
+
+	$("body").on("click","#select-p",function(){
+	var op = $(this).attr('op');
+	var cliente = $(this).attr('cliente');
+    	$.post("application/src/routes.php", {op:op, cliente:cliente}, 
+    	function(data){
+    		$("#muestra-busqueda").hide();
+    		$("#contenido").html(data); // lo que regresa de la busquea 
+		    $("#p-busqueda").trigger("reset");
+		    $('#BuscadorCredito').modal('hide');
+   	 	});
+	});
+
+
+
+
+
+
+
+
+
 
 }); // termina query

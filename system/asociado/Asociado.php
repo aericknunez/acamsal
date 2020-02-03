@@ -160,7 +160,7 @@ class Asociados {
                       <td>'.$edo.'</td>
                       <td><a id="xver" op="188" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
                       <td><a id="xdelete" hash="'.$b["hash"].'" op="186"><i class="fa fa-minus-circle fa-lg red-text"></i></a>
-                      <a id="print" hash="'.$b["hash"].'" op="186"><i class="fa fa-print fa-lg blue-text"></i></a></td>
+                      <a id="print" hash="'.$b["hash"].'" ><i class="fa fa-print fa-lg blue-text"></i></a></td>
                     </tr>';          
               }
         echo '</tbody>
@@ -556,6 +556,68 @@ public function VerCuotasPendientes(){
           } $a->close();  
 
   }
+
+
+
+
+
+
+
+public function VerProductosAsociado($asociado, $inicio, $fin){ /// productos comprados por los asociados
+      $db = new dbConn();
+        //  $a = $db->query("SELECT * FROM ticket_cliente WHERE cliente = '$asociado' and td = ".$_SESSION["td"]." order by id desc");
+
+          $a = $db->query("SELECT ticket.cant, ticket.producto, ticket.pv, ticket.stotal, ticket.imp, ticket.total, ticket.tipo_pago, ticket.fecha, ticket.hora FROM ticket INNER JOIN ticket_cliente ON ticket_cliente.factura = ticket.num_fac and ticket_cliente.cliente = '$asociado' and ticket.fechaF BETWEEN '$inicio' AND '$fin' and ticket.td = ".$_SESSION["td"]." order by ticket_cliente.id desc");
+
+          if($a->num_rows > 0){
+        echo '<table class="table table-sm table-striped" >
+                <thead>
+                  <tr>
+                    <th>Cant</th>
+                    <th>Producto</th>
+                    <th>Pago</th>
+                    <th>Fecha</th>
+                    <th>Precio</th>
+                    <th>S Total</th>
+                    <th>Imp</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>';
+              foreach ($a as $b) { 
+                if($b["tipo_pago"] == 1) $edo = 'Efectivo'; elseif($b["tipo_pago"] == 2) $edo = "Tarjeta"; else $edo = "Credito";
+                echo '<tr>
+                      <td>'. $b["cant"] .'</td>
+                      <td>'.$b["producto"].'</td>
+                      <td>'.$edo.'</td>
+                      <td>'.$b["fecha"].' - '.$b["hora"].'</td>
+                      <td>'.Helpers::Dinero($b["pv"]).'</td>
+                      <td>'.Helpers::Dinero($b["stotal"]).'</td>
+                      <td>'.Helpers::Dinero($b["imp"]).'</td>
+                      <td>'.Helpers::Dinero($b["total"]).'</td>
+                    </tr>';          
+              }
+        echo '</tbody>
+                <tfoot>
+                  <tr>
+                    <th>Cant</th>
+                    <th>Producto</th>
+                    <th>Pago</th>
+                    <th>Fecha</th>
+                    <th>Precio</th>
+                    <th>S Total</th>
+                    <th>Imp</th>
+                    <th>Total</th>
+                  </tr>
+                </tfoot>
+              </table>';
+
+          } else {
+            Alerts::Mensajex("No se encuentran registros de este asociado","success");
+          } $a->close();  
+
+  }
+
 
 
 

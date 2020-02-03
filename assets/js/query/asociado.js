@@ -214,6 +214,31 @@ $(document).ready(function(){
 
 
 
+		$('.datepicker').pickadate({
+		  weekdaysShort: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+		  weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+		  monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+		  'Noviembre', 'Diciembre'],
+		  monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct',
+		  'Nov', 'Dic'],
+		  showMonthsShort: true,
+		  formatSubmit: 'dd-mm-yyyy',
+		  close: 'Cancel'
+		})
+
+
+/// llamar modal DE IMRPRIMIR
+	$("body").on("click","#print",function(){ 
+		
+		$('#ModalPrint').modal('show');
+		
+		var hash = $(this).attr('hash');
+
+		$('#asociadoprint').attr("value",hash);
+		
+	});
+
+
     // $('#imprimir').on("click", function () {
     //   $('#destinoasociado').printThis({
     //     loadCSS: ["http://localhost/cozto/assets/css/font-awesome-582.css","http://localhost/cozto/assets/css/bootstrap.min.css", 

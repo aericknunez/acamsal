@@ -168,3 +168,76 @@ $asociado = new Asociados();
   </div>
 </div>
 <!-- ./  Modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- /// modal ver cleinte -->
+
+<div class="modal" id="ModalPrint" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+         PRODUCTOS ADQUIRIDOS POR EL ASOCIADO</h5>
+      </div>
+      <div class="modal-body">
+<!-- ./  content -->
+
+
+    <?php Alerts::Mensajex("Ingresa el rango de fechas a buscar","danger"); ?>
+    
+      
+<form method="post" action="?productos_asociado">
+ 
+   <input type="hidden" id="asociadoprint" name="asociadoprint" value="">
+
+  <div class="row justify-content-md-center">
+    <div class="col-12 col-md-auto">
+        <form name="form-cortes" method="post" id="form-cortes">
+    <input placeholder="Seleccione una fecha" type="text" id="fecha1" name="fecha1" class="form-control datepicker my-2">
+    <input placeholder="Seleccione una fecha" type="text" id="fecha2" name="fecha2" class="form-control datepicker my-2">
+
+    </div>
+  </div>
+
+
+  <div class="row justify-content-md-center">
+    <div class="col-12 col-md-auto text-center">
+    <button class="btn btn-info my-2 btn-rounded btn-sm waves-effect" type="submit" id="btn-cortes" name="btn-cortes">Mostra Datos</button>
+      </form> 
+    </div>
+  </div>
+
+</form>
+
+
+
+<!-- ./  content -->
+      </div>
+      <div class="modal-footer">
+
+<a class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
+
+          
+    
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./  Modal -->
+

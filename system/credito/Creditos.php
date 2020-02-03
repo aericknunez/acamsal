@@ -445,10 +445,78 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 
 
 
+  public function BusquedaCreditos($dato){ // Busqueda para busqueda lenta
+    $db = new dbConn();
+      if($dato["keyword"] != NULL){
+             $a = $db->query("SELECT * FROM asociados WHERE nombre like '%".$dato["keyword"]."%' and td = ".$_SESSION["td"]." limit 10");
+                if($a->num_rows > 0){
+                    echo '<table class="table table-striped table-sm table-hover">';
+            foreach ($a as $b) {
+                       echo '<tr>
+                              <td scope="row"><a id="select-p" op="111" cliente="'. $b["hash"] .'">
+                              '. $b["nombre"] .'</a></td>
+                            </tr>'; 
+            }  
+                        echo '<tr>
+                              <td scope="row"><a id="cancel-p">CANCELAR</a></td>
+                            </tr>'; 
+                $a->close();
+
+                
+              } else {
+                 echo '<table class="table table-sm table-hover">';
+                    echo '<tr>
+                              <td scope="row">El criterio de busqueda no corresponde a un producto</td>
+                            </tr>';
+                    echo '<tr>
+                              <td scope="row"><a id="cancel-p">CANCELAR</a></td>
+                            </tr>';
+             }
+
+          echo '</table>';
+      }
+
+  }
 
 
+  public function MuestraBusquedaCreditos($dato){ // Busqueda para busqueda lenta
+    $db = new dbConn();
 
+ $a = $db->query("SELECT * FROM creditos WHERE hash_cliente = '".$dato["cliente"]."' and edo != 0 and td = ".$_SESSION["td"]."");
+      
+      if($a->num_rows > 0){
+          echo '<table class="table table-sm table-striped">
+        <thead>
+          <tr>
+            <th class="th-sm">Nombre</th>
+            <th class="th-sm d-none d-md-block">Factura</th>
+            <th class="th-sm">Fecha</th>
+            <th class="th-sm">Estado</th>
+            <th class="th-sm">Ver</th>
+          </tr>
+        </thead>
+        <tbody>';
+        foreach ($a as $b) {
+        // obtener el nombre y detalles del producto
+    if ($r = $db->select("*", "pro_dependiente", "WHERE iden = ".$b["producto"]." and td = ". $_SESSION["td"] ."")) { 
+        $producto = $r["nombre"]; } unset($r); 
 
+          echo '<tr>
+                      <td>'.$b["nombre"].'</td>
+                      <td class="d-none d-md-block">'.$b["factura"].'</td>
+                      <td>'.$b["fecha"]. ' | ' . $b["hora"].'</td>
+                      <td>'.Helpers::EstadoCredito($b["edo"]) . '</td>
+                      <td><a id="xver" op="109" credito="'. $b["hash"] .'" factura="'. $b["factura"] .'" tx="'. $b["tx"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
+                    </tr>';
+        }
+        echo '</tbody>
+        </table>';
+      } else {
+        Alerts::Mensajex("No se encontraron creditos en este cliente","danger");
+      }
+        $a->close();
+
+}
 
 
 
