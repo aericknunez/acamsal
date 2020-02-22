@@ -4,12 +4,8 @@ include_once 'variables_db.php';
 include_once 'db_connect.php';
 include_once 'functions.php';
 sec_session_start();
-include_once '../common/Encrypt.php';
 include_once '../common/Mysqli.php';
 include_once '../common/Fechas.php';
-include_once '../../system/corte/Corte.php';
-include_once '../../system/sync/Sync.php';
-include_once '../../system/index/Inicio.php';
 
 if($_REQUEST["fecha"] == NULL){
    $fecha = date("d-m-Y"); 
@@ -19,16 +15,16 @@ if($_REQUEST["fecha"] == NULL){
 
 
 
-    $ad = $db->query("SELECT tabla FROM sync_tabla");
-    foreach ($ad as $bd) {
+    // $ad = $db->query("SELECT tabla FROM sync_tabla");
+    // foreach ($ad as $bd) {
 
-        Delete($bd["tabla"], $fecha);
+    //     Delete($bd["tabla"], $fecha);
 
-    } $ad->close();
-
-
+    // } $ad->close();
 
 
+
+Delete("corte_diario", $fecha);
 
   function Delete($tabla, $fecha){
     $db = new dbConn();
