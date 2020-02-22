@@ -179,8 +179,7 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 
 
 
-
-<?php if($_SESSION["tipo_cuenta"] != 4) { 
+<?php if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5 or $_SESSION["tipo_cuenta"] != 4) { 
 
 if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
 ?>
