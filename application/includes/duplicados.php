@@ -68,7 +68,6 @@ Delete("corte_diario", $fecha);
  $fechax = new Fechas();
 
  $next = $fechax->DiaSiguiente($fecha);
-echo "Estamos en: " . $fechax . "Siguiente fecha: " . $next;
 
  sleep(2);
 
