@@ -24,37 +24,37 @@ if($_REQUEST["fecha"] == NULL){
 
 
 
-Delete("corte_diario", $fecha);
+// Delete("corte_diario", $fecha);
 
-  function Delete($tabla, $fecha){
-    $db = new dbConn();
+//   function Delete($tabla, $fecha){
+//     $db = new dbConn();
 
-        $a = $db->query("SELECT hash, time FROM $tabla WHERE fecha = '$fecha'");
+//         $a = $db->query("SELECT hash, time FROM $tabla WHERE fecha = '$fecha'");
 
 
-        $contador = 0;
-    foreach ($a as $b) { //$b["id"]
-        $hash=$b["hash"];
-        $time=$b["time"];
+//         $contador = 0;
+//     foreach ($a as $b) { //$b["id"]
+//         $hash=$b["hash"];
+//         $time=$b["time"];
                 
-                $ax = $db->query("SELECT * FROM $tabla WHERE hash = '$hash' and time = '$time' and fecha = '$fecha'");
+//                 $ax = $db->query("SELECT * FROM $tabla WHERE hash = '$hash' and time = '$time' and fecha = '$fecha'");
 
-                if($ax->num_rows > 1){
-                    $contador = $contador + $ax->num_rows;
-                    $cant = $ax->num_rows - 1;
+//                 if($ax->num_rows > 1){
+//                     $contador = $contador + $ax->num_rows;
+//                     $cant = $ax->num_rows - 1;
 
-                $db->delete("$tabla", "WHERE hash = '$hash' and time = '$time' and fecha = '$fecha' LIMIT " . $cant);
-                unset($cant);
+//                 $db->delete("$tabla", "WHERE hash = '$hash' and time = '$time' and fecha = '$fecha' LIMIT " . $cant);
+//                 unset($cant);
 
-                    $ax->close();
-                } 
+//                     $ax->close();
+//                 } 
 
 
-    }
-        unset($contador);
+//     }
+//         unset($contador);
 
-    $a->close();
- }
+//     $a->close();
+//  }
  
 
 
