@@ -18,16 +18,16 @@ if($_REQUEST["fecha"] == NULL){
 
 
 
-    $ad = $db->query("SELECT tabla FROM sync_tabla");
-    foreach ($ad as $bd) {
+    // $ad = $db->query("SELECT tabla FROM sync_tabla");
+    // foreach ($ad as $bd) {
 
-        Delete($bd["tabla"], $fecha);
+    //     Delete($bd["tabla"], $fecha);
 
-    } $ad->close();
+    // } $ad->close();
 
 
 
-// Delete("corte_diario", $fecha);
+Delete("corte_diario", $fecha);
 
   function Delete($tabla, $fecha){
     $db = new dbConn();
