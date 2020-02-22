@@ -17,43 +17,44 @@ if($_REQUEST["fecha"] == NULL){
     $fecha = $_REQUEST["fecha"];
 }
 
-Delete("corte_diario", "user", $fecha);
-
-// Delete("ticket", "cod", $fecha);
-// Delete("ticket_num", "mesa", $fecha);
-// Delete("mesa_nombre", "mesa", $fecha);
-// Delete("gastos_images", "imagen", $fecha);
-// Delete("mesa", "mesa", $fecha);
-// Delete("gastos", "tipo", $fecha);
-// Delete("control_cocina", "mesa", $fecha);
 
 
-  function Delete($tabla, $cod, $fecha){
+    $ad = $db->query("SELECT tabla FROM sync_tabla");
+    foreach ($ad as $bd) {
+
+        Delete($bd["tabla"], $fecha);
+
+    } $ad->close();
+
+
+
+
+
+  function Delete($tabla, $fecha){
     $db = new dbConn();
 
-        $a = $db->query("SELECT * FROM $tabla WHERE fecha = '$fecha'");
+        $a = $db->query("SELECT hash, time FROM $tabla WHERE fecha = '$fecha'");
 
 
         $contador = 0;
     foreach ($a as $b) { //$b["id"]
-        $hora=$b["hora"];
-        $codigo = $b[$cod];
+        $hash=$b["hash"];
+        $time=$b["time"];
                 
-                $ax = $db->query("SELECT * FROM $tabla WHERE hora = '$hora' and $cod = '$codigo' and fecha = '$fecha'");
+                $ax = $db->query("SELECT * FROM $tabla WHERE hash = '$hash' and time = '$time' and fecha = '$fecha'");
 
                 if($ax->num_rows > 1){
                     $contador = $contador + $ax->num_rows;
                     $cant = $ax->num_rows - 1;
 
-                    if ( $db->delete("$tabla", "WHERE hora = '$hora' and $cod = '$codigo' and fecha = '$fecha' LIMIT " . $cant)) {
-                            echo "$cant - Record Deleted!<br />"; 
-                        } unset($cant);
+                $db->delete("$tabla", "WHERE hash = '$hash' and time = '$time' and fecha = '$fecha' LIMIT " . $cant);
+                unset($cant);
 
                     $ax->close();
                 } 
 
 
-    }  echo $tabla . " -- ".$contador." <br>";
+    }
         unset($contador);
 
     $a->close();

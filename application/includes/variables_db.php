@@ -18,7 +18,7 @@ define("PASSWORD", "caca007125-"); 	// The database password.
 define("HOST", "localhost"); 			//35.225.56.157 The host you want to connect to. 
 define("USER", "root"); 			// The database username. 
 define("PASSWORD", "erick"); 	// The database password. 
-define("DATABASE", "acamsal"); 
+define("DATABASE", "acamsal2"); 
 
 }
 
