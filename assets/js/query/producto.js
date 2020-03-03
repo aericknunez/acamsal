@@ -46,28 +46,112 @@ $(document).ready(function(){
 
 
 
-$(function() { // activar y desactivar los checked despues de darle clic a servicio
-			document.getElementById("servicio").onclick = function(){
-    			if (document.getElementById("compuesto").disabled){
-    				document.getElementById("compuesto").disabled = false
-    			}else{
-    				document.getElementById("compuesto").disabled = true
-    			}
 
-    			if (document.getElementById("caduca").disabled){
-    				document.getElementById("caduca").disabled = false
-    			}else{
-    				document.getElementById("caduca").disabled = true
-    			}
+/// para activar o desactivoar los botones
+	$("body").on("click","#servicio",function(){ /// para el los botones de opciones
 
-    			if (document.getElementById("dependiente").disabled){
-    				document.getElementById("dependiente").disabled = false
-    			}else{
-    				document.getElementById("dependiente").disabled = true
-    			}
-    		}
+		if($(this).attr('checked')){ // es por que estaba activo
+			$('#servicio').removeAttr("checked","checked");
 
-});
+			$('#compuesto').removeAttr("unchecked","unchecked");
+			$('#caduca').removeAttr("unchecked","unchecked");
+			$('#dependiente').removeAttr("unchecked","unchecked");
+
+			$('#compuesto').removeAttr("disabled","disabled");
+			$('#caduca').removeAttr("disabled","disabled");
+			$('#dependiente').removeAttr("disabled","disabled");
+
+		} else {
+			//$('#compuesto').attr("disabled","disabled");
+			$('#servicio').attr("checked","checked");
+
+			$('#compuesto').removeAttr("checked","checked");
+			$('#caduca').removeAttr("checked","checked");
+			$('#dependiente').removeAttr("checked","checked");			
+
+			$('#compuesto').attr("unchecked","unchecked");
+			$('#caduca').attr("unchecked","unchecked");
+			$('#dependiente').attr("unchecked","unchecked");
+
+			$('#compuesto').attr("disabled","disabled");
+			$('#caduca').attr("disabled","disabled");
+			$('#dependiente').attr("disabled","disabled");
+
+		}
+		
+	});
+
+
+	$("body").on("click","#compuesto",function(){ /// para el los botones de opciones
+
+		if($(this).attr('checked')){ // es por que estaba activo
+			$('#compuesto').removeAttr("checked","checked");
+
+			$('#servicio').removeAttr("unchecked","unchecked");
+			$('#caduca').removeAttr("unchecked","unchecked");
+			$('#dependiente').removeAttr("unchecked","unchecked");
+
+			$('#servicio').removeAttr("disabled","disabled");
+			$('#caduca').removeAttr("disabled","disabled");
+			$('#dependiente').removeAttr("disabled","disabled");
+
+		} else {
+			//$('#compuesto').attr("disabled","disabled");
+			$('#compuesto').attr("checked","checked");
+
+			$('#servicio').removeAttr("checked","checked");
+			$('#caduca').removeAttr("checked","checked");
+			$('#dependiente').removeAttr("checked","checked");			
+
+			$('#servicio').attr("unchecked","unchecked");
+			$('#caduca').attr("unchecked","unchecked");
+			$('#dependiente').attr("unchecked","unchecked");
+
+			$('#servicio').attr("disabled","disabled");
+			$('#caduca').attr("disabled","disabled");
+			$('#dependiente').attr("disabled","disabled");
+
+		}
+		
+	});
+
+	$("body").on("click","#dependiente",function(){ /// para el los botones de opciones
+
+		if($(this).attr('checked')){ // es por que estaba activo
+			$('#dependiente').removeAttr("checked","checked");
+
+			$('#compuesto').removeAttr("unchecked","unchecked");
+			$('#caduca').removeAttr("unchecked","unchecked");
+			$('#servicio').removeAttr("unchecked","unchecked");
+
+			$('#compuesto').removeAttr("disabled","disabled");
+			$('#caduca').removeAttr("disabled","disabled");
+			$('#servicio').removeAttr("disabled","disabled");
+
+		} else {
+			//$('#compuesto').attr("disabled","disabled");
+			$('#dependiente').attr("checked","checked");
+
+			$('#compuesto').removeAttr("checked","checked");
+			$('#caduca').removeAttr("checked","checked");
+			$('#servicio').removeAttr("checked","checked");			
+
+			$('#compuesto').attr("unchecked","unchecked");
+			$('#caduca').attr("unchecked","unchecked");
+			$('#servicio').attr("unchecked","unchecked");
+
+			$('#compuesto').attr("disabled","disabled");
+			$('#caduca').attr("disabled","disabled");
+			$('#servicio').attr("disabled","disabled");
+
+		}
+		
+	});
+
+
+//////////////////////////////////////////ter mina activar desactivar    
+
+
 
 
 // busqueda actualizar

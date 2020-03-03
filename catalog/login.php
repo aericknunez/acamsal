@@ -20,12 +20,14 @@ header,
   height: 100%;
 }
 
+
 @media (max-width: 740px) {
   html,
   body,
   header,
   .view {
-    height: 1000px;
+    height: 700px;
+    background-color: #000 !important;
   }
 }
 @media (min-width: 800px) and (max-width: 850px) {

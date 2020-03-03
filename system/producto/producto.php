@@ -14,6 +14,9 @@ $producto = new Productos();
    <?php $producto->VerTodosProductos(1, "producto.id", "desc"); ?>
 </div>
 
+<div class="row justify-content-center">
+  <a href="system/imprimir/imprimir.php?op=10" class="btn btn-info my-2 btn-rounded btn-sm waves-effect" title="Imprimir todos los productos">Imprimir Todo</a>
+</div>
 
 
 <!-- Ver producto -->

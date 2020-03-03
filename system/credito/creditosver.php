@@ -8,7 +8,7 @@ $credito = new Creditos();
 
 <div id="msj"></div>
 <h2 class="h2-responsive">CREDITOS OTORGADOS
-  <a id="busqueda" class="btn-floating btn-success" title="Buscar Credito"><i class="fas fa-search"></i></a></h2> 
+  <a id="busqueda" class="btn-floating btn-success btn-sm mb-3" title="Buscar Credito"><i class="fas fa-search"></i></a></h2> 
 
 
 <div id="contenido">
