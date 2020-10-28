@@ -1194,6 +1194,12 @@ include("../common/ImagenesSuccess.php");
 
 
 /////////////////////// asociado
+if($_REQUEST["op"]=="183"){ // ver todas las cuotas pendientes del asiciado (modal asociados)
+include_once '../../system/asociado/Asociado.php';
+	$asociado = new Asociados;
+	$asociado->VerCreditosPendientesUser($_POST["hash"]);
+}
+
 
 if($_REQUEST["op"]=="184"){ // agregar asociado
 include_once '../../system/asociado/Asociado.php';

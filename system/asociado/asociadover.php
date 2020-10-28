@@ -241,3 +241,44 @@ $asociado = new Asociados();
 </div>
 <!-- ./  Modal -->
 
+
+
+
+
+
+
+
+
+
+
+<!-- /// modal ver deuda -->
+
+<div class="modal" id="ModalDeuda" tabindex="-1" role="dialog" aria-labelledby="ModalDeuda" aria-hidden="true"  data-backdrop="false">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalDeuda">
+         CREDITOS PENDIENTES</h5>
+      </div>
+      <div class="modal-body">
+<!-- ./  content -->
+
+
+<div id="vista_deuda"></div>
+
+
+
+<!-- ./  content -->
+      </div>
+      <div class="modal-footer">
+
+<a class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
+
+          
+    
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./  Modal -->
+

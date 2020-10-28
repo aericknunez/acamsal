@@ -160,7 +160,9 @@ class Asociados {
                       <td>'.$edo.'</td>
                       <td><a id="xver" op="188" key="'.$b["hash"].'"><i class="fas fa-search fa-lg green-text"></i></a></td>
                       <td><a id="xdelete" hash="'.$b["hash"].'" op="186"><i class="fa fa-minus-circle fa-lg red-text"></i></a>
-                      <a id="print" hash="'.$b["hash"].'" ><i class="fa fa-print fa-lg blue-text"></i></a></td>
+                      <a id="print" hash="'.$b["hash"].'" ><i class="fa fa-print fa-lg blue-text"></i></a>
+                      <a id="deuda" hash="'.$b["hash"].'" op="183" ><i class="fas fa-dollar-sign fa-lg green-text"></i></a>
+                      </td>
                     </tr>';          
               }
         echo '</tbody>
@@ -556,6 +558,96 @@ public function VerCuotasPendientes(){
           } $a->close();  
 
   }
+
+
+
+
+
+
+public function VerCreditosPendientesUser($user){
+      $db = new dbConn();
+          $a = $db->query("SELECT * FROM creditos WHERE hash_cliente ='".$user."' and edo = 1 and td = ".$_SESSION["td"]." order by id desc");
+          if($a->num_rows > 0){
+        echo '<table class="table table-sm table-striped mb-3">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Asociado</th>
+                    <th>Factura</th>
+                    <th>Fecha</th>
+                    <th>Abonar</th>
+                  </tr>
+                </thead>
+                <tbody>';
+          $n = 1;
+          $pendientetotal = 0;
+              foreach ($a as $b) { 
+                echo '<tr class="font-weight-bold">                
+                      <td class="font-weight-bold">'. $n ++ .'</td>
+                      <td class="font-weight-bold">'.$b["nombre"].'</td>
+                      <td class="font-weight-bold">'.$b["factura"].'</td>
+                      <td class="font-weight-bold">'.$b["fecha"].' - '.$b["hora"].'</td>
+                      <td class="font-weight-bold"><a href="?modal=abonos&cre='.$b["hash"].'&factura='.$b["factura"].'&tx='.$b["tx"].'" title="Abonar"><i class="fas fa-money-bill-alt fa-lg green-text"></i></a></td>
+                      
+                    </tr>';   
+
+    $ax = $db->query("SELECT * FROM ticket WHERE num_fac = ".$b["factura"]." and tx = ".$b["tx"]." and td = ".$_SESSION["td"]."");
+              if($a->num_rows > 0){
+        echo ' <tr>
+                    <th>Cant</th>
+                    <th colspan="2">Producto</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                  </tr>';
+                  $tox = 0;
+    foreach ($ax as $bx) {
+                echo '<tr class="blue lighten-5 border-success">
+                      <td>'.$bx["cant"] .'</td>
+                      <td colspan="2">'.$bx["producto"].'</td>
+                      <td>'.$bx["pv"].'</td>
+                      <td>'.$bx["total"].'</td>
+                    </tr>'; 
+                    $tox = $tox + $bx["total"];
+    } $ax->close();
+
+    echo '<tr class="red lighten-5 border-success">
+          <td colspan="4" class="text-right font-weight-bold">TOTAL FACTURA</td>
+          <td class="text-left font-weight-bold">'.Helpers::Dinero($tox).'</td>
+        </tr>';  
+
+    $aS = $db->query("SELECT sum(abono) FROM creditos_abonos WHERE credito = '".$b["hash"]."' and td = ".$_SESSION["td"]."");
+    foreach ($aS as $bS) {
+        $abonosx=$bS["sum(abono)"];
+    } $aS->close();
+
+    echo '<tr class="red lighten-5 border-success">
+          <td colspan="4" class="text-right font-weight-bold">ABONOS</td>
+          <td class="text-left font-weight-bold">'.Helpers::Dinero($abonosx).'</td>
+        </tr>';  
+
+    $pend = $tox - $abonosx;
+    echo '<tr class="red lighten-5 border-success">
+          <td colspan="4" class="text-right font-weight-bold">PENDIENTE</td>
+          <td class="text-left font-weight-bold">'.Helpers::Dinero($pend).'</td>
+        </tr>';        
+$pendientetotal = $pendientetotal + $pend;     
+}  /// num productos    
+
+              }
+        echo '</tbody>
+              </table>';
+
+Alerts::Mensajex("<h3>El total de deuda es de: ".Helpers::Dinero($pendientetotal)."</h3>","info");
+
+              
+          } else {
+            Alerts::Mensajex("No se encuentran cuotas pendientes a cancelar","success");
+          } $a->close();  
+
+
+
+  }
+
 
 
 

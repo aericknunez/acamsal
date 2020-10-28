@@ -252,4 +252,39 @@ $(document).ready(function(){
 
 
 
+
+
+	$("body").on("click","#deuda",function(){ 
+		
+		$('#ModalDeuda').modal('show');
+		
+		var hash = $(this).attr('hash');
+		var op = $(this).attr('op');
+		var dataString = 'op='+op+'&hash='+hash;
+
+		$.ajax({
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#vista_deuda").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {            
+                $("#vista_deuda").html(data); // lo que regresa de la busquea 		
+            }
+        });
+
+	});
+
+
+
+
+
+
+
+
+
+
+
+
 }); // termina query
