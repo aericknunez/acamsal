@@ -73,6 +73,27 @@ $(document).ready(function()
 
 
 
+	$('#btn-utilidades').click(function(e){ /// historial de utilidades
+	e.preventDefault();
+	$.ajax({
+			url: "application/src/routes.php?op=121",
+			method: "POST",
+			data: $("#form-utilidades").serialize(),
+			beforeSend: function () {
+				$('#btn-utilidades').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+	        },
+			success: function(data){
+				$('#btn-utilidades').html('Mostrar Datos').removeClass('disabled');	      
+				$("#form-utilidades").trigger("reset");
+				$("#contenido").html(data);	
+			}
+		})
+	});
+
+
+
+
+
 
 /////////////////////////////////
 	$('#btn-gdiario').click(function(e){ /// para el formulario

@@ -231,6 +231,117 @@ class Historial{
 
 
 
+	public function HistorialUtilidades($inicio, $fin, $type = NULL) {
+		$db = new dbConn();
+		$primero = Fechas::Format($inicio);
+		$segundo = Fechas::Format($fin);
+
+    $d = $db->selectGroup("producto, cod", "ticket", "WHERE fechaF BETWEEN '$primero' and '$segundo' and td = ". $_SESSION["td"] ." GROUP BY cod");
+    if ($d->num_rows > 0) {
+
+	  echo '<div class="table-responsive">
+	  <table class="table table-striped table-sm">
+
+			<thead>
+		     <tr>
+		       <th>Producto</th>					       
+		       <th>Cantidad A</th>
+		       <th>Ingresados</th>
+		       <th>P Compra</th>
+		       <th>C Vendido</th>
+		        <th>P Venta</th>
+		        <th>V Total</th>
+		        <th>Utilidad</th>
+		     </tr>
+		   </thead>
+
+		   <tbody>';
+
+	    $precioventax = 0;
+	    $vtotalx = 0;
+	    $utilidadx = 0;
+
+        while($x = $d->fetch_assoc()) {
+
+// cantidad de productos disponibles en este moento
+    if ($r = $db->select("cantidad", "producto", "WHERE cod = '".$x["cod"]."' and td = ". $_SESSION["td"] ."")) { 
+        $cantidad = $r["cantidad"];
+    } unset($r);  
+
+// cantidad de productos ingresados y precio costo
+    if ($r = $db->select("sum(cant) as canti, sum(precio_costo) as pcosto", "producto_ingresado", "WHERE producto = '".$x["cod"]."' and td = ". $_SESSION["td"] ."")) { 
+        $ingreso = $r["canti"];
+        $preciocosto = $r["pcosto"];
+    } 
+    unset($r);    
+// obtengo el numero de registros
+$a = $db->query("SELECT precio_costo FROM producto_ingresado WHERE producto = '".$x["cod"]."' and td = ". $_SESSION["td"] ."");
+$reg = $a->num_rows;
+$a->close();
+    @$pc = $preciocosto / $reg;
+
+// productos vendidos
+    if ($r = $db->select("sum(cant) as cantid, sum(pv) as prev, sum(total) as tota", "ticket", "WHERE cod = '".$x["cod"]."' and td = ". $_SESSION["td"] ." and fechaF BETWEEN '$primero' and '$segundo'")) { 
+        $vcantidad = $r["cantid"];
+        $vpv = $r["prev"];
+        $vtotal = $r["tota"];
+    } 
+    unset($r);
+
+// obtengo el numero de registros
+$a = $db->query("SELECT pv FROM ticket WHERE cod = '".$x["cod"]."' and td = ". $_SESSION["td"] ." and fechaF BETWEEN '$primero' and '$segundo'");
+$preg = $a->num_rows;
+$a->close();
+    @$precioventa = $vpv / $preg;
+
+// utilidad
+$ut = $precioventa - $pc;
+$utilidad = $ut * $vcantidad;
+
+
+$precioventax = $precioventax + $precioventa;
+$vtotalx = $vtotalx + $vtotal;
+$utilidadx = $utilidadx + $utilidad;
+
+echo '<tr>
+	   <th>'.$x["producto"].'</th>					       
+	   <th>'.$cantidad.'</th>
+	   <th>'.$ingreso.'</th>
+	   <th>'.Helpers::Dinero($pc).'</th>
+	   <th>'.$vcantidad.'</th>
+	    <th>'.Helpers::Dinero($precioventa).'</th>
+	    <th>'.Helpers::Dinero($vtotal).'</th>
+	    <th>'.Helpers::Dinero($utilidad).'</th>
+	 </tr>';
+
+        }
+
+echo '<tr>
+	   <th colspan="5" class="text-right">TOTAL PRODUCTO</th>					       
+	    <th>'.Helpers::Dinero($precioventax).'</th>
+	    <th>'.Helpers::Dinero($vtotalx).'</th>
+	    <th>'.Helpers::Dinero($utilidadx).'</th>
+	 </tr>';
+
+
+	echo '</tbody>
+		</table></div>';
+
+    } else {
+        Alerts::Mensajex("No se encontraron registros de cortes en estas fechas","danger",$boton,$boton2);
+    } $d->close();
+
+
+	    
+					
+
+	}
+
+
+
+
+
+
 
 
 

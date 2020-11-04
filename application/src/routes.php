@@ -918,7 +918,22 @@ if($_REQUEST["op"]=="118"){ // cancelar corte
 
 
 
+
 //// historial ///////////////////////////////////////////////
+
+
+if($_REQUEST["op"]=="121"){// historial de  utilidades
+	include_once '../../system/historial/Historial.php';
+	$historial = new Historial();
+	if($_POST["fecha1_submit"]){
+		$inicio = $_POST["fecha1_submit"]; $fin=$_POST["fecha2_submit"];
+	} else {
+		$inicio = date("01-m-Y"); $fin=date("31-m-Y");
+	}
+	
+	$historial->HistorialUtilidades($inicio, $fin);
+}
+
 
 
 if($_REQUEST["op"]=="124"){ // consolidad diario
