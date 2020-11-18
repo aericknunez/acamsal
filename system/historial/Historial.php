@@ -327,6 +327,15 @@ echo '<tr>
 	echo '</tbody>
 		</table></div>';
 
+if($type == "boton"){
+echo '  <div class="row justify-content-md-center">
+    <div class="col-12 col-md-auto text-center">
+    <a href="system/imprimir/imprimir.php?op=12&fecha1='.$inicio.'&fecha2='.$fin.'" class="btn btn-danger my-2 btn-rounded btn-sm waves-effect" type="submit" id="btn-utilidades" name="btn-utilidades">Imprimir</a>
+      </form> 
+    </div>
+  </div>';
+}
+
     } else {
         Alerts::Mensajex("No se encontraron registros de cortes en estas fechas","danger",$boton,$boton2);
     } $d->close();

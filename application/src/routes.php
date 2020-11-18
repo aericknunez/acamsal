@@ -931,7 +931,7 @@ if($_REQUEST["op"]=="121"){// historial de  utilidades
 		$inicio = date("01-m-Y"); $fin=date("31-m-Y");
 	}
 	
-	$historial->HistorialUtilidades($inicio, $fin);
+	$historial->HistorialUtilidades($inicio, $fin, "boton");
 }
 
 

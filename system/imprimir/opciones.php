@@ -35,4 +35,12 @@ if ($_GET["op"] == 11) { /// imprimir listado de cuotas pendientes
 
 
 
+if ($_GET["op"] == 12) { /// imprimir utilidades
+    include_once '../../system/historial/Historial.php';
+    $historial = new Historial();
+       echo '<h2 class="h2-responsive">Utilidades entre el '.Fechas::FechaEscrita($_REQUEST["fecha1"]).' y el '.Fechas::FechaEscrita($_REQUEST["fecha2"]).'</h2>';
+    $historial->HistorialUtilidades($_REQUEST["fecha1"], $_REQUEST["fecha2"], NULL);
+}
+
+
 ?>
