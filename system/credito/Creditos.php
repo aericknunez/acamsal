@@ -482,7 +482,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
   public function MuestraBusquedaCreditos($dato){ // Busqueda para busqueda lenta
     $db = new dbConn();
 
- $a = $db->query("SELECT * FROM creditos WHERE hash_cliente = '".$dato["cliente"]."' and edo != 0 and td = ".$_SESSION["td"]."");
+ $a = $db->query("SELECT * FROM creditos WHERE hash_cliente = '".$dato["cliente"]."' and edo != 0 and td = ".$_SESSION["td"]." order by edo");
       
       if($a->num_rows > 0){
           echo '<table class="table table-sm table-striped">
