@@ -103,7 +103,7 @@ elseif(isset($_GET["planillasver"])) include_once 'system/planilla/planillasver.
 
 else{
 
-	if(Helpers::ServerDomain() == TRUE and $_SESSION['tipo_cuenta'] == 5){
+	if(Helpers::ServerDomain() == TRUE and ($_SESSION['tipo_cuenta'] == 5 or $_SESSION['tipo_cuenta'] == 1)){
 		include_once 'system/control/control.php';
 	} else{
 		include_once 'system/index/index.php';
