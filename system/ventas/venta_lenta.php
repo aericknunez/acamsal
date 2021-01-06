@@ -26,9 +26,10 @@ $ventas = new Ventas();
 <div id="temp-productos"></div> <!--  producto que viende despues de la busqueda -->
 
 
-<div align="center"><button class="btn btn-info my-0" type="submit" id="btn-addform"><i class="fas fa-save mr-1"></i> Guardar</button>
+<div align="center">
+  <button class="btn btn-info my-0 invisible" type="submit" id="btn-addform"><i class="fas fa-save mr-1"></i> Guardar</button>
 
-<a id="cancel-x" class="btn btn-danger my-0" type="submit" id="btn-addform"><i class="fas fa-ban mr-1"></i> Cancelar</a>
+<a id="cancel-x" class="btn btn-danger my-0 invisible"><i class="fas fa-ban mr-1"></i> Cancelar</a>
 </div>
 
 </form>

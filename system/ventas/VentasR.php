@@ -488,6 +488,7 @@ class Ventas{
 	   		$opciones = new Opciones();
 	   		$opciones->ConfirmCredito($factura, $_SESSION["cliente_c"]);
 	   		$opciones->UnsetCredito();
+	   		$_SESSION["creditofactura"] = TRUE;
 	   	}
 	   	if(isset($_SESSION["cliente_cli"])){ // guardar el registro del cliente
 	   		$opciones = new Opciones();
@@ -578,6 +579,11 @@ echo '<div class="display-4 text-center font-weight-bold">'. Helpers::Dinero($ca
   		$texto = 'Cliente asignado para credito: ' . $_SESSION['cliente_credito']. ".";
 		Alerts::Mensajex($texto,"danger",'<a id="quitar-cliente" op="99" class="btn btn-danger btn-rounded">Quitar Cliente</a>',$boton2);
 
+
+		$cambio = array();
+	    $cambio["nombre"] = $_SESSION["cliente_asig"];
+	    Helpers::UpdateId("ticket_orden", $cambio, "correlativo = '".$_SESSION["orden"]."' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");  
+
   }
 
 
@@ -617,6 +623,9 @@ echo '<div class="display-4 text-center font-weight-bold">'. Helpers::Dinero($ca
   		$texto = 'Cliente asignado para la Factura: ' . $_SESSION['cliente_asig']. ".";
 		Alerts::Mensajex($texto,"danger",'<a id="quitar-clienteA" op="89" class="btn btn-danger btn-rounded">Quitar Cliente</a>',$boton2);
 
+		$cambio = array();
+	    $cambio["nombre"] = $_SESSION["cliente_asig"];
+	    Helpers::UpdateId("ticket_orden", $cambio, "correlativo = '".$_SESSION["orden"]."' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");   
   }
 
 

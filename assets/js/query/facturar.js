@@ -15,7 +15,8 @@ $(document).ready(function(){
 				$("#form-facturar").trigger("reset");
 				$("#formularios").hide();
 				$("#btn-te").hide(); // esconde boton tarjeta y efectivo 
-				$("#resultado").html(data);					
+				$("#resultado").html(data);		
+				$("#botonimprimir").load('application/src/routes.php?op=250');			
 			}
 		})
 	});

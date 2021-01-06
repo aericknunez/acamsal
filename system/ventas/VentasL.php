@@ -572,7 +572,7 @@ class Ventas{
   		$db = new dbConn();
 
   		$factura = $this->AddTicketNum($datos["efectivo"]);
- 		
+ 		$_SESSION["nfacturaimprimir"] = $factura;
  		// configuro el tipo de pago
  		if(isset($_SESSION["cliente_c"])) $tpago = 3;
  		elseif(isset($_SESSION["tcredito"])) $tpago = 2;
@@ -593,6 +593,7 @@ class Ventas{
 	   		$opciones = new Opciones();
 	   		$opciones->ConfirmCredito($factura, $_SESSION["cliente_c"]);
 	   		$opciones->UnsetCredito();
+	   		$_SESSION["creditofactura"] = TRUE;
 	   	}
 	   	if(isset($_SESSION["cliente_cli"])){ // guardar el registro del cliente
 	   		$opciones = new Opciones();

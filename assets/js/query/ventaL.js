@@ -90,16 +90,37 @@ return false;
 	});
 
 
+// function Mostrar(){
+// 	$("#btn-addform").show();
+// 	$("#cancel-x").show();
+// 	$("#temp-productos").show();
+// }
+
+// function Esconder(){
+// 	$("#btn-addform").hide();
+// 	$("#cancel-x").hide();
+// 	$("#temp-productos").hide();
+// }
+
+// Esconder();
+
+
+
+
 function Mostrar(){
-	$("#btn-addform").show();
-	$("#cancel-x").show();
-	$("#temp-productos").show();
+ $("#btn-addform").removeClass("invisible");
+ $("#btn-addform").addClass("visible");
+ $("#cancel-x").removeClass("invisible");
+ $("#cancel-x").addClass("visible");
+ $("#temp-productos").show();
 }
 
 function Esconder(){
-	$("#btn-addform").hide();
-	$("#cancel-x").hide();
-	$("#temp-productos").hide();
+ $("#btn-addform").removeClass("visible");
+ $("#btn-addform").addClass("invisible");
+ $("#cancel-x").removeClass("visible");
+ $("#cancel-x").addClass("invisible");
+ $("#temp-productos").hide();
 }
 
 Esconder();

@@ -677,6 +677,9 @@ include_once '../../system/ventas/Opciones.php';
 }
 
 
+
+
+
 ////////////////// para venta rapida
 
 if($_REQUEST["op"]=="90"){ // recibe el formulario para agregar los productos (va a ventas)
@@ -1420,6 +1423,12 @@ include_once '../../system/conductores/Conductor.php';
 
 
 
+if($_REQUEST["op"]=="250"){ // link para imprimir ticket de venta
+echo '<a href="system/facturas/ticket.php?factura='.$_SESSION["nfacturaimprimir"].'&credito='.$_SESSION["creditofactura"].'" class="btn-floating btn-sm btn-info" target="_blank"><i class="fas fa-print"></i></a>';
+	unset($_SESSION["nfacturaimprimir"]);
+	unset($_SESSION["creditofactura"]);
+	
+}
 
 
 

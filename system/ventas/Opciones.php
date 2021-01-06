@@ -40,6 +40,10 @@ class Opciones{
 		Helpers::DeleteId("creditos", "orden = ".$_SESSION["orden"]." and hash_cliente = '".$_SESSION["cliente_c"]."' and td = ".$_SESSION["td"]."");
 		Helpers::DeleteId("ticket_cliente", "orden = ".$_SESSION["orden"]." and cliente = '".$_SESSION["cliente_cli"]."' and td = ".$_SESSION["td"]."");
 
+		$cambio = array();
+	    $cambio["nombre"] = NULL;
+	    Helpers::UpdateId("ticket_orden", $cambio, "correlativo = '".$_SESSION["orden"]."' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");  
+
 		$this->UnsetCredito();
 		$this->UnsetCliente();
  	}
@@ -101,6 +105,11 @@ class Opciones{
 
 		Helpers::DeleteId("ticket_cliente", "orden = ".$_SESSION["orden"]." and cliente = '".$_SESSION["cliente_c"]."' and td = ".$_SESSION["td"]."");
 		$this->UnsetCliente();
+
+		$cambio = array();
+	    $cambio["nombre"] = NULL;
+	    Helpers::UpdateId("ticket_orden", $cambio, "correlativo = '".$_SESSION["orden"]."' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");  
+	    
  	}
 
 
