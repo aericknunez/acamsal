@@ -57,7 +57,7 @@ class Controles{
 
 	public function CuotasPagadas($fecha){ /// total de productos registrados
 		$db = new dbConn();
-	    $a = $db->query("SELECT sum(total) FROM asoc_cuotas WHERE edo = 1 and dia_cancel = '$fecha' and td = ".$_SESSION["td"]."");
+	    $a = $db->query("SELECT sum(total) FROM asoc_cuotas WHERE edo = 2 and dia_cancel = '$fecha' and td = ".$_SESSION["td"]."");
 		    foreach ($a as $b) {
 		    $cuotas = $b["sum(total)"];
 		} $a->close();
