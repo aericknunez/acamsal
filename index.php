@@ -34,4 +34,5 @@ if ($seslog->login_check() == TRUE) {
 }
 /////////
 $db->close();
+echo 'Fecha: '. date("d-m-Y") . ' - ' .  date("H:i:s");
 ?>
