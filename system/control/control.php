@@ -106,8 +106,8 @@ $control = new Controles();
         <a type="button" class="btn-floating btn-lg secondary-color ml-4 waves-effect waves-light"><i class="far fa-chart-bar" aria-hidden="true"></i></a>
       </div>
       <div class="col-md-9 col-9 text-right pr-4">
-        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Format($control->CreditoPendiente()); ?></h5>
-        <p class="font-small grey-text">Credito Pendiente</p>
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Dinero($cut->TVentasX(date("d-m-Y"), 3)); ?></h5>
+        <p class="font-small grey-text">Credito Hoy</p>
       </div>
     </div>
 
@@ -171,6 +171,100 @@ $control = new Controles();
 <!-- Grid column -->
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- division -->
+
+
+<div class="row mt-3">
+
+<!-- Grid column -->
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card">
+    <div class="row mt-3">
+      <div class="col-md-3 col-3 text-left pl-1">
+        <a type="button" class="btn-floating btn-lg secondary-color ml-4 waves-effect waves-light"><i class="far fa-chart-bar" aria-hidden="true"></i></a>
+      </div>
+      <div class="col-md-9 col-9 text-right pr-4">
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Format($control->CreditoPendiente()); ?></h5>
+        <p class="font-small grey-text">Credito Pendiente</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Grid column -->
+
+
+
+
+<!-- Grid column -->
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card">
+    <div class="row mt-3">
+      <div class="col-md-5 col-5 text-left pl-1">
+        <a type="button" class="btn-floating btn-lg success-color ml-4 waves-effect waves-light"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
+      </div>
+      <div class="col-md-7 col-7 text-right pr-4">
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Format($control->Nocuotas(date("d-m-Y"))); ?></h5>
+        <p class="font-small grey-text">No. de Cuotas</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Grid column -->
+
+
+<!-- Grid column -->
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card">
+    <div class="row mt-3">
+      <div class="col-md-5 col-5 text-left pl-1">
+        <a type="button" class="btn-floating btn-lg light-blue lighten-1 ml-4 waves-effect waves-light"><i class="fas fa-grin-beam" aria-hidden="true"></i></a>
+      </div>
+      <div class="col-md-7 col-7 text-right pr-4">
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Dinero($control->CuotasPagadas(date("d-m-Y"))); ?></h5>
+        <p class="font-small grey-text">Total Cuotas</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Grid column -->
+
+<!-- Grid column -->
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card">
+    <div class="row mt-3">
+      <div class="col-md-5 col-5 text-left pl-1">
+        <a type="button" class="btn-floating btn-lg red accent-2 ml-4 waves-effect waves-light"><i class="fas fa-sliders-h" aria-hidden="true"></i></a>
+      </div>
+      <div class="col-md-7 col-7 text-right pr-4">
+        <h5 class="ml-4 mt-4 mb-2 font-weight-bold"><?php echo Helpers::Dinero($cut->TVentasX(date("d-m-Y"), 1)); ?></h5>
+        <p class="font-small grey-text">Venta Efectivo</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Grid column -->
+
+</div>
+
+
 <canvas id="barChart" class="mb-4"></canvas>
 
 

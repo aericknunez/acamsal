@@ -40,4 +40,40 @@ class Controles{
 
 
 
+
+	public function NoCuotas($fecha){ /// total de productos registrados
+		$db = new dbConn();
+
+	    $a = $db->query("SELECT * FROM asoc_cuotas WHERE edo = 2 and dia_cancel = '$fecha' and td = ".$_SESSION["td"]."");
+	    $nocreditos = $a->num_rows;
+		 $a->close();
+
+		return 	$nocreditos;
+
+	}
+
+
+
+
+	public function CuotasPagadas($fecha){ /// total de productos registrados
+		$db = new dbConn();
+	    $a = $db->query("SELECT sum(total) FROM asoc_cuotas WHERE edo = 1 and dia_cancel = '$fecha' and td = ".$_SESSION["td"]."");
+		    foreach ($a as $b) {
+		    $cuotas = $b["sum(total)"];
+		} $a->close();
+
+
+		return 	$cuotas;
+
+	}
+
+
+
+
+
+
+
+
+
+
 } // Termina la lcase
