@@ -3,15 +3,11 @@ date_default_timezone_set('America/El_Salvador');
 
 if(Helpers::ServerDomain() == TRUE){
 
-define("HOST", "localhost"); 			//35.225.56.157 The host you want to connect to. 
-define("USER", "superpol_erick"); 			// The database username. 
-define("PASSWORD", "caca007125-"); 	// The database password.
-	if(Helpers::ServerDemo() == TRUE){
-		define("DATABASE", "superpol_acamsal");
-	} else {
-		define("DATABASE", "superpol_acamsal");
-	}
-  
+define("HOST", "db5001821033.hosting-data.io"); 			//35.225.56.157 The host you want to connect to. 
+define("USER", "dbu678928"); 			// The database username. 
+define("PASSWORD", "Caca007125-"); 	// The database password.
+define("DATABASE", "dbs1499012");
+
 
 } else {
 
