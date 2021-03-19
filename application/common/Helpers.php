@@ -9,6 +9,7 @@ class Helpers{
     public static function ServerDomain(){
           if($_SERVER["SERVER_NAME"] == "hibridosv.com" 
           or $_SERVER["SERVER_NAME"] == "www.hibridosv.com"
+          or $_SERVER["SERVER_NAME"] == "s862695801.onlinehome.us"
           or $_SERVER["SERVER_NAME"] == "acamsal.hibridosv.com"){
             return TRUE;
           } else {
