@@ -329,6 +329,23 @@ public static function UpdateId($tabla, $dato, $condicion){
 
 
 
+static public function GetData($tabla, $campo, $tabla_id, $hash) {
+  // tabla a buscar
+  // campo a retornar
+  // nombre de la tabla a identificar
+  // valor del campo
+    $db = new dbConn();
+
+  if($r = $db->select($campo, $tabla, "WHERE $tabla_id = '".$hash."' and td = ".$_SESSION["td"]."")) { 
+    return $r[$campo]; 
+  } unset($r); 
+
+}
+
+
+
+
+
 
 
 

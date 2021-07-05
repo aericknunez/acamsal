@@ -602,6 +602,58 @@ public function VerAbonos($fecha) { //leva el control del autoincremento de los 
 
 
 
+public function CuotasAportaciones($fecha) { //leva el control del autoincremento de los clientes
+    $db = new dbConn();
+        
+        $a = $db->query("SELECT * FROM asoc_cuotas WHERE dia_cancel = '$fecha' and edo = 2 and td = ".$_SESSION["td"]." order by id desc");
+
+        if($a->num_rows > 0){
+        	echo ' <h3 class="h3-responsive">CUOTAS APORTACIONES</h3>'; 
+
+            echo '<table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Asociado</th>
+                <th scope="col">Aportación</th>
+                <th scope="col">Total</th>
+                <th scope="col">Cuota de</th>
+              </tr>
+            </thead>
+            <tbody>';
+            $n = 1;
+            foreach ($a as $b) {    
+	            echo '<tr>
+	                  <th scope="row">'.Helpers::GetData("asociados","nombre","hash",$b["asociado"]).'</th>
+	                  <td>'.$b["descripcion"].'</td>
+	                  <td>'.Helpers::Dinero($b["total"]).'</td>
+	                  <td>'.Fechas::MesEscrito($b["inicio"]). '-'.Fechas::AnoFecha($b["inicio"]).'</td>';
+	              echo '</tr>';
+            }
+              echo '</tbody>
+              </table>';
+
+			echo "El numero de registros es: ". $a->num_rows . "<br>";
+			$a->close();
+
+			$ag = $db->query("SELECT sum(total) FROM asoc_cuotas where edo = 2 and dia_cancel = '$fecha' and td = ".$_SESSION['td']."");
+		    foreach ($ag as $bg) {
+		        echo "Efectivo Obtenido: ". Helpers::Dinero($bg["sum(total)"]) . "<br>";
+		    } $ag->close();
+
+
+        } else {
+			Alerts::Mensajex("No se encontraron Cuotas de Aportaciones","danger",$boton,$boton2);
+			}
+
+
+   
+  }
+
+
+
+
+
+
 
 
 
@@ -612,6 +664,8 @@ public function VerAbonos($fecha) { //leva el control del autoincremento de los 
 		$this->HistorialCortes($fecha, $fecha, 1);
 		echo "<br>";
 		$this->VerAbonos($fecha);
+		echo "<br>";
+		$this->CuotasAportaciones($fecha);
 		echo "<br>";
 		$this->HistorialGDiario($fecha, 1);
 		echo "<br>";
