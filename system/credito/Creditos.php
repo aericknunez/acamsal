@@ -363,6 +363,9 @@ if($dir == "asc") $dir2 = "desc";
           <tr>
             <th class="th-sm"><a id="paginador" op="104" iden="1" orden="nombre" dir="'.$dir2.'">Nombre</a></th>
             <th class="th-sm d-none d-md-block"><a id="paginador" op="104" iden="1" orden="factura" dir="'.$dir2.'">Factura</a></th>
+            <th class="th-sm">Total</th>
+            <th class="th-sm">Abonado</th>
+            <th class="th-sm">Saldo</th>
             <th class="th-sm"><a id="paginador" op="104" iden="1" orden="fecha" dir="'.$dir2.'">Fecha</a></th>
             <th class="th-sm"><a id="paginador" op="104" iden="1" orden="edo" dir="'.$dir2.'">Estado</a></th>
             <th class="th-sm">Ver</th>
@@ -374,9 +377,16 @@ if($dir == "asc") $dir2 = "desc";
     if ($r = $db->select("*", "pro_dependiente", "WHERE iden = ".$b["producto"]." and td = ". $_SESSION["td"] ."")) { 
         $producto = $r["nombre"]; } unset($r); 
 
+        $total = $this->ObtenerTotal($b["factura"], $b["tx"], $b["orden"]);
+        $abonado = $this->TotalAbono($b["hash"]);
+        $saldo = $total - $abonado;
+
           echo '<tr>
                       <td>'.$b["nombre"].'</td>
                       <td class="d-none d-md-block">'.$b["factura"].'</td>
+                      <td>'. Helpers::Dinero($total) .'</td>
+                      <td>'. Helpers::Dinero($abonado) .'</td>
+                      <td>'. Helpers::Dinero($saldo) .'</td>
                       <td>'.$b["fecha"]. ' | ' . $b["hora"].'</td>
                       <td>'.Helpers::EstadoCredito($b["edo"]) . '</td>
                       <td><a id="xver" op="109" credito="'. $b["hash"] .'" factura="'. $b["factura"] .'" tx="'. $b["tx"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
@@ -404,6 +414,11 @@ if($dir == "asc") $dir2 = "desc";
       $end   = (1+($adjacents * 2));
     }
   }
+
+/// se establece cuanto es el total en credito pendiente
+echo '<div class="font-weight-bold">Total Credito Pendiente: ' . Helpers::Dinero($this->TotalCreditoOtorgado() - $this->TotalAbonoRealiado()) . '</div><br>';
+
+
 echo $total_rows . " Registros encontrados";
    if($total_pages > 1) { 
 
@@ -490,20 +505,34 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
           <tr>
             <th class="th-sm">Nombre</th>
             <th class="th-sm d-none d-md-block">Factura</th>
+            <th class="th-sm">Total</th>
+            <th class="th-sm">Abonado</th>
+            <th class="th-sm">Saldo</th>
             <th class="th-sm">Fecha</th>
             <th class="th-sm">Estado</th>
             <th class="th-sm">Ver</th>
           </tr>
         </thead>
         <tbody>';
+
+        $saldox = 0;
         foreach ($a as $b) {
         // obtener el nombre y detalles del producto
     if ($r = $db->select("*", "pro_dependiente", "WHERE iden = ".$b["producto"]." and td = ". $_SESSION["td"] ."")) { 
         $producto = $r["nombre"]; } unset($r); 
 
+        $total = $this->ObtenerTotal($b["factura"], $b["tx"], $b["orden"]);
+        $abonado = $this->TotalAbono($b["hash"]);
+        $saldo = $total - $abonado;
+
+        $saldox = $saldox + $saldo;
+
           echo '<tr>
                       <td>'.$b["nombre"].'</td>
                       <td class="d-none d-md-block">'.$b["factura"].'</td>
+                      <td>'. Helpers::Dinero($total) .'</td>
+                      <td>'. Helpers::Dinero($abonado) .'</td>
+                      <td>'. Helpers::Dinero($saldo) .'</td>
                       <td>'.$b["fecha"]. ' | ' . $b["hora"].'</td>
                       <td>'.Helpers::EstadoCredito($b["edo"]) . '</td>
                       <td><a id="xver" op="109" credito="'. $b["hash"] .'" factura="'. $b["factura"] .'" tx="'. $b["tx"] .'"><i class="fas fa-search fa-lg green-text"></i></a></td>
@@ -511,12 +540,49 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
         }
         echo '</tbody>
         </table>';
+
+
+        /// se establece cuanto es el total en credito pendiente
+echo '<div class="font-weight-bold">Total Credito Pendiente de '. $b["nombre"] . ': ' . Helpers::Dinero($saldox) . '</div><br>';
+
+
+
       } else {
         Alerts::Mensajex("No se encontraron creditos en este cliente","danger");
       }
         $a->close();
 
 }
+
+
+
+
+
+
+
+
+
+
+public function TotalCreditoOtorgado(){ // total del credito que se ha otorgado en todo el tiempo
+  $db = new dbConn();
+
+      if ($r = $db->select("sum(total)", "ticket", "WHERE tipo_pago = 3 and edo = 1 and td = ".$_SESSION["td"]."")) { 
+          return $r["sum(total)"];
+      }  unset($r);  
+  
+}
+
+
+public function TotalAbonoRealiado(){ // total abonos realiados en todo el tiempo
+  $db = new dbConn();
+
+  if ($r = $db->select("sum(abono)", "creditos_abonos", "WHERE edo = 1 and td = ".$_SESSION["td"]."")) { 
+          return $r["sum(abono)"];
+      }  unset($r);  
+  
+}
+
+
 
 
 
