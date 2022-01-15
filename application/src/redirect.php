@@ -22,6 +22,8 @@ elseif(isset($_GET["proaverias"])) include_once 'system/producto/proaverias.php'
 elseif(isset($_GET["bajasexistencias"])) include_once 'system/producto/bajasexistencias.php'; 
 elseif(isset($_GET["cotizar"])) include_once 'system/cotizar/cotizar.php'; 
 elseif(isset($_GET["cotizaciones"])) include_once 'system/cotizar/cotizaciones.php'; 
+elseif(isset($_GET["resumen"])) include_once 'system/producto/resumen_productos.php'; 
+
 
 
 // proveedores

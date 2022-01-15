@@ -105,6 +105,8 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <li><a href="?" class="waves-effect arrow-r"><i class="fas fa-database"></i> Devoluciones</a></li> -->
 
 <li><a href="?bajasexistencias" class="waves-effect"><i class="fas fa-address-book"></i> Bajas Existencias</a></li>
+<li><a href="?resumen" class="waves-effect"><i class="fas fa-cogs"></i> Resumen de Productos</a></li>
+
 </ul>
 </div>
 </li>

@@ -1532,6 +1532,12 @@ include_once '../../system/planilla/Planilla.php';
 }
 
 
+if($_REQUEST["op"]=="350"){ // paginar resumen de productos
+		include_once '../../system/producto/Herramientas.php';
+		$producto = new Herramientas(); 
+		$producto->ResumenProductos($_POST["campo"], $_POST["orden"]);
+	}
+
 /// planilla ///////////////
 
 
